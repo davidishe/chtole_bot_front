@@ -17,6 +17,10 @@ import { switchMap, map, finalize, tap } from 'rxjs/operators';
 export class RegisterComponent implements OnInit {
 
   errors: string[];
+  user: IUser;
+  formRegister: FormGroup;
+  isActive: boolean;
+  returnUrl: string;
 
   constructor(
     private router: Router,
@@ -28,10 +32,7 @@ export class RegisterComponent implements OnInit {
     ) {
   }
 
-  user: IUser;
-  formRegister: FormGroup;
-  isActive: boolean;
-  returnUrl: string;
+
 
 
   ngOnInit(): void {

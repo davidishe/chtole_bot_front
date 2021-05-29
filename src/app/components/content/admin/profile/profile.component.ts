@@ -114,7 +114,9 @@ export class DialogContentComponent {
 
   formProfile: FormGroup;
   currentUser$!: Observable<IUser | any>;
-  currentUser: IUser = null;
+  currentUser: IUser = {
+    email: null
+  };
   offices: IBankOffice[] = [];
   positions: IUserPosition[] =[];
   userForUpdate: IUserForUpdate = {};
@@ -156,27 +158,32 @@ export class DialogContentComponent {
     this.userForUpdate.bankOfficeId = this.formProfile.get('office').value;
     this.userForUpdate.userPositionId = this.formProfile.get('position').value;
     this.userForUpdate.userDescription = this.formProfile.get('userDescription').value;
-    // TODO: сделать круд дисплей нейма!
-    // this.userForUpdate.displayName = this.formProfile.get('displayName').value;
-
-    console.log(this.userForUpdate);
+    this.userForUpdate.displayName = this.formProfile.get('displayName').value;
     return this.userForUpdate;
   }
 
 
 
   patchFormProifileValues() {
-      // this.formProfile.get('displayName').patchValue(this.currentUser.displayName);
-      this.formProfile.get('email').patchValue(this.currentUser.email);
+      this.currentUser$.subscribe((res: any) => {
+        this.currentUser = res;
+      });
+
+      console.log(this.currentUser.displayName);
+      
+      this.formProfile.get('displayName').patchValue(this.currentUser.displayName);
       this.formProfile.get('userDescription').patchValue(this.currentUser.userDescription);
       this.formProfile.get('office').patchValue(this.currentUser.bankOfficeId);
       this.formProfile.get('position').patchValue(this.currentUser.userPositionId);
+
+      console.log(this.formProfile);
+      
   }
 
 
   createFormProfile() {
     this.formProfile = new FormGroup({
-      // displayName: new FormControl(null, [Validators.required]),
+      displayName: new FormControl(null, [Validators.required]),
       office: new FormControl(null, [Validators.required]),
       position: new FormControl(null, [Validators.required]),
       userDescription: new FormControl(null, [])
