@@ -1,16 +1,16 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
-import { IAnimal } from 'src/app/shared/models/animals/animal';
 import { Subscription } from 'rxjs';
 import { IPagination } from 'src/app/shared/models/pagination';
 import { IAnimalType } from 'src/app/shared/models/type';
 import { ShopParams } from 'src/app/shared/models/shopParams';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { DecimalPipe } from '@angular/common';
-import { RegionsService } from 'src/app/services/products/regions.service';
-import { ShopService } from 'src/app/services/products/shop.service';
-import { TypesService } from 'src/app/services/products/types.service';
+import { RegionsService } from 'src/app/services/catalogs/regions.service';
+import { ShopService } from 'src/app/services/catalogs/shop.service';
+import { TypesService } from 'src/app/services/catalogs/types.service';
 import { SideNavService } from 'src/app/services/side-nav.service';
 import { IShelter } from 'src/app/shared/models/shelters/shelter';
+import { IItem } from 'src/app/shared/models/item';
 import { IRegion } from 'src/app/shared/models/region';
 
 @Component({
@@ -21,7 +21,7 @@ import { IRegion } from 'src/app/shared/models/region';
 
 export class ItemsComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  @Input() items: IAnimal[] | IShelter[];
+  @Input() items: IItem[];
   types: IAnimalType[];
   regions: IRegion[];
 

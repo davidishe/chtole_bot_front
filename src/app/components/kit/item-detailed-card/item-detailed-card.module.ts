@@ -5,6 +5,7 @@ import { CardModule } from '../card/card.module';
 import { MatBtnSmallModule } from '../buttons/mat-btn-small/mat-btn-small.module';
 import { RouterModule } from '@angular/router';
 import { ItemFormEditModule } from '../item-form-edit/item-form-edit.module';
+import { TitleModule } from '../title/title.module';
 
 
 
@@ -17,7 +18,8 @@ import { ItemFormEditModule } from '../item-form-edit/item-form-edit.module';
     CardModule,
     MatBtnSmallModule,
     RouterModule,
-    ItemFormEditModule
+    ItemFormEditModule,
+    TitleModule
   ],
   exports: [
     ItemDetailedCardComponent

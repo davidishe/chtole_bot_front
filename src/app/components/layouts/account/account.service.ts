@@ -38,12 +38,8 @@ export class AccountService {
         if (user) {
           localStorage.setItem('garden-app-token', user.token);
           this.currentUserSource.next(user);
-          if (user.isOnboarded) {
-            this.router.navigateByUrl('/');
-          }
-          if (!user.isOnboarded) {
-            this.router.navigateByUrl('onboarding');
-          }
+          this.router.navigateByUrl('/');
+  
         }
       })
     );

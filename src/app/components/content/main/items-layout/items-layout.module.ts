@@ -8,6 +8,7 @@ import { MatBtnSmallModule } from 'src/app/components/kit/buttons/mat-btn-small/
 import { RouterModule } from '@angular/router';
 import { ItemFormModule } from 'src/app/components/kit/item-form/item-form.module';
 import { ItemDetailedCardModule } from 'src/app/components/kit/item-detailed-card/item-detailed-card.module';
+import { MatTableRowModule } from 'src/app/components/kit/card/mat-table-row/mat-table-row.module';
 
 const UserModules = [
   CommonModule,
@@ -24,7 +25,8 @@ const UserModules = [
     ItemsLayoutComponent
   ],
   imports: [
-    UserModules  
+    UserModules,
+    MatTableRowModule
   ],
   exports: [
     ItemsLayoutComponent

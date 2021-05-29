@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IAnimal, IAnimalToCreate } from 'src/app/shared/models/animals/animal';
+import { IItem } from 'src/app/shared/models/item';
 import { AnimalsPagination } from 'src/app/shared/models/pagination';
 import { ShopParams } from 'src/app/shared/models/shopParams';
 import { environment } from 'src/environments/environment';
@@ -14,7 +14,7 @@ export class PetsService {
 
   baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
-  pets: IAnimal[] = [];
+  pets: IItem[] = [];
   pagination = new AnimalsPagination();
   shopParams = new ShopParams();
 
@@ -26,7 +26,7 @@ export class PetsService {
   };
 
 
-  addProductPhoto(product: IAnimal, formData: any) {
+  addProductPhoto(product: IItem, formData: any) {
     return this.http.post(this.baseUrl + 'items/photo?productId=' + product.id, formData);
   }
 
@@ -62,7 +62,7 @@ export class PetsService {
     // if nocache scenaro used user params in query
     const params = this.calculateParams();
 
-    return this.http.get<AnimalsPagination>(this.baseUrl + 'animals/all', {observe: 'response', params})
+    return this.http.get<AnimalsPagination>(this.baseUrl + 'clients/all', {observe: 'response', params})
       .pipe(
         map(response => {
           this.pets = [...this.pets, ...response.body.data];

@@ -11,43 +11,26 @@
     <app-bread-crumb></app-bread-crumb>
     <div class="logo-wrapper" [routerLink]="['/']">
       <div class="smile">
-        🐶
+        📄
       </div>
-      <div class="logo">Придумать</div>
+      <div class="logo">Заполнятор</div>
     </div>
 
     <div class="menu">
       <div class="menu-section">
         <h3>МЕНЮ</h3>
         <ul>
-          <li class="menu-items" [routerLink]="[ '/pets']" (click)="sideNavService.openNavSide()"
+          <li class="menu-items" [routerLink]="[ '/clients']" (click)="sideNavService.openNavSide()"
             routerLinkActive="active-menu">
-            <i class="material-icons">pets</i>
-            <a>Питомцы</a>
-          </li>
-          <li class="menu-items" [routerLink]="[ '/shelters']" (click)="sideNavService.openNavSide()"
-            routerLinkActive="active-menu">
-            <i class="material-icons">villa</i>
-            <a>Приюты</a>
-          </li>
-          <li class="menu-items" routerLinkActive="active-menu">
-            <i class="material-icons">whatshot</i>
-            <a>Волонтеры</a>
-          </li>
-          <li class="menu-items" routerLinkActive="active-menu">
-            <i class="material-icons">people_alt</i>
-            <a>Кураторы</a>
+            <i class="material-icons">article</i>
+            <a>Клиенты</a>
           </li>
 
-          <li class="menu-items" outerLinkActive="active-menu" style="color: gray; cursor: default;"
-            matTooltip="Раздел в разработке" [matTooltipPosition]="'after'">
-            <i class="material-icons">room</i>
-            <a>Передержка</a>
-          </li>
+
           <li class="menu-items" routerLinkActive="active-menu" style="color: gray; cursor: default;"
             matTooltip="Раздел в разработке" [matTooltipPosition]="'after'">
-            <i class="material-icons">payment</i>
-            <a>Донаты</a>
+            <i class="material-icons">texture</i>
+            <a>Шаблоны</a>
           </li>
         </ul>
       </div>

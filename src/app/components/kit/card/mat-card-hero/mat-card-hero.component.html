@@ -1,8 +1,8 @@
 <div class="card-wrapper">
   <div class="mat-card-main">
     <div class="card-body">
-      <h3 class="card-title">{{item.name}}</h3>
-      <div class="card-text">{{item.description | slice:0:60}}...</div>
+      <h3 class="card-title">{{item.companyName}}</h3>
+      <div class="card-text">{{item.accountNumberPsb | slice:0:60}}...</div>
       <div class="card-text-user" *ngIf="item.userName"> <b>Запись добавил пользователь </b>{{item.userName}}</div>
       <div class="img-wrapper">
         <img *ngIf="item.pictureUrl" src="{{item.pictureUrl}}" alt="{{item.name}}">

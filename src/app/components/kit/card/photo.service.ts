@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IAnimal } from 'src/app/shared/models/animals/animal';
+import { IItem } from 'src/app/shared/models/item';
 import { IShelter } from 'src/app/shared/models/shelters/shelter';
 import { environment } from 'src/environments/environment';
 
 
-
-type IItem = IAnimal | IShelter;
+type Item = IItem;
 const apiRoute = 'photo/';
 
 @Injectable({
@@ -18,12 +17,12 @@ export class PhotoService {
   constructor(private http: HttpClient) {}
 
 
-  addPhotoToShelter(item: IItem, formData: any) {
+  addPhotoToShelter(item: Item, formData: any) {
     return this.http.post(this.baseUrl + apiRoute + 'shelters?id=' + item.id, formData);
   }
 
 
-  addPhotoToPet(item: IItem, formData: any) {
+  addPhotoToPet(item: Item, formData: any) {
     return this.http.post(this.baseUrl + apiRoute + 'pets?id=' + item.id, formData);
   }
 

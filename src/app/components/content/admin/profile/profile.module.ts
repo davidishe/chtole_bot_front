@@ -9,6 +9,9 @@ import { TitleModule } from 'src/app/components/kit/title/title.module';
 import { IconModule } from '../../../kit/icon/icon.module';
 import { MatBtnSmallModule } from 'src/app/components/kit/buttons/mat-btn-small/mat-btn-small.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { DropdownModule } from 'src/app/components/kit/inputs/dropdown/dropdown.module';
 
 
 
@@ -27,7 +30,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     TitleModule,
     IconModule,
     MatBtnSmallModule,
-    MatDialogModule
+    MatDialogModule,
+    DropdownModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
   exports: [
     ProfileComponent

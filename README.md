@@ -1,4 +1,7 @@
-# Приложение-агрегатор для приютов и кураторов животных
+# Приложение для автоматизированной подготовки документов
 
-## Как запустить приложение
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Frontend build
+Run `ng serve` for a dev server.
+
+## Backend run
+In command line "dotnet watch run". Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

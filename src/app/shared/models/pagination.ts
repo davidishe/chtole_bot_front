@@ -1,11 +1,10 @@
-import { IAnimal } from './animals/animal';
-import { IShelter } from './shelters/shelter';
+import { IItem } from './item';
 
 export interface IPagination {
   pageIndex: number;
   pageSize: number;
   count: number;
-  data: IAnimal[] | IShelter[];
+  data: IItem[];
 }
 
 export class PaginatedResult<T> {
@@ -17,14 +16,14 @@ export class SheltersPagination implements IPagination {
   pageIndex: number;
   pageSize: number;
   count: number;
-  data: IShelter[];
+  data: IItem[];
 }
 
 export class AnimalsPagination implements IPagination {
   pageIndex: number;
   pageSize: number;
   count: number;
-  data: IAnimal[];
+  data: IItem[];
 }
 
 

@@ -1,8 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { IAnimal, IAnimalToCreate } from 'src/app/shared/models/animals/animal';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminService } from '../admin.service';
-import { ShopService } from 'src/app/services/products/shop.service';
+import { ShopService } from 'src/app/services/catalogs/shop.service';
 import { Subscription } from 'rxjs';
 import { ShopParams } from 'src/app/shared/models/shopParams';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -10,10 +9,11 @@ import { AnimalsPagination } from 'src/app/shared/models/pagination';
 import { DecimalPipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { IAnimalType } from 'src/app/shared/models/type';
-import { TypesService } from 'src/app/services/products/types.service';
-import { RegionsService } from 'src/app/services/products/regions.service';
+import { TypesService } from 'src/app/services/catalogs/types.service';
+import { RegionsService } from 'src/app/services/catalogs/regions.service';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { IRegion } from 'src/app/shared/models/region';
+import { IItem } from 'src/app/shared/models/item';
 
 @Component({
   selector: 'app-base',
@@ -24,8 +24,8 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
 
-  product: IAnimalToCreate;
-  products: IAnimal[];
+  product: IItem;
+  products: IItem[];
 
   progress: boolean;
   pageEvent: PageEvent;
@@ -137,7 +137,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.formData.append('file', fileToUpload, fileToUpload.name);
     this.progress = true;
 
-    this.adminService.addProductPhoto(product, this.formData).subscribe((res: IAnimal) => {
+    this.adminService.addPhoto(product, this.formData).subscribe((res: IItem) => {
       this.products.filter(z => z.id === product.id)[0].pictureUrl = res.pictureUrl;
       this.progress = false;
       this.formData.delete('file');
@@ -146,17 +146,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  onProductIsSale(product: IAnimal) {
-    if (!product.pictureUrl) {
-      this.openSnackBar('Сначала добавь картинку');
-    } else {
-    this.adminService.setProductIsSale(product.id.toString()).subscribe((response: any) => {
-      if (response === 205) {
-        this.products.filter(z => z.id === product.id)[0].isSale = !this.products.filter(z => z.id === product.id)[0].isSale;
-      }
-    });
-    }
-  }
+
 
   // handlePage(e: any) {
     

@@ -14,10 +14,10 @@ import { ErrorComponent } from './components/error/error.component';
 import { NotFoundComponent } from './components/error/not-found/not-found.component';
 import { ServererrorComponent } from './components/error/servererror/servererror.component';
 import { CoreModule } from './components/core/core.module';
-import { TypesService } from './services/products/types.service';
-import { RegionsService } from './services/products/regions.service';
+import { TypesService } from './services/catalogs/types.service';
+import { RegionsService } from './services/catalogs/regions.service';
 import { JwtInterceptor } from './components/core/interceptors/jwt.interceptor';
-import { ShopService } from './services/products/shop.service';
+import { ShopService } from './services/catalogs/shop.service';
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { ErrorInterceptor } from './components/core/interceptors/error.interceptor';
 import { BusyService } from './services/infrastructure/busy.service';
@@ -25,7 +25,6 @@ import { LoadingInterceptor } from './components/core/interceptors/loading.inter
 import { MatButtonModule } from './components/kit/buttons/mat-button/mat-button.module';
 import { NavbarModule } from './components/layouts/nav-menu/navbar.module';
 import { ItemsModule } from './components/content/main/items/items.module';
-import { SheltersModule } from './components/content/main/shelters/shelters.module';
 import { ItemDetailedCardModule } from './components/kit/item-detailed-card/item-detailed-card.module';
 import { PetsModule } from './components/content/main/pets/pets.module';
 import { ItemFormEditModule } from './components/kit/item-form-edit/item-form-edit.module';
@@ -54,7 +53,6 @@ const UserModules = [
     MatButtonModule,
     NavbarModule,
     ItemsModule,
-    SheltersModule,
     ItemDetailedCardModule,
     PetsModule,
     ItemFormEditModule,

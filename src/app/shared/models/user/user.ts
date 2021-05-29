@@ -14,9 +14,11 @@ export interface IUser {
   pictureUrl?: string;
   userRoles?: string[];
   selectedRole?: number;
-  address?: IAddress;
   userDescription?: string;
-  isOnboarded?: boolean;
+  userPosition?: string;
+  bankOffice?: string;
+  bankOfficeId?: number;
+  userPositionId?: number;
 }
 
 // export interface IRole {

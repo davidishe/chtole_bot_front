@@ -9,6 +9,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { AccountService } from 'src/app/components/layouts/account/account.service';
 import { IPhoto } from 'src/app/shared/models/user/photo';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { OfficeService } from 'src/app/services/catalogs/office.service';
+import { IBankOffice } from 'src/app/shared/models/user/bankoffice';
+import { IUserPosition } from 'src/app/shared/models/user/user-position';
+import { PositionsService } from 'src/app/services/catalogs/positions.service';
+import { IUserForUpdate } from 'src/app/shared/models/user/userForUpdate';
 
 @Component({
   selector: 'app-profile',
@@ -31,39 +36,21 @@ export class ProfileComponent implements OnInit {
   };
 
   progress: number;
-  addressEdited: boolean = false;
   @Output() public OnUploadFinished = new EventEmitter();
-
   public result?: IPhoto;
 
   baseUrl = environment.apiUrl;
-  siteUrl = environment.siteUrl;
-
-  noPictureUrl = this.siteUrl + 'Assets/Images/Users/nouserpicture.png';
-
 
   constructor(
     private accountService: AccountService,
     private http: HttpClient,
+    private officeService: OfficeService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    // this.getCurrentUserProfile();
     this.currentUser$ = this.accountService.currentUser$;
   }
-
-
-
-
-
-  // getCurrentUserProfile() {
-  //   this.accountService.getCurrentUserProfile().subscribe((response: IUser) => {
-  //     console.log('sdfsdfsdfsdfs');
-  //     this.currentUser = response;
-  //     // this.patchFormProifileValues();
-  //   });
-  // }
 
   public uploadFile = (files) => {
     if (files.length === 0) {
@@ -114,6 +101,8 @@ export class ProfileComponent implements OnInit {
   }
 
 
+
+
 }
 
 @Component({
@@ -124,93 +113,93 @@ export class ProfileComponent implements OnInit {
 export class DialogContentComponent {
 
   formProfile: FormGroup;
-  formAddress: FormGroup;
   currentUser$!: Observable<IUser | any>;
   currentUser: IUser = null;
-  userProfileEdited: boolean = false;
-
-
-
-
+  offices: IBankOffice[] = [];
+  positions: IUserPosition[] =[];
+  userForUpdate: IUserForUpdate = {};
+  
   constructor(
     private accountService: AccountService,
-    private http: HttpClient,
+    private officeService: OfficeService,
+    private positionService: PositionsService,
     public dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    // this.getCurrentUserProfile();
     this.currentUser$ = this.accountService.currentUser$;
     this.createFormProfile();
-    this.createFormAddress();
-    }
+    this.getAllOffices();
+    this.getAllPositions();
+    this.patchFormProifileValues();
+  }
 
 
 
-  onProfileSubmit() {
+  updateProfile() {
       if (this.formProfile.invalid) {
       console.log('errrrrror');
       return;
     } else {
       console.log(this.formProfile.value);
-      this.accountService.updateUserProfile(this.formProfile.value).subscribe((response: IUser) => {
+      this.mapObjectForUpdate();
+      this.accountService.updateUserProfile(this.userForUpdate).subscribe((response: IUser) => {
         this.currentUser = response;
         this.accountService.loadCurrentUser().subscribe();
         this.dialog.closeAll();
       });
-      this.forHideControlEdited();
 
     }
   }
 
-  forHideControlEdited() {
-    this.userProfileEdited = false;
+  mapObjectForUpdate(): IUserForUpdate {
+    this.userForUpdate.bankOfficeId = this.formProfile.get('office').value;
+    this.userForUpdate.userPositionId = this.formProfile.get('position').value;
+    this.userForUpdate.userDescription = this.formProfile.get('userDescription').value;
+    // TODO: сделать круд дисплей нейма!
+    // this.userForUpdate.displayName = this.formProfile.get('displayName').value;
+
+    console.log(this.userForUpdate);
+    return this.userForUpdate;
   }
+
+
 
   patchFormProifileValues() {
-      this.formProfile.get('displayName').patchValue(this.currentUser.displayName);
+      // this.formProfile.get('displayName').patchValue(this.currentUser.displayName);
       this.formProfile.get('email').patchValue(this.currentUser.email);
       this.formProfile.get('userDescription').patchValue(this.currentUser.userDescription);
-      if (this.currentUser.address) {
-        this.formAddress.get('zipCode').patchValue(this.currentUser.address.zipCode);
-        this.formAddress.get('city').patchValue(this.currentUser.address.city);
-        this.formAddress.get('street').patchValue(this.currentUser.address.street);
-        this.formAddress.get('house').patchValue(this.currentUser.address.house);
-      }
+      this.formProfile.get('office').patchValue(this.currentUser.bankOfficeId);
+      this.formProfile.get('position').patchValue(this.currentUser.userPositionId);
   }
-
 
 
   createFormProfile() {
     this.formProfile = new FormGroup({
-      displayName: new FormControl(null, [Validators.required]),
+      // displayName: new FormControl(null, [Validators.required]),
+      office: new FormControl(null, [Validators.required]),
+      position: new FormControl(null, [Validators.required]),
       userDescription: new FormControl(null, [])
     });
   }
 
-  createFormAddress() {
-    this.formAddress = new FormGroup({
-      street: new FormControl(null, [Validators.required]),
-      city: new FormControl(null, [Validators.required]),
-      house: new FormControl(null, [Validators.required]),
-      zipCode: new FormControl(null, [Validators.required])
-    });
+
+  getAllOffices(): void {
+    this.officeService.getAll().subscribe((res: IBankOffice[]) => {
+      if (res) {
+        this.offices = res;
+      }
+    })
   }
 
-  
 
-  onAddressSubmit() {
-      if (this.formAddress.invalid) {
-      console.log('errrrrror');
-      return;
-    } else {
-      this.accountService.updateUserAddress(this.formAddress.value).subscribe((response: IAddress) => {
-        this.currentUser.address = response;
-      });
-
-    }
+  getAllPositions(): void {
+    this.positionService.getAll().subscribe((res: IUserPosition[]) => {
+      if (res) {
+        this.positions = res;
+      }
+    })
   }
-
 
 
 

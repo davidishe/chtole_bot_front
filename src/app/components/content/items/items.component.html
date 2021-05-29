@@ -1,0 +1,86 @@
+<div class="wrapper">
+  <div class="spec-container">
+    <div class="items-control-wrapper">
+      <app-mat-btn-small [routerLink]="['add' ]" text="Добавить">
+      </app-mat-btn-small>
+
+      <div class="search">
+        <input class="input" type="text" #search placeholder="Поиск по сайту" (keydown.enter)="onSearch()">
+        <mat-icon *ngIf="!shopParams.search" class="mat-icon" matSuffix (click)="onSearch()" style="cursor: pointer;">
+          search
+        </mat-icon>
+        <mat-icon *ngIf="shopParams.search" class="mat-icon" matSuffix (click)="onReset()" style="cursor: pointer;">
+          close
+        </mat-icon>
+      </div>
+    </div>
+    <div>
+
+      <ng-container *ngFor="let item of items">
+        <div class="actions-wrapper">
+
+          <div class="header">
+            <h3>
+              {{item.type}}
+            </h3>
+
+            <div class="info">
+              <span style="margin-right: 20px;">
+                {{item.companyName}}
+              </span>
+              <span>
+                Создано <b>{{item.enrolledDate | DateAgoPipe}}</b>
+              </span>
+            </div>
+          </div>
+
+
+          <div class="actions">
+            <div href="{{item.itemUrl}}" class="actions-items" *ngIf="!item.isSale"
+              [ngClass]="{'disabled': !item.itemUrl}">
+              <span class="material-icons">
+                get_app
+              </span>
+              Скачать
+            </div>
+
+
+            <div class="actions-items" [routerLink]="['add', item.id]">
+              <span class="material-icons">
+                edit
+              </span>
+              Редактировать
+            </div>
+            <div class="actions-items" (click)="onitemDelete(item.id)">
+              <span class="material-icons">
+                delete
+              </span>
+              Удалить
+            </div>
+
+          </div>
+        </div>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" style="display: none;">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </div>
+
+    <div class="container" style="padding-top: 0px; padding-bottom: 250px;" *ngIf="!items">
+      <div class="spinner-wrapper">
+        <mat-spinner>
+
+        </mat-spinner>
+      </div>
+    </div>
+
+    <!-- <div class="mat-paginator-wrapper" [ngClass]="{'invisible': noitems}">
+        <mat-paginator #paginator [length]="this.totalCount" [pageSize]="shopParams.pageSize"
+          [pageIndex]="shopParams.pageNumber" [pageSizeOptions]="pageSizeOptions">
+        </mat-paginator>
+      </div> -->
+
+  </div>
+</div>

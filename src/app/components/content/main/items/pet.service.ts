@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IAnimalToCreate } from 'src/app/shared/models/animals/animal';
+import { IItem } from 'src/app/shared/models/item';
 import { environment } from 'src/environments/environment';
 
-type IItem = IAnimalToCreate;
-const apiRoute = 'animals/';
+type Item = IItem;
+const apiRoute = 'clients/';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class PetService {
   }
 
   getItemById(id: number) {
-    return this.http.get(this.baseUrl + apiRoute + 'getbyid/?id=' + id);
+    return this.http.get(this.baseUrl + apiRoute + 'getbyid?id=' + id);
   }
 
 

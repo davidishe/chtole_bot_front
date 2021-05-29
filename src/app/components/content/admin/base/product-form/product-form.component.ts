@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AdminService } from '../../admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { IAnimal, IAnimalToCreate } from 'src/app/shared/models/animals/animal';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';
-import { ShopService } from 'src/app/services/products/shop.service';
+import { ShopService } from 'src/app/services/catalogs/shop.service';
+import { IItem } from 'src/app/shared/models/item';
 
 @Component({
   selector: 'app-product-form',
@@ -19,8 +19,8 @@ export class ProductFormComponent implements OnInit {
   formLandingItems: FormGroup;
   title: string;
 
-  product: IAnimalToCreate;
-  products: IAnimal[];
+  product: IItem;
+  products: IItem[];
   productId: number;
 
 
@@ -83,7 +83,7 @@ export class ProductFormComponent implements OnInit {
         // quantity: this.formLandingItems.controls.inputQuantity.value,
       // };
 
-      this.adminService.createProduct(this.product).subscribe((product: IAnimal) => {
+      this.adminService.createItem(this.product).subscribe((product: IItem) => {
         this.openSnackBar('🤗 запись добавлена');
         // this.products.push(product);
         // this.products.sort((a, b) => {
@@ -101,21 +101,21 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  onProductUpdate(product: IAnimalToCreate) {
-    this.product.name = this.formLandingItems.controls.inputProductTitle.value;
+  onProductUpdate(product: IItem) {
+    this.product.companyName = this.formLandingItems.controls.inputProductTitle.value;
     // this.product.quantity = this.formLandingItems.controls.inputQuantity.value;
     // this.product.description = this.formLandingItems.controls.inputDescription.value;
     // this.product.price = this.formLandingItems.controls.inputProductPrice.value;
     // this.product.productRegionId = this.formLandingItems.controls.inputProductRegion.value;
     // this.product.productTypeId = this.formLandingItems.controls.inputProductType.value;
 
-    this.adminService.updateProduct(this.product).subscribe((response: any) => {
+    this.adminService.updateItem(this.product).subscribe((response: any) => {
       this.isUpdating = false;
       this.router.navigate(['admin/products']);
     });
   }
 
-  goToUpdate(product: IAnimalToCreate) {
+  goToUpdate(product: IItem) {
     this.formLandingItems.reset();
     this.product = product;
     this.isUpdating = true;

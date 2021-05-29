@@ -7,7 +7,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
 import { DisplayService } from 'src/app/services/display.service';
 import { Subscription } from 'rxjs';
-import { ShopService } from 'src/app/services/products/shop.service';
+import { ShopService } from 'src/app/services/catalogs/shop.service';
 import { BusyService } from 'src/app/services/infrastructure/busy.service';
 
 @Component({
@@ -117,7 +117,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSuccessAuthorize() {
-    this.openSnackBar('и снова привет!');
+    this.openSnackBar('добро пожаловать');
     this.router.navigateByUrl(this.returnUrl);
   }
 

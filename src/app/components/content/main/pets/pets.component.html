@@ -1,6 +1,6 @@
 <div class="spec-container">
 
-  <app-title text="Питомцы" subtext="Смотри и добавляй питомцев в каталог"></app-title>
+  <app-title text="Клиенты" subtext="Здесь ты можешь выбрать клиента и скачать готовые формы документов"></app-title>
 
   <div class="container" *ngIf="pets">
     <div class="title-wrapper">
@@ -55,25 +55,9 @@
       </div>
 
       <div class="filters-wrapper" style="justify-content: flex-start; margin-top: 2rem;">
-        <app-mat-btn-small text="Добавить" [icon]="'add'" [routerLink]="[ 'add', 'pet' ]"></app-mat-btn-small>
+        <app-mat-btn-small text="Добавить" [icon]="'add'" [routerLink]="[ 'add' ]"></app-mat-btn-small>
       </div>
 
-
-      <!-- <div class="filters-wrapper-footer">
-        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onSortSelected(group.value)">
-          <mat-button-toggle value="name" aria-label="Text align left">
-            <mat-icon>
-              sort_by_alpha
-            </mat-icon>
-          </mat-button-toggle>
-          <mat-button-toggle value="priceDesc" aria-label="Text align center">
-            <mat-icon>sort</mat-icon>
-          </mat-button-toggle>
-          <mat-button-toggle value="priceAsc" aria-label="Text align right">
-            <mat-icon class="down">sort</mat-icon>
-          </mat-button-toggle>
-        </mat-button-toggle-group>
-      </div> -->
     </div>
   </div>
 
@@ -81,7 +65,7 @@
 </div>
 
 
-<app-items-layout [(types)]="types" [(regions)]="regions" [(items)]="pets" [link]="'/pets'" [type]="'pet'">
+<app-items-layout [(types)]="types" [(regions)]="regions" [(items)]="pets" [link]="'/clients'" [type]="'pet'">
 </app-items-layout>
 
 <div class="mat-paginator-wrapper" [ngClass]="{'hidden': pets === undefined}">

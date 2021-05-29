@@ -26,16 +26,32 @@
         <div class="user-card-content-inner">
 
           <div style="display: block;">
-            <div class="status-title">
-              {{(currentUser$ | async).displayName}}
-            </div>
-            <div *ngIf="!(currentUser$ | async).userDescription" style="opacity: 0.7;">
+            <h3>
+              Информация учетной записи
+            </h3>
+            <br>
+            <div class="status-title">Дополнительная информация</div>
+            <div *ngIf="!(currentUser$ | async).userDescription" style="opacity: 0.7;" class="status-name">
               Расскажите о себе что-нибудь
             </div>
-            <div *ngIf="(currentUser$ | async).userDescription" style="word-wrap: break-word;">
+            <div *ngIf="(currentUser$ | async).userDescription" style="word-wrap: break-word;" class="status-name">
               {{(currentUser$ | async).userDescription}}
             </div>
             <br>
+            <div class="user-card-header">
+              <div class="status-title">Офис</div>
+              <div class="status-wrapper">
+                <div class="status-name">{{(currentUser$ | async).bankOffice}}</div>
+              </div>
+              <br>
+
+              <div class="status-title">Должность</div>
+              <div class="status-wrapper">
+                <div class="status-name">{{(currentUser$ | async).userPosition}}</div>
+              </div>
+              <br>
+            </div>
+
             <app-mat-btn-small (click)="openDialog()" text="Редактировать данные" (click)="2" [disabled]="false">
             </app-mat-btn-small>
 
@@ -46,20 +62,7 @@
 
 
 
-          <!-- <div class="form-control-profile" *ngIf="(currentUser$ | async).address">
-                  <div class="content-text">
-                    {{(currentUser$ | async).address.zipCode}},
-                    {{(currentUser$ | async).address.city}},
-                    {{(currentUser$ | async).address.street}},
-                    {{(currentUser$ | async).address.house}},
-                  </div>
-                </div> -->
 
-          <!-- <div class="form-control-profile" *ngIf="!(currentUser$ | async).address">
-                  <div class="content-text">
-      
-                  </div>
-                </div> -->
 
         </div>
 
@@ -67,40 +70,21 @@
       </div>
 
       <div class="user-card-section">
-        <div class="user-card-header">
-          <div class="status-title">Текущий статус</div>
-          <div class="status-wrapper">
-            <div class="status-name">Готов помогать</div>
-            <div class="status-icon"></div>
-          </div>
-          <br>
-          <app-mat-btn-small text="Изменить" [disabled]="false">
-          </app-mat-btn-small>
-        </div>
-
-        <div class="user-card-header">
-          <div class="status-title">Локация</div>
-          <div class="status-wrapper">
-            <div class="status-name">Барнаул</div>
-          </div>
-          <br>
-          <app-mat-btn-small text="Изменить" [disabled]="false">
-          </app-mat-btn-small>
-        </div>
-      </div>
-
-
-
-      <div class="user-card-header user-card-section">
         <div class="status-title">Роли</div>
         <div class="status-wrapper" style="display: grid;">
           <ng-container *ngFor="let role of (currentUser$ | async).userRoles">
             <div class="status-name" style="display: table-cell;">{{mapRoleName(role)}}</div>
           </ng-container>
         </div>
+
+
+      </div>
+
+
+
+      <div class="user-card-header user-card-section">
+
         <br>
-        <app-mat-btn-small text="Изменить роли" [disabled]="false">
-        </app-mat-btn-small>
       </div>
 
 
@@ -110,38 +94,22 @@
   </section>
 
 
-  <section class="container">
+  <!-- <section class="container">
     <p>
-      У вас появились животные на временном содержании, зарегистрируйте их
-    </p>
-    <app-mat-btn-small (click)="2" text="Зарегистрировать" [disabled]="false">
-    </app-mat-btn-small>
-  </section>
-
-  <section class="container">
-    <p>
-      Зарегистрируйте приют, представителем которого вы являетесь
-    </p>
-    <app-mat-btn-small (click)="2" text="Зарегистрировать" [disabled]="false">
-    </app-mat-btn-small>
-  </section>
-
-
-  <section class="container">
-    <p>
-      Заполните дополнительные данные о компании
+      Укажите вашу должность, например "ведущий специалист"
     </p>
     <app-mat-btn-small (click)="2" text="Заполнить" [disabled]="false">
     </app-mat-btn-small>
-  </section>
+  </section> -->
 
+  <!-- 
   <section class="container">
     <p>
-      Вы представитель компании - добавьте услуги, которые хотите предоставлять бесплатно
+      Заполните фамилию, имя и отчество в именительном падеже
     </p>
-    <app-mat-btn-small (click)="2" text="Добавить" [disabled]="false">
+    <app-mat-btn-small (click)="2" text="Заполнить" [disabled]="false">
     </app-mat-btn-small>
-  </section>
+  </section> -->
 
 
 </main>
@@ -167,8 +135,8 @@
       </app-input-text>
     </div>
 
-    <app-mat-btn-small (click)="addressEdited = true" *ngIf="!addressEdited" text="Редактировать" [disabled]="false">
-    </app-mat-btn-small>
+    <!-- <app-mat-btn-small (click)="addressEdited = true" *ngIf="!addressEdited" text="Редактировать" [disabled]="false">
+    </app-mat-btn-small> -->
   </div>
 
 

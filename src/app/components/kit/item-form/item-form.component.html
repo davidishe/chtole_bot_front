@@ -1,32 +1,78 @@
-<div class="page-wrapper">
-  <div class="container">
-    <div class="form-add-wrapper">
-      <form class="form-add" [formGroup]="itemForm" (keydown.enter)="AddItem()">
-        <div style="padding-top: 10px; padding-bottom: 10px; z-index: 300; text-align: center;">
-          <h2>
-            Добавление продукта
-          </h2>
-          <p>
-            Вводи данные и нажми кнопку "Сохранить"
-          </p>
-        </div>
+<div class="spec-container">
+  <app-title text="Добавление новой записи" subtext="Вводи данные и нажми кнопку 'Сохранить'"> </app-title>
 
-        <app-input-text [placeholder]="'Имя'" formControlName="name" [type]="'text'"
-          [label]="'Напиши имя питомца здесь'" [id]="'name'" value=''>
+  <div class="form-add-wrapper">
+
+
+
+    <form class="form-add" [formGroup]="itemForm" (keydown.enter)="AddItem()">
+
+
+      <div class="input-group" style="display: flex;">
+        <app-input-text [placeholder]="''" formControlName="innNumber" [type]="'number'" [label]="'ИНН'"
+          [id]="'innNumber'" value='' style="width: 100%; padding-right: 30px;">
         </app-input-text>
 
-        <app-input-text [placeholder]="'Описание'" formControlName="description" [type]="'text'"
-          [label]="'Расскажи историю питомца'" [id]="'description'" value=''>
+        <app-input-text [placeholder]="''" formControlName="ogrnNumber" [type]="'number'" [label]="'ОГРН'"
+          [id]="'ogrnNumber'" value='' style="width: 100%;">
+        </app-input-text>
+      </div>
+      <app-input-text [placeholder]="''" formControlName="companyName" [type]="'text'"
+        [label]="'Полное или сокращенное наименование'" [id]="'companyName'" value='Ромашка'>
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="directorPosition" [type]="'text'"
+        [label]="'Должность руководителя'" [id]="'directorPosition'" value=''>
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="directorName" [type]="'text'" [label]="'Имя руководителя'"
+        [id]="'directorName'" value=''>
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="accountNumberPsb" [type]="'number'" [label]="'Номер ОБС'"
+        [id]="'accountNumberPsb'" value=''>
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="officeNamePsb" [type]="'text'" [label]="'Офис обслуживания'"
+        [id]="'officeNamePsb'" value=''>
+      </app-input-text>
+
+
+      <div class="input-group" style="display: flex;">
+        <app-input-text [placeholder]="''" formControlName="gosKontractIdentificator" [type]="'text'"
+          [label]="'Идентификатор контракта'" [id]="'gosKontractIdentificator'" value=''
+          style="width: 100%; padding-right: 30px;">
         </app-input-text>
 
-        <div class="mat-btn-wrapper" style="min-width: 280px; margin-top: 40px;">
-          <app-mat-btn-small [disabled]="false" [routerLink]="[ '/pets' ]" text="Отменить"></app-mat-btn-small>
 
-          <app-mat-btn-small (click)="AddItem()" [disabled]="itemForm.invalid" text="Сохранить">
-          </app-mat-btn-small>
-        </div>
-      </form>
-    </div>
+        <app-input-text [placeholder]="''" formControlName="gosKontractNumber" [type]="'text'"
+          [label]="'Номер контракта'" [id]="'gosKontractNumber'" value='' style="width: 100%; padding-right: 30px;">
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="gosKontractDate" [type]="'text'" [label]="'Дата контракта'"
+          [id]="'gosKontractDate'" value='' style="width: 100%; padding-right: 30px;">
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="gosKontractOwnerAccount" [type]="'number'"
+          [label]="'Номер счета заказчика'" [id]="'gosKontractOwnerAccount'" value='' style="width: 100%;">
+        </app-input-text>
+
+
+      </div>
+
+
+
+
+
+
+
+      <div class="mat-btn-wrapper" style="min-width: 280px; margin-top: 40px;">
+        <app-mat-btn-small [disabled]="false" [routerLink]="[ '/clients' ]" text="Отменить"></app-mat-btn-small>
+
+        <app-mat-btn-small (click)="AddItem()" [disabled]="itemForm.invalid" text="Сохранить">
+        </app-mat-btn-small>
+      </div>
+    </form>
   </div>
 
 </div>
