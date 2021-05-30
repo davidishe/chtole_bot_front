@@ -18,7 +18,7 @@
         </app-input-text>
       </div>
       <app-input-text [placeholder]="''" formControlName="companyName" [type]="'text'"
-        [label]="'Полное или сокращенное наименование'" [id]="'companyName'" value='Ромашка'>
+        [label]="'Полное или сокращенное наименование'" [id]="'companyName'" value=''>
       </app-input-text>
 
       <app-input-text [placeholder]="''" formControlName="directorPosition" [type]="'text'"
@@ -33,10 +33,7 @@
         [id]="'accountNumberPsb'" value=''>
       </app-input-text>
 
-      <app-input-text [placeholder]="''" formControlName="officeNamePsb" [type]="'text'" [label]="'Офис обслуживания'"
-        [id]="'officeNamePsb'" value=''>
-      </app-input-text>
-
+      <app-dropdown [title]="'Офис'" [controlName]="'bankOffice'" [items]="offices" [form]="itemForm"></app-dropdown>
 
       <div class="input-group" style="display: flex;">
         <app-input-text [placeholder]="''" formControlName="gosKontractIdentificator" [type]="'text'"

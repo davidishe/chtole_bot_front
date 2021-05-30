@@ -4,59 +4,34 @@
 
     <div class="item-content-grid">
       <div class="item-content">
+        <b>ИНН</b>
+        <p> {{item.innNumber}} </p>
+        <b>ОГРН</b>
+        <p> {{item.ogrnNumber}} </p>
         <b>Должность руководителя</b>
-        <p>
-          {{item.directorPosition}}
-        </p>
+        <p> {{item.directorPosition}} </p>
         <b>ФИО руководителя</b>
-        <p>
-          {{item.directorName}}
-        </p>
+        <p> {{item.directorName}} </p>
         <b>Контакты</b>
-        <p>
-          9955094999
-        </p>
-
-        <br>
+        <p>9955094999</p>
+        <b>Номер отдельного банковского счета</b>
+        <p>{{item.accountNumberPsb}}</p>
+        <b>Обслуживающий офис</b>
+        <p>{{item.bankOffice}}</p>
       </div>
       <div class="item-content">
         <div class="item-content-inner">
           <div>
             <b>Запись создана</b>
-            <p> {{item.enrolledDate }}</p>
-
+            <p>{{item.enrolledDate }}</p>
             <b>Создано пользователем</b>
-            <p> {{ item }}</p>
-
-            <!-- 
-            "userName":null,
-            "userFatherName":null,
-            "userShortName":null,
-            "userFullName":null, -->
-
-            <!-- 
-"userFamilyName":null,
-"userName":null,
-"userFatherName":null,
-"userShortName":null,
-"userFullName":null,
-"userId":1,
-
-"appUser":
-{"id":3,"email":"user@user.ru","displayName":"Дмитрий
-Дмитриев","pictureUrl":null,"userPosition":null,"bankOffice":"Калининский","userDescription":null,"token":null,"userRoles":[]},
-
-18:23:39"} -->
-
-
-
+            <p>{{item.appUser.displayName }}</p>
             <b>Должность</b>
-            <p> {{item.userPosition}}</p>
-
-
+            <p>{{item.appUser.userPosition}}</p>
+            <b>Офис</b>
+            <p>{{item.appUser.bankOffice}}</p>
             <div class="docs">
-              <br>
-              <b>Документы для скачивания</b> <br>
+              <b>Документы для скачивания</b>
               <a href="{{item.itemUrl}}">Заявление на обслуживание</a>
             </div>
           </div>
@@ -74,10 +49,8 @@
 
 
     <div class="btn-wrapper" style="margin-bottom: 1.5rem;">
-      <app-mat-btn-small style="margin-right: 10px;" *ngIf="type === 'pet'" [routerLink]="[ '/clients' ]" text="Назад">
+      <app-mat-btn-small style="margin-right: 10px;" [routerLink]="[ '/clients' ]" text="Назад">
       </app-mat-btn-small>
-
-
       <app-mat-btn-small style="margin-right: 10px;" text="Редактировать" (click)="editMode(true)">
       </app-mat-btn-small>
       <app-mat-btn-small style="margin-top: 20px;" text="Удалить" *ngIf="accountService.checkAdminRights()"
@@ -92,7 +65,7 @@
 
 <div *ngIf="item && isEdited" class="spec-container">
   <div class="spec-inner">
-    <app-item-form-edit (changedItem)="getEmitedOutputItem($event)" [item]="item" [type]="type" [itemForm]="itemForm">
+    <app-item-form-edit (changedItem)="getEmitedOutputItem($event)" [item]="item" [itemForm]="itemForm">
     </app-item-form-edit>
   </div>
 </div>

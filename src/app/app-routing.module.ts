@@ -7,9 +7,10 @@ import { ServererrorComponent } from './components/error/servererror/servererror
 import { NotFoundComponent } from './components/error/not-found/not-found.component';
 import { ItemFormComponent } from './components/kit/item-form/item-form.component';
 import { ItemDetailedCardComponent } from './components/kit/item-detailed-card/item-detailed-card.component';
-import { PetsComponent } from './components/content/main/pets/pets.component';
 import { ItemFormEditComponent } from './components/kit/item-form-edit/item-form-edit.component';
 import { AdminGuard } from './components/core/guards/admin.guard';
+import { ClientsModule } from './components/content/main/clients/clients.module';
+import { ClientsComponent } from './components/content/main/clients/clients.component';
 
 
 const routes: Routes = [
@@ -19,10 +20,10 @@ const routes: Routes = [
   { path: 'servererror', component: ServererrorComponent, data: {breadcrumb: 'Ошибка сервера'} },
   { path: 'notfound', component: NotFoundComponent, data: {breadcrumb: 'Страница не найдена'} },
 
-  { path: 'clients', component: PetsComponent, data: {breadcrumb: 'Питомцы'}},
+  { path: 'clients', component: ClientsComponent, data: {breadcrumb: 'Клиенты'}},
   { path: 'clients/add', component: ItemFormComponent, data: {breadcrumb: 'Добавление'}},
-  { path: 'clients/:type/:id', component: ItemDetailedCardComponent, data: {breadcrumb: 'Подробности'}},
-  { path: 'clients/:type/:id/edit', component: ItemFormEditComponent, data: {breadcrumb: 'Изменение'}},
+  { path: 'clients/:id', component: ItemDetailedCardComponent, data: {breadcrumb: 'Подробности'}},
+  { path: 'clients/:id/edit', component: ItemFormEditComponent, data: {breadcrumb: 'Изменение'}},
 
 
   { path: 'admin', loadChildren: () => import('./components/content/admin/admin.module').then(mod => mod.AdminModule),

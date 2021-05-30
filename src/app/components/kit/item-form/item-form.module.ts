@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from '../inputs/input-text/input-text.module';
 import { TitleModule } from '../title/title.module';
+import { DropdownModule } from '../inputs/dropdown/dropdown.module';
 
 
 
@@ -19,7 +20,8 @@ import { TitleModule } from '../title/title.module';
     InputTextModule,
     RouterModule,
     ReactiveFormsModule,
-    TitleModule
+    TitleModule,
+    DropdownModule
   ],
   exports: [
     ItemFormComponent

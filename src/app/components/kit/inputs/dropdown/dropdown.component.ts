@@ -10,12 +10,17 @@ export class DropdownComponent implements OnInit {
 
   @Input() title: string;
   @Input() items: any;
+  @Input() selectedItemId?: number;
   @Input() controlName: string;
   @Input() form: FormGroup;
   
   constructor() { }
 
   ngOnInit() {
+    if (this.selectedItemId >= 0) {
+      console.log(this.form.get(this.controlName));
+      this.form.get(this.controlName).patchValue(this.selectedItemId);
+    }
   }
 
 }

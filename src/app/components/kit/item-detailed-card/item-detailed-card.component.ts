@@ -5,7 +5,6 @@ import { IItem } from 'src/app/shared/models/item';
 import { IShelter } from 'src/app/shared/models/shelters/shelter';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { PetService } from '../../content/main/items/pet.service';
-import { PetsService } from '../../content/main/pets/pets.service';
 import { AccountService } from '../../layouts/account/account.service';
 import { PhotoService } from '../card/photo.service';
 

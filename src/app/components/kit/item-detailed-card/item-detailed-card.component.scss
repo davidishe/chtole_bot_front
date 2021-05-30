@@ -1,27 +1,33 @@
 .item-content-grid {
   display: flex;
   padding-bottom: 30px;
-  justify-content: space-between;
+  justify-content: flex-start;
+  line-height: 1.5rem;
 }
 
 .item-content {
-  padding-right: 30px;
+  padding-right: 50px;
 }
 
 .item-content-inner {
-  padding-left: 30px;
-  min-width: 900px;
+  padding-left: 200px;
   display: flex;
   justify-content: center;
-  line-height: 1.5rem;
+}
+
+.docs {
+  display: grid;
 }
 
 @media (max-width: 770px) {
   .item-content-grid {
-    display: grid;
+    display: flex;
+    padding-bottom: 30px;
+    flex-direction: column;
   }
 
   .item-content-inner {
+    justify-content: flex-start;
     padding: 0px;
     padding-top: 20px;
   }

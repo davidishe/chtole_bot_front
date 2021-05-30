@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PetsService {
+export class ClientsService {
 
   baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}

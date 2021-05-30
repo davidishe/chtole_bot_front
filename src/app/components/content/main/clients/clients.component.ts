@@ -9,14 +9,14 @@ import { IPagination } from 'src/app/shared/models/pagination';
 import { IRegion } from 'src/app/shared/models/region';
 import { ShopParams } from 'src/app/shared/models/shopParams';
 import { IAnimalType } from 'src/app/shared/models/type';
-import { PetsService } from './pets.service';
+import { ClientsService } from './clients.service';
 
 @Component({
-  selector: 'app-pets',
-  templateUrl: './pets.component.html',
-  styleUrls: ['./pets.component.scss']
+  selector: 'app-clients',
+  templateUrl: './clients.component.html',
+  styleUrls: ['./clients.component.scss']
 })
-export class PetsComponent implements OnInit {
+export class ClientsComponent implements OnInit {
 
   sub: Subscription;
   types: IAnimalType[];
@@ -35,9 +35,9 @@ export class PetsComponent implements OnInit {
   constructor(
     private typesService: TypesService,
     private regionsService: RegionsService,
-    private petsService: PetsService
+    private clientsService: ClientsService
   ) {
-    this.shopParams = petsService.getShopParams();
+    this.shopParams = clientsService.getShopParams();
   }
 
   ngOnInit() {
@@ -88,7 +88,7 @@ export class PetsComponent implements OnInit {
   }
 
   getItems(useCache: boolean) {
-    this.sub = this.petsService.getAll(useCache).subscribe((response: IPagination) => {
+    this.sub = this.clientsService.getAll(useCache).subscribe((response: IPagination) => {
       this.pets = response.data;
       this.totalCount = response.count;
       this.paginator.pageSize = response.pageSize;
@@ -103,30 +103,30 @@ export class PetsComponent implements OnInit {
 
 
   onTypeSelected(typeId: number) {
-    const params = this.petsService.getShopParams();
+    const params = this.clientsService.getShopParams();
     if (typeId !== params.typeIdSelected) {
       params.typeIdSelected = typeId;
     } else {
       params.typeIdSelected = 0;
     }
     params.pageNumber = 0;
-    this.petsService.setShopParams(params);
+    this.clientsService.setShopParams(params);
     this.getItems(false);
   }
 
   onSortSelected(sort: string) {
-    const params = this.petsService.getShopParams();
+    const params = this.clientsService.getShopParams();
     params.sortSelected = sort;
     params.pageNumber = 0;
-    this.petsService.setShopParams(params);
+    this.clientsService.setShopParams(params);
     this.getItems(false);
   }
 
   onSearch() {
-    const params = this.petsService.getShopParams();
+    const params = this.clientsService.getShopParams();
     params.search = this.searchTerm.nativeElement.value;
     params.pageNumber = 0;
-    this.petsService.setShopParams(params);
+    this.clientsService.setShopParams(params);
     this.getItems(false);
   }
 
@@ -136,10 +136,10 @@ export class PetsComponent implements OnInit {
 
     const params = new ShopParams();
     params.search = undefined;
-    this.petsService.setShopParams(params);
+    this.clientsService.setShopParams(params);
     console.log(this.searchTerm.nativeElement.value);
     this.getItems(false);
-    this.shopParams = this.petsService.getShopParams();
+    this.shopParams = this.clientsService.getShopParams();
   }
 
 
@@ -147,10 +147,10 @@ export class PetsComponent implements OnInit {
   ngAfterViewInit(): void {
     if (this.paginator) {
       this.paginator.page.subscribe(() => {
-      const shopParams = this.petsService.getShopParams();
+      const shopParams = this.clientsService.getShopParams();
       shopParams.pageNumber = this.paginator.pageIndex;
       shopParams.pageSize = this.paginator.pageSize;
-      this.petsService.setShopParams(shopParams);
+      this.clientsService.setShopParams(shopParams);
       this.getItems(false);
     });
     }
@@ -162,14 +162,14 @@ export class PetsComponent implements OnInit {
   }
 
   onRegionSelected(regionId: number) {
-    const params = this.petsService.getShopParams();
+    const params = this.clientsService.getShopParams();
     if (regionId !== params.regionIdSelected) {
       params.regionIdSelected = regionId;
     } else {
       params.regionIdSelected = 0;
     }
     params.pageNumber = 0;
-    this.petsService.setShopParams(params);
+    this.clientsService.setShopParams(params);
     this.getItems(false);
   }
 

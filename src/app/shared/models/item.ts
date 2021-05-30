@@ -1,3 +1,5 @@
+import { IUser } from "./user/user";
+
 export interface IItem {
   id?: number | null;
   companyName?: string;
@@ -18,11 +20,13 @@ export interface IItem {
   ogrnNumber?: string;
   accountNumberPsb?: string;
   officeNamePsb?: string;
+  bankOfficeId?: number;
   gosKontractIdentificator?: string;
   gosKontractNumber?: string;
   gosKontractDate?: string;
   gosKontractOwnerAccount?: string;
   pictureUrl?: string;
+  appUser?: IUser;
 }
 
 

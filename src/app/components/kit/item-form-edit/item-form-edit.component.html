@@ -1,30 +1,73 @@
-<div class="page-wrapper">
-  <div class="container">
-    <div class="form-add-wrapper">
-      <form class="form-add" [formGroup]="itemForm">
-        <div style="padding-top: 10px; padding-bottom: 10px; z-index: 300; text-align: center;">
-          <h2>
-            Редактирование
-          </h2>
-          <p>
-            Поправь данные и нажми кнопку "Сохранить"
-          </p>
-        </div>
+<app-title text="{{title}}" subtext="{{subtitle}}"> </app-title>
 
-        <app-input-text [placeholder]="'Имя'" formControlName="name" [type]="'text'"
-          [label]="'Напиши имя питомца здесь'" [id]="'name'" [value]="item.companyName">
-        </app-input-text>
+<div class="form-add-wrapper">
 
-        <div class="mat-btn-wrapper" style="min-width: 280px; margin-top: 40px;">
-          <app-mat-btn-small *ngIf="item" [disabled]="false" text="Отменить" [type]="'button'"
-            (click)="this.changedItem.emit(item)">
-          </app-mat-btn-small>
+  <form class="form-add" [formGroup]="itemForm" (keydown.enter)="submitUpdate()">
 
-          <app-mat-btn-small (click)="UpdateItem()" [disabled]="false" text="Сохранить" [type]="'submit'">
-          </app-mat-btn-small>
-        </div>
-      </form>
+
+    <div class="input-group" style="display: flex;">
+      <app-input-text [placeholder]="''" formControlName="innNumber" [type]="'number'" [label]="'ИНН'"
+        [id]="'innNumber'" value='{{item.innNumber}}' style="width: 100%; padding-right: 30px;">
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="ogrnNumber" [type]="'number'" [label]="'ОГРН'"
+        [id]="'ogrnNumber'" value='{{item.ogrnNumber}}' style="width: 100%;">
+      </app-input-text>
     </div>
-  </div>
+    <app-input-text [placeholder]="''" formControlName="companyName" [type]="'text'"
+      [label]="'Полное или сокращенное наименование'" [id]="'companyName'" value='{{item.companyName}}'>
+    </app-input-text>
 
+    <app-input-text [placeholder]="''" formControlName="directorPosition" [type]="'text'"
+      [label]="'Должность руководителя'" [id]="'directorPosition'" value='{{item.directorPosition}}'>
+    </app-input-text>
+
+    <app-input-text [placeholder]="''" formControlName="directorName" [type]="'text'" [label]="'Имя руководителя'"
+      [id]="'directorName'" value='{{item.directorName}}'>
+    </app-input-text>
+
+    <app-input-text [placeholder]="''" formControlName="accountNumberPsb" [type]="'number'" [label]="'Номер ОБС'"
+      [id]="'accountNumberPsb'" value='{{item.accountNumberPsb}}'>
+    </app-input-text>
+
+    <app-dropdown [title]="'Офис'" [controlName]="'bankOffice'" [items]="offices" [form]="itemForm"
+      [selectedItemId]="item.bankOfficeId">
+    </app-dropdown>
+
+    <div class="input-group" style="display: flex;">
+      <app-input-text [placeholder]="''" formControlName="gosKontractIdentificator" [type]="'text'"
+        [label]="'Идентификатор контракта'" [id]="'gosKontractIdentificator'" value='{{item.gosKontractIdentificator}}'
+        style="width: 100%; padding-right: 30px;">
+      </app-input-text>
+
+
+      <app-input-text [placeholder]="''" formControlName="gosKontractNumber" [type]="'text'" [label]="'Номер контракта'"
+        [id]="'gosKontractNumber'" value='{{item.gosKontractNumber}}' style="width: 100%; padding-right: 30px;">
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="gosKontractDate" [type]="'text'" [label]="'Дата контракта'"
+        [id]="'gosKontractDate'" value='' style="width: 100%; padding-right: 30px;">
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="gosKontractOwnerAccount" [type]="'number'"
+        [label]="'Номер счета заказчика'" [id]="'gosKontractOwnerAccount'" value='{{item.gosKontractOwnerAccount}}'
+        style="width: 100%;">
+      </app-input-text>
+
+
+    </div>
+
+
+
+
+
+
+
+    <div class="mat-btn-wrapper" style="min-width: 280px; margin-top: 40px;">
+      <app-mat-btn-small [disabled]="false" [routerLink]="[ '/clients' ]" text="Отменить"></app-mat-btn-small>
+
+      <app-mat-btn-small (click)="submitUpdate()" [disabled]="itemForm.invalid" text="Сохранить">
+      </app-mat-btn-small>
+    </div>
+  </form>
 </div>

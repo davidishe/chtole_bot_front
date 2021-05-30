@@ -5,6 +5,8 @@ import { MatBtnSmallModule } from '../buttons/mat-btn-small/mat-btn-small.module
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from '../inputs/input-text/input-text.module';
+import { TitleModule } from '../title/title.module';
+import { DropdownModule } from '../inputs/dropdown/dropdown.module';
 
 
 
@@ -17,7 +19,9 @@ import { InputTextModule } from '../inputs/input-text/input-text.module';
     MatBtnSmallModule,
     InputTextModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TitleModule,
+    DropdownModule
   ],
 
   exports: [

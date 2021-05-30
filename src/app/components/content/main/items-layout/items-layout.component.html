@@ -4,7 +4,7 @@
       <div class="table">
 
         <ng-container *ngFor="let item of items; let i=index">
-          <app-mat-table-row [item]="item" [routerLink]="[ link, type, item.id]"></app-mat-table-row>
+          <app-mat-table-row [item]="item" [routerLink]="[ link, item.id]"></app-mat-table-row>
         </ng-container>
       </div>
 
