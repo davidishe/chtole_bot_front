@@ -1,3 +1,12 @@
 .mat-chip-list-wrapper {
   width: 100% !important;
 }
+
+.mat-form-field-wrapper {
+  top: 25px !important;
+}
+
+mat-form-field {
+  display: flex !important;
+  vertical-align: middle !important;
+}

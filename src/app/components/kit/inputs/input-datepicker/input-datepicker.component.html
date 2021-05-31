@@ -1,5 +1,18 @@
-<label>Начало отпуска</label>
-<input class="input" [matDatepicker]="pickerStart" formControlName="start">
-<mat-datepicker-toggle matSuffix [for]="pickerStart">
-</mat-datepicker-toggle>
-<mat-datepicker #pickerStart></mat-datepicker>
+<!-- <mat-form-field [formGroup]="form" appearance="outline">
+  <mat-label>{{title}}</mat-label>
+  <input type="date" matInput class="input" [matDatepicker]="pickerStart" formControlName='{{controlName}}'>
+  <mat-datepicker-toggle matSuffix [for]="pickerStart">
+  </mat-datepicker-toggle>
+  <mat-datepicker #pickerStart></mat-datepicker>
+</mat-form-field> -->
+
+<!-- appearance="fill" -->
+
+
+<mat-form-field appearance="outline" floatLabel="always"
+  style="display: flex !important;  vertical-align: middle !important; ">
+  <mat-label>Outline form field</mat-label>
+  <input matInput placeholder="Placeholder" [matDatepicker]="picker">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>

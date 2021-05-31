@@ -46,8 +46,8 @@ export class ItemFormComponent implements OnInit {
       bankOffice: new FormControl(null, Validators.required),
       gosKontractIdentificator: new FormControl(null, Validators.required),
       gosKontractNumber: new FormControl(null, Validators.required),
-      gosKontractDate: new FormControl(null),
-      gosKontractOwnerAccount: new FormControl(null, Validators.required)
+      gosKontractDate: new FormControl(null, Validators.required),
+      gosKontractOwnerAccount: new FormControl()
     });
   }
 
@@ -70,7 +70,7 @@ export class ItemFormComponent implements OnInit {
         bankOfficeId: this.itemForm.controls.bankOffice.value,
         gosKontractIdentificator: this.itemForm.controls.gosKontractIdentificator.value,
         gosKontractNumber: this.itemForm.controls.gosKontractNumber.value,
-        // gosKontractDate: this.itemForm.controls.gosKontractDate.value,
+        gosKontractDate: this.itemForm.controls.gosKontractDate.value,
         gosKontractOwnerAccount: this.itemForm.controls.gosKontractOwnerAccount.value,
       };
 

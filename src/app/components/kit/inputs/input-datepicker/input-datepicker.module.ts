@@ -4,7 +4,8 @@ import { InputDatepickerComponent } from './input-datepicker.component';
 import { MaterialModule } from 'src/app/shared/material.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CoreModule } from '../../core.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -15,6 +16,9 @@ import { CoreModule } from '../../core.module';
   imports: [
     CommonModule,
     MatDatepickerModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [
     InputDatepickerComponent

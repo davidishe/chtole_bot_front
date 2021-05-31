@@ -35,27 +35,27 @@
 
       <app-dropdown [title]="'Офис'" [controlName]="'bankOffice'" [items]="offices" [form]="itemForm"></app-dropdown>
 
-      <div class="input-group" style="display: flex;">
-        <app-input-text [placeholder]="''" formControlName="gosKontractIdentificator" [type]="'text'"
-          [label]="'Идентификатор контракта'" [id]="'gosKontractIdentificator'" value=''
-          style="width: 100%; padding-right: 30px;">
-        </app-input-text>
+      <!-- <div class="input-group" style="display: flex;"> -->
+      <app-input-text [placeholder]="''" formControlName="gosKontractIdentificator" [type]="'text'"
+        [label]="'Идентификатор контракта'" [id]="'gosKontractIdentificator'" value=''
+        style="width: 100%; padding-right: 30px;">
+      </app-input-text>
 
 
-        <app-input-text [placeholder]="''" formControlName="gosKontractNumber" [type]="'text'"
-          [label]="'Номер контракта'" [id]="'gosKontractNumber'" value='' style="width: 100%; padding-right: 30px;">
-        </app-input-text>
+      <app-input-text [placeholder]="''" formControlName="gosKontractNumber" [type]="'text'" [label]="'Номер контракта'"
+        [id]="'gosKontractNumber'" value='' style="width: 100%; padding-right: 30px;">
+      </app-input-text>
 
-        <app-input-text [placeholder]="''" formControlName="gosKontractDate" [type]="'text'" [label]="'Дата контракта'"
-          [id]="'gosKontractDate'" value='' style="width: 100%; padding-right: 30px;">
-        </app-input-text>
+      <app-input-datepicker title="Дата контракта" [controlName]="'gosKontractDate'" [form]="itemForm"
+        style="padding-right: 30px; ">
+      </app-input-datepicker>
 
-        <app-input-text [placeholder]="''" formControlName="gosKontractOwnerAccount" [type]="'number'"
-          [label]="'Номер счета заказчика'" [id]="'gosKontractOwnerAccount'" value='' style="width: 100%;">
-        </app-input-text>
+      <app-input-text [placeholder]="''" formControlName="gosKontractOwnerAccount" [type]="'number'"
+        [label]="'Номер счета заказчика'" [id]="'gosKontractOwnerAccount'" value='' style="width: 100%;">
+      </app-input-text>
 
 
-      </div>
+      <!-- </div> -->
 
 
 
