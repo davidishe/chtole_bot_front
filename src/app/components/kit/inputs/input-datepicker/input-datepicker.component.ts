@@ -12,6 +12,7 @@ export class InputDatepickerComponent implements OnInit {
   @Input() title: string;
   @Input() controlName: string;
   @Input() form: FormGroup;
+  @Input() required: boolean;
 
   constructor() { }
 

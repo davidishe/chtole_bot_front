@@ -25,6 +25,8 @@ export interface IItem {
   gosKontractNumber?: string;
   gosKontractDate?: string;
   gosKontractOwnerAccount?: string;
+  gosKontractOwnerName?: string;
+  gosKontractOwnerInn?: string;
   pictureUrl?: string;
   appUser?: IUser;
 }

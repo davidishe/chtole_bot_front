@@ -33,6 +33,9 @@ import { TitleModule } from './components/kit/title/title.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ClientsModule } from './components/content/main/clients/clients.module';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MomentUtcDateAdapter } from './components/kit/inputs/input-datepicker/moment-utc-date-adapter';
+import { MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 
 
 registerLocaleData(localeRu, 'ru');
@@ -95,6 +98,8 @@ const UserModules = [
       useValue: () => new Promise(() => {})
     },
     { provide: LOCALE_ID, useValue: 'ru' },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+    { provide: DateAdapter, useClass: MomentUtcDateAdapter },
   ],
   bootstrap: [AppComponent]
 })
