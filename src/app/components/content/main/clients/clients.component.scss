@@ -109,7 +109,7 @@
       }
 
       mat-chip.regions.active {
-        background-color: var(--warn);
+        background-color: var(--error);
       }
 
       mat-chip.mat-standard-chip::after {

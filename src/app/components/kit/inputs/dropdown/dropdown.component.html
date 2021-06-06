@@ -1,6 +1,6 @@
 <mat-form-field [formGroup]="form" appearance="outline" floatLabel="always"
-  style="box-shadow: none !important; width: 100%;">
-  <mat-label>{{title}}</mat-label>
+  style="box-shadow: none !important; width: 100%; margin-bottom: 25px;">
+  <label class="label">{{title}}</label>
   <mat-select formControlName='{{controlName}}' style="box-shadow: none !important;">
     <mat-option *ngFor="let item of items; let i=index" [value]="item.id">{{item.name}}</mat-option>
   </mat-select>

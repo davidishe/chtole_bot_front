@@ -9,12 +9,16 @@
 <!-- appearance="fill" -->
 
 
-<mat-form-field appearance="outline" floatLabel="always"
+<mat-form-field appearance="outline" floatLabel="always" [hideRequiredMarker]="true"
   style="display: flex !important;  vertical-align: middle !important; " [formGroup]="form">
-  <mat-label>Outline form field</mat-label>
-  <input matInput placeholder="Placeholder" formControlName='{{controlName}}' [matDatepicker]="picker"
+  <label class="label">{{title}}</label>
+  <input matInput placeholder="01.02.2003" id="pickerinput" formControlName='{{controlName}}' [matDatepicker]="picker"
     [required]="true">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker-toggle matSuffix [for]="picker"
+    [ngClass]="{'error': form.get(controlName).errors && form.get(controlName).touched}">
+    <!-- datepicker.hasError('requiredFromDate') -->
+    <!-- (form.get('datepicker').hasError('requiredFromDate')) -->
+  </mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
-<!-- <mat-error *ngIf="form.get('FromDate').hasError('requiredFromDate')">Please provide a valid Fromdate</mat-error> -->
+<!-- <mat-error *ngIf="form.get('controlName').hasError('requiredFromDate')">Please provide a valid Fromdate</mat-error> -->

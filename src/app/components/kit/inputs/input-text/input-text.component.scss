@@ -1,6 +1,6 @@
 .form-input {
   display: grid;
-  // margin-bottom: 30px;
+  margin-bottom: 25px;
   margin-top: 10px;
   position: relative;
 }
@@ -51,6 +51,14 @@ input::placeholder {
     // padding-left: 24px;
     position: relative;
   }
+}
+
+.error {
+  border-color: var(--error);
+}
+
+.error-color {
+  color: var(--error);
 }
 
 .eye {

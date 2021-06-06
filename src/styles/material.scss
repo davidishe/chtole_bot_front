@@ -2,6 +2,32 @@
   width: 100% !important;
 }
 
+.mat-btn-wrapper {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mat-btn-wrapper {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  color: var(--error) !important;
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: var(--error) !important;
+}
+
+.mat-form-field .mat-select.mat-select-invalid .mat-select-arrow {
+  color: var(--error) !important;
+}
+
 .mat-form-field-wrapper {
   top: 25px !important;
 }
@@ -9,4 +35,27 @@
 mat-form-field {
   display: flex !important;
   vertical-align: middle !important;
+}
+
+.mat-paginator-page-size {
+  mat-form-field {
+    display: block !important;
+  }
+
+  .mat-form-field-wrapper {
+    top: 0px !important;
+    font-size: var(--standard);
+  }
+}
+
+.mat-paginator-range-label {
+  min-width: 70px;
+}
+
+label.mat-form-field-label {
+  font-size: var(--small) !important;
+}
+
+input {
+  font-size: var(--standard);
 }

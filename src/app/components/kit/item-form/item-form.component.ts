@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';
-import { PetService } from '../../content/main/items/pet.service';
 import { IItem } from 'src/app/shared/models/item';
 import { IBankOffice } from 'src/app/shared/models/user/bankoffice';
 import { OfficeService } from 'src/app/services/catalogs/office.service';
+import { ItemsService } from '../../content/main/items/items.service';
 
 @Component({
   selector: 'app-item-form',
@@ -23,7 +23,7 @@ export class ItemFormComponent implements OnInit {
 
   constructor(
     private breadcrumbService: BreadcrumbService,
-    private petService: PetService,
+    private itemsService: ItemsService,
     private snackBar: MatSnackBar,
     private officeService: OfficeService,
     private activatedRoute: ActivatedRoute,
@@ -49,9 +49,12 @@ export class ItemFormComponent implements OnInit {
       gosKontractDate: new FormControl(null, Validators.nullValidator),
       gosKontractOwnerName: new FormControl(null, Validators.required),
       gosKontractOwnerInn: new FormControl(null, Validators.required),
-      gosKontractOwnerAccount: new FormControl(null, Validators.required)
+      gosKontractOwnerAccount: new FormControl('', [Validators.required])
     });
   }
+
+  // Validators.pattern(0[1-9]])
+  
 
   AddItem() {
     if (this.itemForm.invalid) {
@@ -84,10 +87,9 @@ export class ItemFormComponent implements OnInit {
   }
 
   createItem() {
-    this.petService.createItem(this.item).subscribe((item: IItem) => {
+    this.itemsService.createItem(this.item).subscribe((item: IItem) => {
       if (item) {
         this.openSnackBar('запись добавлена');
-        // this.setTimeOut();
         this.router.navigateByUrl('clients');
       }
     }, error => {

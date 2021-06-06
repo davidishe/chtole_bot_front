@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ItemsService } from '../../content/main/items/items.service';
 import { IShelter, IShelterToCreate } from 'src/app/shared/models/shelters/shelter';
-import { PetService } from '../../content/main/items/pet.service';
 import { IItem } from 'src/app/shared/models/item';
 import { OfficeService } from 'src/app/services/catalogs/office.service';
 import { IBankOffice } from 'src/app/shared/models/user/bankoffice';
@@ -36,7 +35,7 @@ export class ItemFormEditComponent implements OnInit {
     private officeService: OfficeService,
     private snackBar: MatSnackBar,
     private activatedRoute: ActivatedRoute,
-    private petService: PetService,
+    private itemsService: ItemsService,
     private router: Router
   ) {}
 
@@ -58,6 +57,7 @@ export class ItemFormEditComponent implements OnInit {
   }
 
   mapItemFields() {
+  
     this.item = {
       id: this.item.id,
       ogrnNumber: this.itemForm.controls.ogrnNumber.value,
@@ -70,14 +70,16 @@ export class ItemFormEditComponent implements OnInit {
       bankOfficeId: this.itemForm.controls.bankOffice.value,
       gosKontractIdentificator: this.itemForm.controls.gosKontractIdentificator.value,
       gosKontractNumber: this.itemForm.controls.gosKontractNumber.value,
-      // gosKontractDate: this.itemForm.controls.gosKontractDate.value,
+      gosKontractDate: this.itemForm.controls.gosKontractDate.value,
+      gosKontractOwnerName: this.itemForm.controls.gosKontractOwnerName.value,
+      gosKontractOwnerInn: this.itemForm.controls.gosKontractOwnerInn.value,
       gosKontractOwnerAccount: this.itemForm.controls.gosKontractOwnerAccount.value,
     };
   }
 
 
   updateItem(item: Item) {
-    this.petService.updateItem(item).subscribe((item: Item) => {
+    this.itemsService.updateItem(item).subscribe((item: Item) => {
       if (item) {        
         this.openSnackBar('запись обновлена');
         this.changedItem.emit(item);
@@ -112,7 +114,9 @@ export class ItemFormEditComponent implements OnInit {
       gosKontractIdentificator: new FormControl(null, Validators.required),
       gosKontractNumber: new FormControl(null, Validators.required),
       gosKontractDate: new FormControl(null),
-      gosKontractOwnerAccount: new FormControl(null, Validators.required)
+      gosKontractOwnerName: new FormControl(null, Validators.required),
+      gosKontractOwnerInn: new FormControl(null, Validators.required),
+      gosKontractOwnerAccount: new FormControl(null, Validators.required)    
     });
   }
 

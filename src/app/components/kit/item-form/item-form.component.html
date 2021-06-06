@@ -29,8 +29,8 @@
         [id]="'directorName'" value=''>
       </app-input-text>
 
-      <app-input-text [placeholder]="''" formControlName="accountNumberPsb" [type]="'number'" [label]="'Номер ОБС'"
-        [id]="'accountNumberPsb'" value=''>
+      <app-input-text [placeholder]="''" formControlName="accountNumberPsb" [type]="'text'" [label]="'Номер ОБС'"
+        [id]="'accountNumberPsb'" value='' [maxiLength]="'20'" [isNumericOnly]="true" class="account-number">
       </app-input-text>
 
       <app-dropdown [title]="'Офис'" [controlName]="'bankOffice'" [items]="offices" [form]="itemForm"></app-dropdown>
@@ -57,8 +57,9 @@
         [id]="'gosKontractOwnerInn'" value=''>
       </app-input-text>
 
-      <app-input-text [placeholder]="''" formControlName="gosKontractOwnerAccount" [type]="'number'"
-        [label]="'Номер счета заказчика'" [id]="'gosKontractOwnerAccount'" value=''>
+      <app-input-text [placeholder]="''" formControlName="gosKontractOwnerAccount" [type]="'text'"
+        [label]="'Номер счета заказчика'" [id]="'gosKontractOwnerAccount'" value='' [isNumericOnly]="true"
+        [maxiLength]="'20'" class="account-number">
       </app-input-text>
 
 

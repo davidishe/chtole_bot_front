@@ -6,6 +6,11 @@ import { IShelter } from 'src/app/shared/models/shelters/shelter';
 import { ShopParams } from 'src/app/shared/models/shopParams';
 import { environment } from 'src/environments/environment';
 
+
+type Item = IItem;
+const apiRoute = 'clients/';
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,10 +32,6 @@ export class ItemsService {
 
 
 
-  // deleteItem(itemId: number) {
-  //   return this.http.delete(this.baseUrl + 'items/delete/?productId=' + itemId);
-  // }
-
   addProductPhoto(product: IItem, formData: any) {
     return this.http.post(this.baseUrl + 'items/photo?productId=' + product.id, formData);
   }
@@ -42,5 +43,23 @@ export class ItemsService {
   getItemByIdShelter(id: number) {
     return this.http.get(this.baseUrl + 'animals/animal/?id=' + id);
   }
+
+
+  createItem(item: IItem) {
+    return this.http.post(this.baseUrl + apiRoute + 'create/', item);
+  }
+
+  deleteItem(id: number) {
+    return this.http.delete(this.baseUrl + apiRoute + 'delete/?id=' + id);
+  }
+
+  updateItem(item: IItem) {
+    return this.http.put(this.baseUrl + apiRoute + 'update', item);
+  }
+
+  getItemById(id: number) {
+    return this.http.get(this.baseUrl + apiRoute + 'getbyid?id=' + id);
+  }
+
 
 }

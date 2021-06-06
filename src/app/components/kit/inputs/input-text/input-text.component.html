@@ -1,10 +1,14 @@
 <div class="form-input">
 
-  <label *ngIf="label" class="label" for="{{id}}">{{label}}</label>
+  <label *ngIf="label" class="label" for="{{id}}"
+    [ngClass]="{'error-color': (controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched && controlDir.control.errors?.required)}">{{label}}</label>
   <input class="input" #input type="{{type !== undefined ? type : (isActive ? 'password' : 'text')}}" id="{{id}}"
     (input)="onChange($event.target.value)" (blur)="onTouched()" [placeholder]="placeholder"
     [ngClass]="(controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched) ? !controlDir.control.valid ? 'invalid' : 'valid' : null"
-    [ngClass]="{'edited': isEdited}" (focus)="isEdited = true" (change)="isEdited = true" (blur)="isEdited = false">
+    [ngClass]="{'edited': isEdited}"
+    [ngClass]="{'error': (controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched && controlDir.control.errors?.required)}"
+    (focus)="isEdited = true" (change)="isEdited = true" (blur)="isEdited = false" (keypress)="numberOnly($event)"
+    maxLength="{{maxiLength}}">
 
 
   <span *ngIf="type === undefined" class="eye" (click)="isActive = !isActive" [attr.aria-label]="'isActive password'"

@@ -23,7 +23,7 @@
         <p>{{item.gosKontractIdentificator}}</p>
 
         <b>Номер и дата контракта</b>
-        <p>{{item.gosKontractNumber}} от {{item.gosKontractDate}}</p>
+        <p>{{item.gosKontractNumber}} от {{item.gosKontractDate | date}}</p>
 
         <b>Наименование заказчика</b>
         <p>{{item.gosKontractOwnerName}}</p>
@@ -38,7 +38,7 @@
         <div class="item-content-inner">
           <div>
             <b>Запись создана</b>
-            <p>{{item.enrolledDate }}</p>
+            <p>{{item.enrolledDate | date}}</p>
             <b>Создано пользователем</b>
             <p>{{item.appUser.displayName }}</p>
             <b>Должность</b>

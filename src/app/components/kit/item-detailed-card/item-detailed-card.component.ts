@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IItem } from 'src/app/shared/models/item';
 import { IShelter } from 'src/app/shared/models/shelters/shelter';
 import { BreadcrumbService } from 'xng-breadcrumb';
-import { PetService } from '../../content/main/items/pet.service';
+import { ItemsService } from '../../content/main/items/items.service';
 import { AccountService } from '../../layouts/account/account.service';
 import { PhotoService } from '../card/photo.service';
 
@@ -28,7 +28,7 @@ export class ItemDetailedCardComponent implements OnInit {
   
 
   constructor(
-    private petService: PetService,
+    private itemsService: ItemsService,
     private activatedRoute: ActivatedRoute,
     private breadcrumbService: BreadcrumbService,
     public accountService: AccountService,
@@ -74,7 +74,7 @@ export class ItemDetailedCardComponent implements OnInit {
   }
 
   loadPetByGuId() {
-      this.petService.getItemById(this.itemId).subscribe((response: Item) => {
+      this.itemsService.getItemById(this.itemId).subscribe((response: Item) => {
         if (response) {
           this.item = response;
           this.breadcrumbService.set('@productDetails', this.item.companyName);
@@ -98,10 +98,9 @@ export class ItemDetailedCardComponent implements OnInit {
 
 
   delete(id: number): void {
-
-      this.petService.deleteItem(id).subscribe((res: any) => {
+      this.itemsService.deleteItem(id).subscribe((res: any) => {
         if (res) {
-          this.router.navigateByUrl('/pets');
+          this.router.navigateByUrl('/clients');
         }
       })
 

@@ -12,8 +12,10 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() type?: string;
   @Input() value?: string;
   @Input() id?: string;
-  @Input() label: string;
-  @Input() placeholder: string;
+  @Input() label?: string;
+  @Input() placeholder?: string;
+  @Input() isNumericOnly?: boolean;
+  @Input() maxiLength?: string;
 
   isEdited: boolean = false;
   isActive: boolean = true;
@@ -46,6 +48,10 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
       control.patchValue(this.value);
     }
 
+    if (!this.maxiLength) {
+      this.maxiLength = '300';
+    }
+
   }
 
   onChange(event) {
@@ -64,6 +70,17 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
 
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
+  }
+
+  numberOnly(event): boolean {
+
+    if (this.isNumericOnly) {
+      const charCode = (event.which) ? event.which : event.keyCode;
+      if ((charCode > 31 && (charCode < 48 || charCode > 57))) {
+        return false;
+      }
+      return true;
+    }
   }
 
   // setDisabledState?(isDisabled: boolean): void {

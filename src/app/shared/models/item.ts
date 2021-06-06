@@ -23,7 +23,7 @@ export interface IItem {
   bankOfficeId?: number;
   gosKontractIdentificator?: string;
   gosKontractNumber?: string;
-  gosKontractDate?: string;
+  gosKontractDate?: Date;
   gosKontractOwnerAccount?: string;
   gosKontractOwnerName?: string;
   gosKontractOwnerInn?: string;

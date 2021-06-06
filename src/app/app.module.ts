@@ -33,12 +33,24 @@ import { TitleModule } from './components/kit/title/title.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ClientsModule } from './components/content/main/clients/clients.module';
-import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentUtcDateAdapter } from './components/kit/inputs/input-datepicker/moment-utc-date-adapter';
-import { MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 
 
 registerLocaleData(localeRu, 'ru');
+
+export const MY_FORMATS = {
+    parse: {
+        dateInput: 'LL'
+    },
+    display: {
+        dateInput: 'DD.MM.YYYY',
+        monthYearLabel: 'YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'YYYY'
+    }
+};
 
 const UserComponents = [
 ]
@@ -98,8 +110,10 @@ const UserModules = [
       useValue: () => new Promise(() => {})
     },
     { provide: LOCALE_ID, useValue: 'ru' },
+    { provide: MAT_DATE_LOCALE, useValue: 'ru' },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
-    { provide: DateAdapter, useClass: MomentUtcDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: DateAdapter, useClass: MomentUtcDateAdapter, deps: [MAT_DATE_LOCALE] },
   ],
   bootstrap: [AppComponent]
 })

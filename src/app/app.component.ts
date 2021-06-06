@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ChangeDetectorRef, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { error } from 'protractor';
 import { AccountService } from './components/layouts/account/account.service';

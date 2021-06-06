@@ -18,7 +18,6 @@ export class DropdownComponent implements OnInit {
 
   ngOnInit() {
     if (this.selectedItemId >= 0) {
-      console.log(this.form.get(this.controlName));
       this.form.get(this.controlName).patchValue(this.selectedItemId);
     }
   }
