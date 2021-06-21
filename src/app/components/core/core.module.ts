@@ -11,12 +11,10 @@ import { DateAgoPipe } from 'src/app/pipes/time-ago.pipe';
 import { CarouselComponent } from 'ng-carousel-cdk';
 import { MatCarouselComponent } from './mat-carousel/mat-carousel.component';
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
-import { DadataAddressComponent } from '../kit/dadata-address/dadata-address.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 const UserComponents = [
-  DadataAddressComponent
 ]
 
 @NgModule({

@@ -26,16 +26,15 @@ import { MatButtonModule } from './components/kit/buttons/mat-button/mat-button.
 import { NavbarModule } from './components/layouts/nav-menu/navbar.module';
 import { ItemsModule } from './components/content/main/items/items.module';
 import { ItemDetailedCardModule } from './components/kit/item-detailed-card/item-detailed-card.module';
-import { ItemFormEditModule } from './components/kit/item-form-edit/item-form-edit.module';
+import { ItemFormEditModule } from './components/kit/forms/item-form-edit/item-form-edit.module';
 import { HeroModule } from './components/layouts/hero/hero.module';
 import { AdminModule } from './components/content/admin/admin.module';
-import { TitleModule } from './components/kit/title/title.module';
+import { TitleModule } from './components/kit/titles/title/title.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDialogModule } from '@angular/material/dialog';
 import { ClientsModule } from './components/content/main/clients/clients.module';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentUtcDateAdapter } from './components/kit/inputs/input-datepicker/moment-utc-date-adapter';
-import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 
 
 registerLocaleData(localeRu, 'ru');
@@ -53,6 +52,7 @@ export const MY_FORMATS = {
 };
 
 const UserComponents = [
+  // DatePickerPipe
 ]
 
 const UserModules = [

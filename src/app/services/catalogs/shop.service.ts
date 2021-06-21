@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { ShopParams } from 'src/app/shared/models/shopParams';
 import { of } from 'rxjs';
 import { IShelter } from 'src/app/shared/models/shelters/shelter';
-import { IItem } from 'src/app/shared/models/item';
+import { IItem } from 'src/app/shared/models/items/item';
 
 @Injectable()
 

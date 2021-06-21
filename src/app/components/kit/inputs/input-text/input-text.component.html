@@ -1,14 +1,15 @@
 <div class="form-input">
 
   <label *ngIf="label" class="label" for="{{id}}"
-    [ngClass]="{'error-color': (controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched && controlDir.control.errors?.required)}">{{label}}</label>
+    [ngClass]="{'error-color': (controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched && controlDir.control.errors)}">{{label}}</label>
   <input class="input" #input type="{{type !== undefined ? type : (isActive ? 'password' : 'text')}}" id="{{id}}"
     (input)="onChange($event.target.value)" (blur)="onTouched()" [placeholder]="placeholder"
     [ngClass]="(controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched) ? !controlDir.control.valid ? 'invalid' : 'valid' : null"
-    [ngClass]="{'edited': isEdited}"
-    [ngClass]="{'error': (controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched && controlDir.control.errors?.required)}"
+    [ngClass]="{'edited': isEdited && !controlDir.control.errors}"
+    [ngClass]="{'error': (controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched && controlDir.control.errors)}"
     (focus)="isEdited = true" (change)="isEdited = true" (blur)="isEdited = false" (keypress)="numberOnly($event)"
-    maxLength="{{maxiLength}}">
+    maxLength="{{maxiLength}}" minLength="{{miniLength}}" (mouseover)="this.outputEvent.emit($event)"
+    autocomplete="off">
 
 
   <span *ngIf="type === undefined" class="eye" (click)="isActive = !isActive" [attr.aria-label]="'isActive password'"
@@ -34,13 +35,25 @@
 
 
 
-
   <div class="invalid-feedback"
     *ngIf="(controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched)">
 
     <span class="validator" *ngIf="controlDir.control.errors?.required">
       Поле не должно быть пустым
     </span>
+
+    <span class="validator" *ngIf="controlDir.control.errors.maxlength">
+      Введено {{ controlDir.control.errors.maxlength.actualLength | json}} символов. Можно только {{
+      controlDir.control.errors.maxlength.requiredLength}}
+    </span>
+
+
+    <span class="validator" *ngIf="controlDir.control.errors.minlength">
+      Минимальное количество символов {{controlDir.control.errors.minlength.requiredLength}}. Введите еще
+      {{controlDir.control.errors.minlength.requiredLength -
+      controlDir.control.errors.minlength.actualLength}}
+    </span>
+
 
     <span class="validator" *ngIf="controlDir.control.errors?.email">
       Заполните поле корректно

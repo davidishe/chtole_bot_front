@@ -11,7 +11,7 @@ import { LoginBtnFacebookComponent } from '../../kit/buttons/login-btn-facebook/
 import { LoginBtnGoogleComponent } from '../../kit/buttons/login-btn-google/login-btn-google.component';
 import { LoginBtnComponent } from '../../kit/buttons/login-btn/login-btn.component';
 import { InputTextModule } from '../../kit/inputs/input-text/input-text.module';
-import { TitleModule } from '../../kit/title/title.module';
+import { TitleModule } from '../../kit/titles/title/title.module';
 
 
 @NgModule({

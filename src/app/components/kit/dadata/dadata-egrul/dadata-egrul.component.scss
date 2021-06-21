@@ -1,0 +1,16 @@
+.block {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  padding-bottom: 20px;
+  padding-top: 10px;
+
+  .block-info {
+    line-height: var(--line-height-text);
+  }
+
+  .block-btn {
+    display: flex;
+    justify-content: flex-end;
+    vertical-align: middle;
+  }
+}

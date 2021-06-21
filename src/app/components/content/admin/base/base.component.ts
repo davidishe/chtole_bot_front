@@ -13,7 +13,7 @@ import { TypesService } from 'src/app/services/catalogs/types.service';
 import { RegionsService } from 'src/app/services/catalogs/regions.service';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { IRegion } from 'src/app/shared/models/region';
-import { IItem } from 'src/app/shared/models/item';
+import { IItem } from 'src/app/shared/models/items/item';
 
 @Component({
   selector: 'app-base',

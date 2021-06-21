@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IItem } from 'src/app/shared/models/item';
+import { IItem } from 'src/app/shared/models/items/item';
 import { IShelter } from 'src/app/shared/models/shelters/shelter';
 import { PhotoService } from '../photo.service';
 

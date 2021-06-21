@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './components/core/guards/auth.guard';
 import { HeroComponent } from './components/layouts/hero/hero.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ServererrorComponent } from './components/error/servererror/servererror.component';
 import { NotFoundComponent } from './components/error/not-found/not-found.component';
-import { ItemFormComponent } from './components/kit/item-form/item-form.component';
+import { ItemFormComponent } from './components/kit/forms/item-form/item-form.component';
 import { ItemDetailedCardComponent } from './components/kit/item-detailed-card/item-detailed-card.component';
-import { ItemFormEditComponent } from './components/kit/item-form-edit/item-form-edit.component';
+import { ItemFormEditComponent } from './components/kit/forms/item-form-edit/item-form-edit.component';
 import { AdminGuard } from './components/core/guards/admin.guard';
-import { ClientsModule } from './components/content/main/clients/clients.module';
 import { ClientsComponent } from './components/content/main/clients/clients.component';
+import { ItemFormComponent2 } from './components/kit/forms/item-form-2/item-form2.component';
 
 
 const routes: Routes = [
@@ -21,7 +20,10 @@ const routes: Routes = [
   { path: 'notfound', component: NotFoundComponent, data: {breadcrumb: 'Страница не найдена'} },
 
   { path: 'clients', component: ClientsComponent, data: {breadcrumb: 'Клиенты'}},
-  { path: 'clients/add', component: ItemFormComponent, data: {breadcrumb: 'Добавление'}},
+  { path: 'clients/add/first/:type', component: ItemFormComponent, data: {breadcrumb: 'Добавить'}},
+  { path: 'clients/add/second/:type', component: ItemFormComponent2, data: {breadcrumb: 'Добавить2'}},
+
+
   { path: 'clients/:id', component: ItemDetailedCardComponent, data: {breadcrumb: 'Подробности'}},
   { path: 'clients/:id/edit', component: ItemFormEditComponent, data: {breadcrumb: 'Изменение'}},
 

@@ -1,0 +1,117 @@
+<div class="form-add-wrapper">
+  <form class="form-add" [formGroup]="gaugeTitleForm">
+
+    <div class="owner" formArrayName="gaugeTitles"
+      *ngFor="let item of gaugeTitleForm.get('gaugeTitles')?.controls; let i = index;">
+      <div [formGroupName]="i">
+        <app-input-text [placeholder]="''" formControlName="shareValue" [type]="'text'" [label]="'Размер доли, %'"
+          [id]="'shareValue'" value=''>
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="shortName" [type]="'text'"
+          [label]="'Сокращенное наименование'" [id]="'shortName'" value=''>
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="innNumber" [type]="'text'" [label]="'ИНН'"
+          [id]="'innNumber'" value='' [maxiLength]="'10'" [miniLength]="'10'" [isNumericOnly]="true">
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="ogrnNumber" [type]="'text'" [label]="'ОГРН'"
+          [id]="'ogrnNumber'" value=''>
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="mainOkved" [type]="'text'" [label]="'Основной ОКВЭД'"
+          [id]="'mainOkved'" value=''>
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="legalAddress" [type]="'text'" [label]="'Юридический адрес'"
+          [id]="'legalAddress'" value=''>
+        </app-input-text>
+
+
+        <app-mat-btn-small (click)="onSubmit(i)" text="Сохранить" icon="add" style="margin-right: 30px;"
+          [disabled]="item.invalid">
+
+        </app-mat-btn-small>
+        <app-mat-btn-small (click)="removeRow(i)" text="Удалить" icon="delete">
+        </app-mat-btn-small>
+
+        <!-- <app-input-datepicker title="Дата рождения" [controlName]="'birthDate'"
+      [hiddenDatePickerName]="'birthDateHidden'" [form]="gaugeTitleForm" [required]="true">
+    </app-input-datepicker> -->
+
+        <!-- 
+    <app-input-datepicker title="Дата регистрации" [controlName]="'regDate'"
+      [hiddenDatePickerName]="'regDateHidden'" [form]="itemForm" [required]="true">
+    </app-input-datepicker> -->
+
+
+      </div>
+    </div>
+
+
+
+
+
+    <!-- <div class="owner" formArrayName="gaugeTitles"
+        *ngFor="let item of gaugeTitleForm.get('gaugeTitles')?.controls; let i = index;">
+        <div [formGroupName]="i">
+          <app-input-text [placeholder]="''" formControlName="shareValue" [type]="'text'" [label]="'Размер доли, %'"
+            [id]="'shareValue'" value=''>
+          </app-input-text>
+
+          <app-input-text [placeholder]="''" formControlName="cityzenType" [type]="'text'" [label]="'Гражданство'"
+            [id]="'cityzenType'" value=''>
+          </app-input-text>
+
+          <app-input-text [placeholder]="''" formControlName="familyName" [type]="'text'" [label]="'Фамилия'"
+            [id]="'familyName'" value=''>
+          </app-input-text>
+
+          <app-input-text [placeholder]="''" formControlName="firstName" [type]="'text'" [label]="'Имя'"
+            [id]="'firstName'" value=''>
+          </app-input-text>
+
+          <app-input-text [placeholder]="''" formControlName="fatherName" [type]="'text'" [label]="'Отчество'"
+            [id]="'fatherName'" value=''>
+          </app-input-text>
+
+          <app-input-text [placeholder]="''" formControlName="innNumber" [type]="'text'" [label]="'ИНН'"
+            [id]="'innNumber'" value=''>
+          </app-input-text>
+
+
+          <app-input-text [placeholder]="''" formControlName="birthPlace" [type]="'text'" [label]="'Место рождения'"
+            [id]="'birthPlace'" value=''>
+          </app-input-text>
+
+          <app-input-text [placeholder]="''" formControlName="snilsNumber" [type]="'text'" [label]="'СНИЛС'"
+            [maxiLength]="'11'" [miniLength]="'11'" [isNumericOnly]="true" [id]="'snilsNumber'" value=''>
+          </app-input-text>
+
+          <app-mat-btn-small (click)="onSubmit()" text="Сохранить" icon="add" style="margin-right: 30px;"
+            [disabled]="item.invalid">
+
+          </app-mat-btn-small>
+          <app-mat-btn-small (click)="removeRow(i)" text="Удалить" icon="delete">
+          </app-mat-btn-small> -->
+
+    <!-- <app-input-datepicker title="Дата рождения" [controlName]="'birthDate'"
+      [hiddenDatePickerName]="'birthDateHidden'" [form]="gaugeTitleForm" [required]="true">
+    </app-input-datepicker> -->
+
+    <!-- 
+    <app-input-datepicker title="Дата регистрации" [controlName]="'regDate'"
+      [hiddenDatePickerName]="'regDateHidden'" [form]="itemForm" [required]="true">
+    </app-input-datepicker> -->
+
+
+    <!-- </div>
+      </div> -->
+
+
+  </form>
+
+
+
+</div>

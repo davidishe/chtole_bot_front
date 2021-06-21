@@ -6,8 +6,9 @@ import { MaterialModule } from 'src/app/shared/material.module';
 import { CardModule } from 'src/app/components/kit/card/card.module';
 import { MatBtnSmallModule } from 'src/app/components/kit/buttons/mat-btn-small/mat-btn-small.module';
 import { RouterModule } from '@angular/router';
-import { ItemFormModule } from 'src/app/components/kit/item-form/item-form.module';
+import { ItemFormModule } from 'src/app/components/kit/forms/item-form/item-form.module';
 import { ItemDetailedCardModule } from 'src/app/components/kit/item-detailed-card/item-detailed-card.module';
+import { ItemForm2Module } from 'src/app/components/kit/forms/item-form-2/item-form2.module';
 
 const UserModules = [
   CommonModule,
@@ -16,6 +17,7 @@ const UserModules = [
   CardModule,
   RouterModule,
   ItemFormModule,
+  ItemForm2Module,
   MatBtnSmallModule
 ];
 

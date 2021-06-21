@@ -10,7 +10,7 @@ import { ShopService } from 'src/app/services/catalogs/shop.service';
 import { TypesService } from 'src/app/services/catalogs/types.service';
 import { SideNavService } from 'src/app/services/side-nav.service';
 import { IShelter } from 'src/app/shared/models/shelters/shelter';
-import { IItem } from 'src/app/shared/models/item';
+import { IItem } from 'src/app/shared/models/items/item';
 import { IRegion } from 'src/app/shared/models/region';
 
 @Component({

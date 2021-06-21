@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { BaseComponent } from './base/base.component';
 import { AdminComponent } from './admin.component';
 import { UsersComponent } from './user/users/users.component';
-import { ProductFormComponent } from './base/product-form/product-form.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileModule } from './profile/profile.module';
 
@@ -18,8 +17,6 @@ const routes: Routes = [
 
 
   { path: 'products', component: BaseComponent, data: {breadcrumb: {alias: 'products'}} },
-  { path: 'products/add/:id', component: ProductFormComponent, data: {breadcrumb: {alias: 'productDetails'}} },
-  { path: 'products/add', component: ProductFormComponent, data: {breadcrumb: {alias: 'productDetails'}} },
 
 
 ];

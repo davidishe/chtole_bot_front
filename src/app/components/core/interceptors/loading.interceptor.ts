@@ -23,7 +23,6 @@ export class LoadingInterceptor implements HttpInterceptor {
     }
 
     if (req.url.includes('suggest')) {
-      console.log('intercept');
       this.busyService.setLoadingStatus(false);
       return next.handle(req);
     }

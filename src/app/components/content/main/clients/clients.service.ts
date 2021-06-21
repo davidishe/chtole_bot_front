@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IItem } from 'src/app/shared/models/item';
+import { IItem } from 'src/app/shared/models/items/item';
 import { AnimalsPagination } from 'src/app/shared/models/pagination';
 import { ShopParams } from 'src/app/shared/models/shopParams';
 import { environment } from 'src/environments/environment';

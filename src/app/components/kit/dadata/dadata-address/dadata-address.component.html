@@ -1,0 +1,26 @@
+<!-- <div class="example-form">
+  <mat-form-field [formGroup]="addressForm" class="example-full-width" style="width: 100%; max-width: 400px;">
+    <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="addressControl"
+      [matAutocomplete]="auto" (keyup)="suggestAddress(addressControl.value)">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div> -->
+
+
+<form class="example-form" [formGroup]="form">
+  <mat-form-field appearance="outline" floatLabel="always">
+    <label class="address-label"
+      [ngClass]="{'error-color': form.get(controlNameText).errors && form.get(controlNameText).touched}">{{label}}</label>
+    <input type="text" placeholder="{{placeholder}}" aria-label="Number" matInput [formControl]="controlName"
+      [matAutocomplete]="auto" formControlName='{{controlNameText}}' (keyup)="getAddress()">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

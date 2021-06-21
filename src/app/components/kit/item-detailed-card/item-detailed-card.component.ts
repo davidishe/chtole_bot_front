@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IItem } from 'src/app/shared/models/item';
+import { IItem } from 'src/app/shared/models/items/item';
 import { IShelter } from 'src/app/shared/models/shelters/shelter';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ItemsService } from '../../content/main/items/items.service';
@@ -57,7 +57,7 @@ export class ItemDetailedCardComponent implements OnInit {
 
   patchValues() {
     this.itemForm.controls.name.patchValue(this.item.directorName);
-    this.itemForm.controls.description.patchValue(this.item.companyName);
+    this.itemForm.controls.description.patchValue(this.item.companyShortName);
   }
 
 
@@ -77,7 +77,7 @@ export class ItemDetailedCardComponent implements OnInit {
       this.itemsService.getItemById(this.itemId).subscribe((response: Item) => {
         if (response) {
           this.item = response;
-          this.breadcrumbService.set('@productDetails', this.item.companyName);
+          this.breadcrumbService.set('@productDetails', this.item.companyShortName);
           this.patchValues();
         }
     }, err => {

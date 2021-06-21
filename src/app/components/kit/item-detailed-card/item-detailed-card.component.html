@@ -1,6 +1,6 @@
 <div *ngIf="item && !isEdited" class="spec-container">
   <div class="spec-inner">
-    <app-title text="{{item.companyName}}" subtext="{{item.type}}"></app-title>
+    <app-title text="{{item.companyShortName}}" subtext="{{item.type}}"></app-title>
 
     <div class="item-content-grid">
       <div class="item-content">
@@ -38,7 +38,7 @@
         <div class="item-content-inner">
           <div>
             <b>Запись создана</b>
-            <p>{{item.enrolledDate | date}}</p>
+            <p>{{item.enrolledDate}}</p>
             <b>Создано пользователем</b>
             <p>{{item.appUser.displayName }}</p>
             <b>Должность</b>

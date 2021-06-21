@@ -1,0 +1,51 @@
+.form-add-wrapper {
+  justify-content: flex-start;
+  position: relative;
+  align-items: center;
+  vertical-align: middle;
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+
+  .form-add {
+    font-size: 15px;
+    line-height: 10px;
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+}
+
+app-input-text {
+  width: 100% !important;
+}
+
+p {
+  line-height: 1.5rem;
+}
+
+.account-number {
+  width: 225px;
+  display: block;
+}
+
+.owner {
+  padding: 20px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  margin-top: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-hover);
+}
+
+@media (max-width: 1500px) and (min-width: 760px) {
+  .form-add-wrapper {
+    padding-right: 0px;
+  }
+}
+
+@media (max-width: 760px) {
+  .input-group {
+    display: block !important;
+  }
+}

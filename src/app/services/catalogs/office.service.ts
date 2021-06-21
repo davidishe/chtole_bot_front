@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IItem } from 'src/app/shared/models/item';
+import { IItem } from 'src/app/shared/models/items/item';
 import { IBankOffice } from 'src/app/shared/models/user/bankoffice';
 import { environment } from 'src/environments/environment';
 

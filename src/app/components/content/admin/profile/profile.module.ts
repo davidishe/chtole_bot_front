@@ -5,7 +5,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'src/app/components/kit/inputs/input-text/input-text.module';
 import { LabelTextFieldModule } from 'src/app/components/kit/inputs/label-text-field/label-text-field.module';
-import { TitleModule } from 'src/app/components/kit/title/title.module';
+import { TitleModule } from 'src/app/components/kit/titles/title/title.module';
 import { IconModule } from '../../../kit/icon/icon.module';
 import { MatBtnSmallModule } from 'src/app/components/kit/buttons/mat-btn-small/mat-btn-small.module';
 import { MatDialogModule } from '@angular/material/dialog';

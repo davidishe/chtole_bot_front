@@ -32,9 +32,17 @@
   top: 25px !important;
 }
 
+.mat-form-field-appearance-outline .mat-form-field-flex {
+  // margin-top: -0.2em !important;
+}
+
 mat-form-field {
-  display: flex !important;
+  // display: flex !important;
   vertical-align: middle !important;
+}
+
+.mat-form-field {
+  display: block !important;
 }
 
 .mat-paginator-page-size {
@@ -56,6 +64,47 @@ label.mat-form-field-label {
   font-size: var(--small) !important;
 }
 
-input {
-  font-size: var(--standard);
+input,
+input.mat-input-element,
+.mat-select-trigger,
+.mat-datepicker-input {
+  font-size: var(--standard) !important;
+  padding-left: 8px !important;
+}
+
+.address-label {
+  position: absolute;
+  top: -15px;
+  padding-left: 5px;
+  padding-right: 3px;
+  margin-left: 3px;
+  background-color: var(--background);
+}
+
+.error-color {
+  color: var(--error);
+}
+
+.error {
+  color: var(--error) !important;
+  border-color: var(--error) !important;
+}
+
+// mat-input error outline color
+::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
+  .mat-form-field-outline-thick {
+  color: var(--error) !important;
+  opacity: 0.8 !important;
+}
+
+// mat-input error carent color
+::ng-deep .mat-form-field-invalid .mat-input-element,
+.mat-warn .mat-input-element {
+  caret-color: var(--error) !important;
+}
+
+// mat-label error style
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: var(--error) !important;
 }

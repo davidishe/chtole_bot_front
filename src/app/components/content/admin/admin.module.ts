@@ -11,7 +11,7 @@ import { ChipListModule } from '../../kit/chip-list/chip-list.module';
 import { MatButtonSecondModule } from '../../kit/buttons/mat-button-second/mat-button-second.module';
 import { ProfileModule } from './profile/profile.module';
 import { IconModule } from '../../kit/icon/icon.module';
-import { TitleModule } from '../../kit/title/title.module';
+import { TitleModule } from '../../kit/titles/title/title.module';
 import { MatBtnSmallModule } from '../../kit/buttons/mat-btn-small/mat-btn-small.module';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';

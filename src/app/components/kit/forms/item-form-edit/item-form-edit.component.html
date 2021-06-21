@@ -1,0 +1,87 @@
+<app-title text="{{title}}" subtext="{{subtitle}}"> </app-title>
+
+<div class="form-add-wrapper">
+
+  <form class="form-add" [formGroup]="itemForm" (keydown.enter)="submitUpdate()">
+
+    <app-input-text [placeholder]="''" formControlName="companyShortName" [type]="'text'"
+      [label]="'Полное или сокращенное наименование'" [id]="'companyShortName'" value='{{item.companyShortName}}'>
+    </app-input-text>
+    <app-input-text [placeholder]="''" formControlName="companyFullName" [type]="'text'"
+      [label]="'Полное или сокращенное наименование'" [id]="'companyFullName'" value='{{item.companyFullName}}'>
+    </app-input-text>
+
+
+
+    <div class="input-group" style="display: flex;">
+      <app-input-text [placeholder]="''" formControlName="innNumber" [type]="'number'" [label]="'ИНН'"
+        [id]="'innNumber'" value='{{item.innNumber}}' style="width: 100%; padding-right: 30px;">
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="ogrnNumber" [type]="'number'" [label]="'ОГРН'"
+        [id]="'ogrnNumber'" value='{{item.ogrnNumber}}' style="width: 100%;">
+      </app-input-text>
+    </div>
+
+    <app-input-text [placeholder]="''" formControlName="directorPosition" [type]="'text'"
+      [label]="'Должность руководителя'" [id]="'directorPosition'" value='{{item.directorPosition}}'>
+    </app-input-text>
+
+    <app-input-text [placeholder]="''" formControlName="directorName" [type]="'text'" [label]="'Имя руководителя'"
+      [id]="'directorName'" value='{{item.directorName}}'>
+    </app-input-text>
+
+    <app-input-text [placeholder]="''" formControlName="accountNumberPsb" [type]="'number'" [label]="'Номер ОБС'"
+      [id]="'accountNumberPsb'" value='{{item.accountNumberPsb}}'>
+    </app-input-text>
+
+    <app-dropdown [title]="'Офис'" [controlName]="'bankOffice'" [items]="offices" [form]="itemForm"
+      [selectedItemId]="item.bankOfficeId">
+    </app-dropdown>
+
+
+    <app-input-text [placeholder]="''" formControlName="gosKontractIdentificator" [type]="'text'"
+      [label]="'Идентификатор контракта'" [id]="'gosKontractIdentificator'" value='{{item.gosKontractIdentificator}}'
+      style="width: 100%; padding-right: 30px;">
+    </app-input-text>
+
+
+    <app-input-text [placeholder]="''" formControlName="gosKontractNumber" [type]="'text'" [label]="'Номер контракта'"
+      [id]="'gosKontractNumber'" value='{{item.gosKontractNumber}}' style="width: 100%; padding-right: 30px;">
+    </app-input-text>
+
+    <app-input-datepicker title="Дата контракта" [controlName]="'gosKontractDate'" [form]="itemForm"
+      style="padding-right: 30px;" [required]="true" [hiddenDatePickerName]="'gosKontractDateHidden'"
+      [value]="item.gosKontractDate">
+    </app-input-datepicker>
+
+    <!-- 
+      <app-input-datepicker title="Дата контракта" [controlName]="'gosKontractDate'"
+        [hiddenDatePickerName]="'gosKontractDateHidden'" [form]="itemForm" style="padding-right: 30px;" >
+      </app-input-datepicker> -->
+
+    <app-input-text [placeholder]="''" formControlName="gosKontractOwnerName" [type]="'text'"
+      [label]="'Наименование заказчика'" [id]="'gosKontractOwnerName'" value='{{item.gosKontractOwnerName}}'>
+    </app-input-text>
+
+    <app-input-text [placeholder]="''" formControlName="gosKontractOwnerInn" [type]="'text'" [label]="'ИНН заказчика'"
+      [id]="'gosKontractOwnerInn'" value='{{item.gosKontractOwnerInn}}'>
+    </app-input-text>
+
+    <app-input-text [placeholder]="''" formControlName="gosKontractOwnerAccount" [type]="'number'"
+      [label]="'Номер счета заказчика'" [id]="'gosKontractOwnerAccount'" value='{{item.gosKontractOwnerAccount}}'>
+    </app-input-text>
+
+
+
+
+
+
+    <div class="mat-btn-wrapper" style="min-width: 280px; margin-top: 40px;">
+      <app-mat-btn-small [disabled]="false" [routerLink]="[ '/clients' ]" text="Отменить"></app-mat-btn-small>
+
+      <app-mat-btn-small (click)="submitUpdate()" [disabled]="itemForm.invalid" text="Сохранить">
+      </app-mat-btn-small>
+    </div>
+  </form>
+</div>

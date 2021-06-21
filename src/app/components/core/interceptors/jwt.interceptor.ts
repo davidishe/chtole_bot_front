@@ -8,7 +8,7 @@ export class JwtInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
     const token = localStorage.getItem('garden-app-token');
-    if (token) {
+    if (token && !req.url.includes('dadata')) {
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ` + token

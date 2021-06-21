@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IItem } from 'src/app/shared/models/item';
+import { IItem } from 'src/app/shared/models/items/item';
 import { AnimalsPagination } from 'src/app/shared/models/pagination';
 import { IShelter } from 'src/app/shared/models/shelters/shelter';
 import { ShopParams } from 'src/app/shared/models/shopParams';

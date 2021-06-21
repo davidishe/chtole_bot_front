@@ -9,7 +9,7 @@ import { DecimalPipe } from '@angular/common';
 import { ShopService } from 'src/app/services/catalogs/shop.service';
 import { SideNavService } from 'src/app/services/side-nav.service';
 import { IShelter } from 'src/app/shared/models/shelters/shelter';
-import { IItem } from 'src/app/shared/models/item';
+import { IItem } from 'src/app/shared/models/items/item';
 
 type Item = IItem;
 

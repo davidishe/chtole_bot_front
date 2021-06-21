@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IItem } from 'src/app/shared/models/item';
+import { IItem } from 'src/app/shared/models/items/item';
 import { IShelter } from 'src/app/shared/models/shelters/shelter';
 import { environment } from 'src/environments/environment';
 

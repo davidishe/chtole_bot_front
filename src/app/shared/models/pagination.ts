@@ -1,4 +1,4 @@
-import { IItem } from './item';
+import { IItem } from './items/item';
 
 export interface IPagination {
   pageIndex: number;

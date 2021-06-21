@@ -1,0 +1,220 @@
+<div class="spec-container">
+  <app-title text="Добавление новой записи" subtext="Вводи данные и нажми кнопку 'Сохранить'"> </app-title>
+
+  <div class="form-add-wrapper">
+
+
+
+    <form class="form-add" [formGroup]="itemForm" (keydown.enter)="addItem()">
+
+      <div class="input-group" style="display: flex;">
+        <app-input-text [placeholder]="''" formControlName="innNumber" [type]="'text'" [label]="'ИНН'"
+          [id]="'innNumber'" value='' [maxiLength]="innLength" [miniLength]="innLength" [isNumericOnly]="true"
+          style=" padding-right: 30px;" (outputEvent)="calculateInnLength($event)">
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="ogrnNumber" [type]="'text'" [label]="'ОГРН'"
+          [maxiLength]="'13'" [miniLength]="'13'" [isNumericOnly]="true" [id]="'ogrnNumber'" value=''>
+        </app-input-text>
+      </div>
+
+      <app-dadata-egrul (outputEntity)="setClient($event)"
+        [value]="itemForm.controls.innNumber.value ? itemForm.controls.innNumber.value : itemForm.controls.ogrnNumber.value "
+        [disabled]="!itemForm.get('innNumber').value && !itemForm.get('ogrnNumber').value">
+      </app-dadata-egrul>
+
+      <app-input-text [placeholder]="''" formControlName="companyFullName" [type]="'text'"
+        [label]="'Полное наименование'" [id]="'companyFullName'" value=''>
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="companyShortName" [type]="'text'"
+        [label]="'Cокращенное наименование'" [id]="'companyShortName'" value=''>
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="companyLatinName" [type]="'text'"
+        [label]="'Наименование на английском языке'" [id]="'companyLatinName'" value=''>
+      </app-input-text>
+
+
+      <div class="input-group" style="display: flex;">
+
+        <!-- TODO: ПЕРЕЙТИ НА КОМПОНЕНТ С МАСКОЙ ТЕЛЕФОНА -->
+        <app-input-text [placeholder]="''" formControlName="clientPhoneNumber" [type]="'text'"
+          [label]="'Мобильный телефон'" [id]="'clientPhoneNumber'" value='' style=" padding-right: 30px;">
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="webSiteAddress" [type]="'text'" [label]="'Сайт'"
+          [id]="'webSiteAddress'" value=''>
+        </app-input-text>
+      </div>
+
+
+
+      <app-dadata-address [controlName]="itemForm.controls.legalAddress" controlNameText="legalAddress"
+        [form]="itemForm" [label]="'Юридический адрес'">
+      </app-dadata-address>
+
+      <br>
+      <br>
+
+      <app-dadata-address [controlName]="itemForm.controls.postAddress" controlNameText="postAddress" [form]="itemForm"
+        [label]="'Почтовый адрес'">
+      </app-dadata-address>
+
+      <br>
+      <br>
+      <app-mat-btn-small (click)="itemForm.controls.postAddress.patchValue(itemForm.controls.legalAddress.value)"
+        text="Скопировать из юридического" [disabled]="!itemForm.get('legalAddress').value">
+      </app-mat-btn-small>
+      <br>
+      <br>
+      <br>
+
+      <app-dadata-address [controlName]="itemForm.controls.factAddress" controlNameText="factAddress" [form]="itemForm"
+        [label]="'Фактический адрес'">
+      </app-dadata-address>
+      <br>
+      <br>
+      <app-mat-btn-small (click)="addItem()" text="Скопировать из юридического"
+        (click)="itemForm.controls.factAddress.patchValue(itemForm.controls.legalAddress.value)"
+        [disabled]="!itemForm.get('legalAddress').value">
+      </app-mat-btn-small>
+      <br>
+      <br>
+      <br>
+
+
+
+
+      <div class="input-group" style="display: flex;">
+        <app-input-text [placeholder]="''" formControlName="directorPosition" [type]="'text'"
+          [label]="'Должность руководителя'" [id]="'directorPosition'" value='' style=" padding-right: 30px;">
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="directorName" [type]="'text'" [label]="'Имя руководителя'"
+          [id]="'directorName'" value=''>
+        </app-input-text>
+
+      </div>
+
+
+      <div class="input-group" style="display: flex;">
+        <app-input-text [placeholder]="''" formControlName="accountNumberPsb" [type]="'text'" [label]="'Номер ОБС'"
+          [id]="'accountNumberPsb'" value='' [maxiLength]="'20'" [isNumericOnly]="true"
+          style="padding-right: 30px !important; position: relative;">
+        </app-input-text>
+
+        <app-dropdown [title]="'Офис'" [controlName]="'bankOffice'" [items]="offices" [form]="itemForm"
+          style="min-width: 250px;"></app-dropdown>
+      </div>
+
+
+      <div class="input-group" style="display: flex;">
+
+        <app-input-text [placeholder]="''" formControlName="regPlace" [type]="'text'" [label]="'Место регистрации'"
+          [id]="'regPlace'" value='' style="padding-right: 30px;">
+        </app-input-text>
+
+        <app-input-datepicker title="Дата регистрации" [controlName]="'regDate'"
+          [hiddenDatePickerName]="'regDateHidden'" [form]="itemForm" [required]="true">
+        </app-input-datepicker>
+
+      </div>
+
+
+
+      <app-input-text [placeholder]="''" formControlName="regOrganName" [type]="'text'"
+        [label]="'Наименование налогового органа'" [id]="'regOrganName'" value=''>
+      </app-input-text>
+
+
+      <div class="input-group" style="display: flex;">
+
+        <app-input-text [placeholder]="''" formControlName="mainOkved" [type]="'text'"
+          [label]="'Основной код деятельности'" [id]="'mainOkved'" value='' style="padding-right: 30px;">
+        </app-input-text>
+
+
+        <app-input-text [placeholder]="''" formControlName="additionalOkveds" [type]="'text'"
+          [label]="'Дополнительные коды деятельности'" [id]="'additionalOkveds'" value=''>
+        </app-input-text>
+
+      </div>
+
+
+
+
+
+
+
+      <div class="input-group" style="display: flex;">
+
+        <app-input-text [placeholder]="''" formControlName="kpp" [type]="'text'" [label]="'КПП'" [id]="'kpp'" value=''
+          style=" padding-right: 30px;" [isNumericOnly]="true">
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="okpo" [type]="'text'" [label]="'ОКПО'" [id]="'okpo'"
+          value='' style="padding-right: 30px;" [isNumericOnly]="true">
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="okato" [type]="'text'" [label]="'ОКАТО'" [id]="'okato'"
+          value='' [isNumericOnly]="true">
+        </app-input-text>
+
+      </div>
+
+
+
+      <div class="input-group" style="display: flex;">
+        <app-input-text [placeholder]="''" formControlName="gosKontractIdentificator" [type]="'text'"
+          [label]="'Идентификатор контракта'" [id]="'gosKontractIdentificator'" value='' style=" padding-right: 30px;">
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="gosKontractNumber" [type]="'text'"
+          [label]="'Номер контракта'" [id]="'gosKontractNumber'" value='' style=" padding-right: 30px;">
+        </app-input-text>
+
+        <app-input-datepicker title="Дата контракта" [controlName]="'gosKontractDate'"
+          [hiddenDatePickerName]="'gosKontractDateHidden'" [form]="itemForm" [required]="true">
+        </app-input-datepicker>
+      </div>
+
+
+
+      <app-input-text [placeholder]="''" formControlName="gosKontractOwnerName" [type]="'text'"
+        [label]="'Наименование заказчика'" [id]="'gosKontractOwnerName'" value=''>
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="gosKontractOwnerInn" [type]="'text'" [label]="'ИНН заказчика'"
+        [id]="'gosKontractOwnerInn'" value=''>
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="gosKontractOwnerAccount" [type]="'text'"
+        [label]="'Номер счета заказчика'" [id]="'gosKontractOwnerAccount'" value='' [isNumericOnly]="true"
+        [maxiLength]="'20'" [miniLength]="'20'" class="account-number">
+      </app-input-text>
+
+
+      <!-- </div> -->
+
+
+
+
+
+
+
+      <div class="mat-btn-wrapper" style="min-width: 280px; margin-top: 40px;">
+        <app-mat-btn-small [disabled]="false" [routerLink]="[ '/clients' ]" text="Отменить"></app-mat-btn-small>
+
+        <!-- <app-mat-btn-small (click)="addItem()" [disabled]="itemForm.invalid" text="Сохранить и продолжить">
+        </app-mat-btn-small> -->
+
+        <app-mat-btn-small [disabled]="false" text="Сохранить и продолжить"
+          [routerLink]="[ '/clients/add/second', type ]">
+        </app-mat-btn-small>
+
+      </div>
+    </form>
+  </div>
+
+</div>

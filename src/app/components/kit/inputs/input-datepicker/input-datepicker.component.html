@@ -1,24 +1,26 @@
-<!-- <mat-form-field [formGroup]="form" appearance="outline">
-  <mat-label>{{title}}</mat-label>
-  <input type="date" matInput class="input" [matDatepicker]="pickerStart" formControlName='{{controlName}}'>
-  <mat-datepicker-toggle matSuffix [for]="pickerStart">
-  </mat-datepicker-toggle>
-  <mat-datepicker #pickerStart></mat-datepicker>
-</mat-form-field> -->
-
-<!-- appearance="fill" -->
-
-
-<mat-form-field appearance="outline" floatLabel="always" [hideRequiredMarker]="true"
+<!-- <mat-form-field appearance="outline" floatLabel="always" [hideRequiredMarker]="true"
   style="display: flex !important;  vertical-align: middle !important; " [formGroup]="form">
   <label class="label">{{title}}</label>
-  <input matInput placeholder="01.02.2003" id="pickerinput" formControlName='{{controlName}}' [matDatepicker]="picker"
+  <input type="hidden" [matDatepicker]="picker" [textMask]="mask">
+  <input matInput placeholder="01.02.2003" #pickerinput id="pickerinput" formControlName='{{controlName}}'
     [required]="true">
   <mat-datepicker-toggle matSuffix [for]="picker"
     [ngClass]="{'error': form.get(controlName).errors && form.get(controlName).touched}">
-    <!-- datepicker.hasError('requiredFromDate') -->
-    <!-- (form.get('datepicker').hasError('requiredFromDate')) -->
   </mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
+</mat-form-field> -->
+
+
+<mat-form-field appearance="outline" floatLabel="always" [hideRequiredMarker]="true"
+  style="display: flex !important;  vertical-align: middle !important;" [formGroup]="form">
+  <input type="hidden" [matDatepicker]="picker" [(ngModel)]="value" formControlName='{{hiddenDatePickerName}}'
+    #hiddenpickerinput (dateChange)="onBlur()">
+  <label class="label"
+    [ngClass]="{'error-color': (form.get(controlName).errors && form.get(controlName).touched) }">{{title}}</label>
+  <input ngst matInput placeholder="01.02.2003" #pickerinput [textMask]="mask" (blur)="onBlur()"
+    (change)='todate($event.target.value)' formControlName='{{controlName}}'
+    [ngClass]="{'error': (form.get(controlName).errors && form.get(controlName).touched) }" [required]="required">
+  <mat-datepicker-toggle [ngClass]="{'error-color': (form.get(controlName).errors && form.get(controlName).touched)}"
+    matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker (selectedChanged)="onChange($event)"></mat-datepicker>
 </mat-form-field>
-<!-- <mat-error *ngIf="form.get('controlName').hasError('requiredFromDate')">Please provide a valid Fromdate</mat-error> -->

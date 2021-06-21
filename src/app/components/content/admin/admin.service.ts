@@ -5,7 +5,7 @@ import { PaginatedResult } from 'src/app/shared/models/pagination';
 import { IUser } from 'src/app/shared/models/user/user';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IItem } from 'src/app/shared/models/item';
+import { IItem } from 'src/app/shared/models/items/item';
 
 @Injectable({
   providedIn: 'root'

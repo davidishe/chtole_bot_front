@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, Self, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Self, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 @Component({
@@ -16,6 +16,10 @@ export class InputTextComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder?: string;
   @Input() isNumericOnly?: boolean;
   @Input() maxiLength?: string;
+  @Input() miniLength?: string;
+  
+
+  @Output() outputEvent? = new EventEmitter<Event>();
 
   isEdited: boolean = false;
   isActive: boolean = true;
