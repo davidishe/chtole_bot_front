@@ -4,7 +4,7 @@
   <div class="form-add-wrapper">
 
 
-    <form class="form-add" [formGroup]="itemForm" (keydown.enter)="addItem()">
+    <form class="form-add" [formGroup]="itemForm" (keydown.enter)="onSubmit()">
 
       <div class="input-group" style="display: flex;">
         <!-- TODO: поправить чтобы были копейки можно писать было -->
@@ -12,52 +12,101 @@
           [id]="'ukValue'" value='' [maxiLength]="innLength" [miniLength]="innLength" [isNumericOnly]="true">
         </app-input-text>
 
-        <!-- <app-input-text [placeholder]="''" formControlName="ogrnNumber" [type]="'text'" [label]="'ОГРН'"
-          [maxiLength]="'13'" [miniLength]="'13'" [isNumericOnly]="true" [id]="'ogrnNumber'" value=''>
-        </app-input-text>
-
-        <app-input-text [placeholder]="''" formControlName="directorName" [type]="'text'" [label]="'Имя руководителя'"
-          [id]="'directorName'" value=''>
-        </app-input-text> -->
-
       </div>
-
-
-
-
 
     </form>
   </div>
 
 
+
   <br>
-  <br><br>
 
   <app-subtitle text="Учредители"></app-subtitle>
-  <app-mat-btn-small text="Добавить учредителя - физическое лицо" style="margin-right: 30px;">
+  <div *ngIf="legalOwners.length > 0">
+    <div class="owner-header">Учредители-юридические лица</div>
+    <div class="owners">
+      <div class="owner" *ngFor="let owner of legalOwners; let i=index">
+        <span>
+          {{owner.shortName}}
+        </span>
+        <div class="share">
+          {{owner.shareValue}}%
+          <i class="material-icons" (click)="333">
+            edit_note
+          </i>
+          <i class="material-icons" (click)="deleteOwnerLegal(owner.id)">
+            delete
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="individualOwners.length > 0">
+    <div class="owner-header">Учредители-физические лица</div>
+    <div class="owners">
+      <div class="owner" *ngFor="let owner of individualOwners; let i=index">
+        <span>
+          {{owner.familyName}} {{owner.firstName}} {{owner.fatherName}}
+        </span>
+        <div class="share">
+          {{owner.shareValue}}%
+          <i class="material-icons" (click)="openUpdateDialog(owner)">
+            edit_note
+          </i>
+          <i class="material-icons" (click)="deleteOwnerIndividual(owner.id)">
+            delete
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="(legalOwners.length === 0) && (individualOwners.length === 0)">
+    <span>добавьте хотя бы одного учредителя в список</span>
+  </div>
+
+
+  <br>
+
+  <app-mat-btn-small (click)="addFormIndividual()" text="Добавить учредителя - физическое лицо"
+    style="margin-right: 30px;" [disabled]="!isUkValueValid()">
   </app-mat-btn-small>
-  <app-mat-btn-small (click)="addForm()" text="Добавить учредителя - юридическое лицо">
+
+
+
+  <app-mat-btn-small (click)="addFormLegal()" text="Добавить учредителя - юридическое лицо"
+    [disabled]="!isUkValueValid()">
   </app-mat-btn-small>
 
 
 
-  <app-item-form-legal [gaugeTitleForm]="gaugeTitleForm" [gaugeTitles]="gaugeTitles"></app-item-form-legal>
+  <app-item-form-legal [gaugeTitleForm]="gaugeTitleForm" [gaugeTitles]="gaugeTitles" [itemId]="itemId"
+    (outputEntity)="addOwnerLegal($event)">
+  </app-item-form-legal>
+
+
+  <app-item-form-individual [individualForm]="individualForm" [individualFormArray]="individualFormArray"
+    [itemId]="itemId" (outputEntity)="addOwnerIndividual($event)">
+  </app-item-form-individual>
+
 
 
   <div class="form-add-wrapper">
     <div class="mat-btn-wrapper" style="min-width: 280px; margin-top: 40px;">
-      <app-mat-btn-small [disabled]="false" [routerLink]="[ '/clients/add/first', type ]" text="Назад">
+      <app-mat-btn-small [disabled]="false" [routerLink]="[ '/clients/add/first', type, itemId]" text="Назад">
       </app-mat-btn-small>
 
       <!-- <app-mat-btn-small (click)="addItem()" [disabled]="itemForm.invalid || gaugeTitleForm.invalid"
       text="Сохранить и продолжить">
-    </app-mat-btn-small> -->
+      </app-mat-btn-small> -->
 
-      <app-mat-btn-small (click)="addItem()" [disabled]="false" text="Сохранить и продолжить">
+      <app-mat-btn-small (click)="onSubmit()"
+        [disabled]="((legalOwners.length === 0) && (isUkValueValid())) || (!itemForm.get('ukValue').valid)"
+        text="Сохранить и продолжить">
       </app-mat-btn-small>
     </div>
   </div>
-
 
 
 </div>

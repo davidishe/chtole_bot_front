@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { ItemFormModule } from 'src/app/components/kit/forms/item-form/item-form.module';
 import { ItemDetailedCardModule } from 'src/app/components/kit/item-detailed-card/item-detailed-card.module';
 import { ItemForm2Module } from 'src/app/components/kit/forms/item-form-2/item-form2.module';
+import { ItemForm3Module } from 'src/app/components/kit/forms/item-form-3/item-form3.module';
 
 const UserModules = [
   CommonModule,
@@ -18,6 +19,7 @@ const UserModules = [
   RouterModule,
   ItemFormModule,
   ItemForm2Module,
+  ItemForm3Module,
   MatBtnSmallModule
 ];
 

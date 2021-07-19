@@ -1,0 +1,87 @@
+<div class="spec-container">
+  <app-title text="Шаг 3" subtext="Вводи данные и нажми кнопку 'Сохранить'"> </app-title>
+  <!-- {{item.companyShortName}}" -->
+
+  <div class="form-add-wrapper">
+    <form class="form-add" [formGroup]="itemForm">
+
+
+      <div class="owner">
+
+        <div class="input-group" style="display: flex; width: 100%;">
+
+          <app-input-text [placeholder]="''" formControlName="cityzenType" [type]="'text'" [label]="'Гражданство'"
+            [id]="'cityzenType'" value=''>
+          </app-input-text>
+        </div>
+
+        <div class="input-group" style="display: flex; width: 100%;">
+
+          <app-input-text [placeholder]="''" formControlName="familyName" [type]="'text'" [label]="'Фамилия'"
+            [id]="'familyName'" value='' style="margin-right: 30px;">
+          </app-input-text>
+
+          <app-input-text [placeholder]="''" formControlName="firstName" [type]="'text'" [label]="'Имя'"
+            [id]="'firstName'" value='' style="margin-right: 30px;">
+          </app-input-text>
+
+          <app-input-text [placeholder]="''" formControlName="fatherName" [type]="'text'" [label]="'Отчество'"
+            [id]="'fatherName'" value=''>
+          </app-input-text>
+
+        </div>
+
+        <div class="input-group" style="display: flex; width: 100%;">
+
+          <app-input-text [placeholder]="''" formControlName="innNumber" [type]="'text'" [label]="'ИНН'"
+            [id]="'innNumber'" value='' style="margin-right: 30px;">
+          </app-input-text>
+          <app-input-text [placeholder]="''" formControlName="snilsNumber" [type]="'text'" [label]="'СНИЛС'"
+            [maxiLength]="'11'" [miniLength]="'11'" [isNumericOnly]="true" [id]="'snilsNumber'" value=''>
+          </app-input-text>
+
+        </div>
+
+
+
+
+        <app-input-text [placeholder]="''" formControlName="birthPlace" [type]="'text'" [label]="'Место рождения'"
+          [id]="'birthPlace'" value=''>
+        </app-input-text>
+
+        <br>
+
+
+
+      </div>
+
+
+
+
+
+
+    </form>
+
+
+
+  </div>
+
+
+
+
+  <div class="form-add-wrapper">
+    <div class="mat-btn-wrapper" style="min-width: 280px; margin-top: 40px;">
+      <app-mat-btn-small [disabled]="false" [routerLink]="[ '/clients/add/second', type, itemId]" text="Назад">
+      </app-mat-btn-small>
+
+      <!-- <app-mat-btn-small (click)="addItem()" [disabled]="itemForm.invalid || gaugeTitleForm.invalid"
+      text="Сохранить и продолжить">
+    </app-mat-btn-small> -->
+
+      <app-mat-btn-small (click)="33333333" [disabled]="false" text="Сохранить и продолжить">
+      </app-mat-btn-small>
+    </div>
+  </div>
+
+
+</div>

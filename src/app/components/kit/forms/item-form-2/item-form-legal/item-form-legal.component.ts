@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ILegalOwner } from 'src/app/shared/models/items/owners';
-import { ItemFormLegalService } from './item-form-legal.service';
+import { OwnerService } from '../owner.service';
 
 @Component({
   selector: 'app-item-form-legal',
@@ -12,26 +13,32 @@ export class ItemFormLegalComponent implements OnInit {
 
   @Input() gaugeTitleForm: FormGroup;
   @Input() gaugeTitles: FormArray;
+  @Input() itemId: number;
+  @Input() itemForUpdate?: ILegalOwner;
+  @Output() outputEntity = new EventEmitter<ILegalOwner>();
+
   item: ILegalOwner;
 
 
   constructor(
     private formBuilder: FormBuilder,
-    private itemFormLegalService: ItemFormLegalService
+    private snackBar: MatSnackBar,
+    private ownerService: OwnerService
   ) { }
 
   ngOnInit() {
-
   }
 
 
   onSubmit(index: number){
     const valueForMap = this.gaugeTitleForm.value.gaugeTitles[index];
-    // this.mapItem(valueForMap);
     this.item = valueForMap;
-    console.log(this.item);
-    this.itemFormLegalService.createItem(this.item).subscribe((res: ILegalOwner) => {
-      console.log(res);
+    this.ownerService.addLegalOwner(this.item, this.itemId).subscribe((res: ILegalOwner) => {
+      if (res) {
+        this.outputEntity.emit(res);
+        this.removeRow(index);
+        this.openSnackBar('данные сохранены')
+      }
     })
     
   }
@@ -40,8 +47,8 @@ export class ItemFormLegalComponent implements OnInit {
     (<FormArray>this.gaugeTitleForm.get("gaugeTitles")).removeAt(index);
   }
 
-  mapItem(): void {
-    // this.item.innNumber = ;
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', {duration: 2500});
   }
 
 }

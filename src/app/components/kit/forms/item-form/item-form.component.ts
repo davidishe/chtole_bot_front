@@ -19,11 +19,12 @@ export class ItemFormComponent implements OnInit {
 
   @Input() itemForm: FormGroup;
   @Input() title: string = 'Новый продукт';
-  item: IItem;
+  item: IItem = null;
   innLength: number;
   offices: IBankOffice[] = [];
   itemTypeId?: number;
   type: string;
+  itemId: number;
 
 
   constructor(
@@ -32,20 +33,85 @@ export class ItemFormComponent implements OnInit {
     private snackBar: MatSnackBar,
     private officeService: OfficeService,
     private activatedRoute: ActivatedRoute,
+    private itemService: ItemsService,
     private router: Router
   ) { }
 
   ngOnInit() {
 
     this.type = this.activatedRoute.snapshot.paramMap.get('type');
-    
+    this.itemId = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.calculateItemTypeId();
+    this.getCurrentItem(this.itemId);  
     this.onFormInit();
     this.getAllOffices();
   }
 
+  patchValuesFromExistingItem() {
+    this.itemForm.controls.innNumber.patchValue(this.item.innNumber);
+    this.itemForm.controls.ogrnNumber.patchValue(this.item.ogrnNumber);
+    this.itemForm.controls.companyShortName.patchValue(this.item.companyShortName);
+    this.itemForm.controls.companyFullName.patchValue(this.item.companyFullName);
+    this.itemForm.controls.directorPosition.patchValue(this.item.directorPosition)
+    this.itemForm.controls.directorName.patchValue(this.item.directorName)
+    this.itemForm.controls.accountNumberPsb.patchValue(this.item.accountNumberPsb)
+    this.itemForm.controls.bankOffice.patchValue(this.item.bankOfficeId)
+    this.itemForm.controls.gosKontractIdentificator.patchValue(this.item.gosKontractIdentificator)
+    this.itemForm.controls.gosKontractNumber.patchValue(this.item.gosKontractNumber)
+
+    this.itemForm.controls.gosKontractDate.patchValue(this.getFormatedDate(new Date(this.item.gosKontractDate))) 
+    this.itemForm.controls.gosKontractDateHidden.patchValue((new Date(this.item.gosKontractDate)))
+
+
+
+    this.itemForm.controls.gosKontractOwnerName.patchValue(this.item.gosKontractOwnerName)
+    this.itemForm.controls.gosKontractOwnerInn.patchValue(this.item.gosKontractOwnerInn)
+    this.itemForm.controls.gosKontractOwnerAccount.patchValue(this.item.gosKontractOwnerAccount)
+    this.itemForm.controls.regPlace.patchValue(this.item.regPlace)
+
+    this.itemForm.controls.regDate.patchValue(this.getFormatedDate(new Date(this.item.regDate)))
+    this.itemForm.controls.regDateHidden.patchValue((new Date(this.item.regDate)))
+
+
+
+    this.itemForm.controls.regOrganName.patchValue(this.item.regOrganName)
+    this.itemForm.controls.mainOkved.patchValue(this.item.mainOkved)
+    this.itemForm.controls.additionalOkveds.patchValue(this.item.additionalOkveds)
+    this.itemForm.controls.okpo.patchValue(this.item.okpo)
+    this.itemForm.controls.okato.patchValue(this.item.okato)
+    this.itemForm.controls.kpp.patchValue(this.item.kpp)
+    this.itemForm.controls.companyLatinName.patchValue(this.item.companyLatinName)
+    this.itemForm.controls.clientPhoneNumber.patchValue(this.item.clientPhoneNumber)
+    this.itemForm.controls.webSiteAddress.patchValue(this.item.webSiteAddress)
+    this.itemForm.controls.legalAddress.patchValue(this.item.legalAddress)
+    this.itemForm.controls.factAddress.patchValue(this.item.factAddress)
+    this.itemForm.controls.postAddress.patchValue(this.item.postAddress)
+  }
+
+
+  getCurrentItem(id: number): void {
+    this.itemService.getItemById(id).subscribe((res: any) => {
+      this.item = res;
+      console.log(this.item);
+      
+
+
+    if (this.item !== undefined && this.item !== null) {
+      this.patchValuesFromExistingItem();
+      }
+    });
+  }
+
+
+
+
   calculateInnLength(event): void {
+      this.calculateItemTypeId();
+      this.itemForm.controls.innNumber.setValidators([Validators.required, Validators.maxLength(this.innLength), Validators.minLength(this.innLength)]);
 
+  }
 
+  calculateItemTypeId(): void {
     if (this.type == 'ooo') {
       this.innLength = 10;
       this.itemTypeId = 2;
@@ -55,8 +121,6 @@ export class ItemFormComponent implements OnInit {
       this.innLength = 13;
       this.itemTypeId = 1;
     }
-      this.itemForm.controls.innNumber.setValidators([Validators.required, Validators.maxLength(this.innLength), Validators.minLength(this.innLength)]);
-
   }
 
   onFormInit() {
@@ -92,8 +156,10 @@ export class ItemFormComponent implements OnInit {
       bankOffice: new FormControl(null, Validators.required),
       gosKontractIdentificator: new FormControl(null, Validators.required),
       gosKontractNumber: new FormControl(null, Validators.required),
+      
       gosKontractDate: new FormControl(null, [Validators.nullValidator, Validators.required]),
       gosKontractDateHidden: new FormControl(null, [Validators.nullValidator, Validators.required]),
+
       gosKontractOwnerName: new FormControl(null, Validators.required),
       gosKontractOwnerInn: new FormControl(null, Validators.required),
       gosKontractOwnerAccount: new FormControl('', [Validators.required, Validators.minLength(20)]),
@@ -105,15 +171,12 @@ export class ItemFormComponent implements OnInit {
   addItem() {
     if (this.itemForm.invalid) {
       console.log(this.itemForm.errors);
+      console.log(this.itemForm);
+
       return;
     } else {
-      console.log(this.itemForm.controls.bankOffice.value);
-      
-
-
-
-
       this.item = {
+        id: this.itemId,
         ogrnNumber: this.itemForm.controls.ogrnNumber.value,
         innNumber: this.itemForm.controls.innNumber.value,
         companyFullName: this.itemForm.controls.companyFullName.value,
@@ -135,7 +198,7 @@ export class ItemFormComponent implements OnInit {
         kpp: this.itemForm.controls.kpp.value,
 
         regPlace: this.itemForm.controls.regPlace.value,
-        regDate: this.itemForm.controls.regDate.value,
+        regDate: this.itemForm.controls.regDateHidden.value,
         regOrganName: this.itemForm.controls.regOrganName.value,
         mainOkved: this.itemForm.controls.mainOkved.value,
         additionalOkveds: this.itemForm.controls.additionalOkveds.value,
@@ -155,10 +218,9 @@ export class ItemFormComponent implements OnInit {
   }
 
   createItem() {
-    this.itemsService.createItem(this.item).subscribe((item: IItem) => {
+    this.itemsService.createItem(this.item, this.itemId).subscribe((item: IItem) => {
       if (item) {
-        // clients/add/:type/second
-        this.router.navigateByUrl('clients/add/' + this.type +'/second');
+        this.router.navigateByUrl('clients/add/second/' + this.type + '/' + item.id);
       }
     }, error => {
       console.log(error);
@@ -189,8 +251,12 @@ export class ItemFormComponent implements OnInit {
     this.itemForm.controls.kpp.patchValue(data.kpp);
 
     this.itemForm.controls.mainOkved.patchValue(data.okved);
-    var dateToPatch = this.getFormatedDate(new Date(data.ogrn_date));
-    this.itemForm.controls.regDate.patchValue(dateToPatch);
+
+    var regDate = this.getFormatedDate(new Date(data.ogrn_date));
+    this.itemForm.controls.regDate.patchValue(regDate);
+
+    // var dateToPatch = this.getFormatedDate(new Date(data.ogrn_date));
+    // this.itemForm.controls.df.patchValue(dateToPatch);
 
 
   }
@@ -212,6 +278,8 @@ export class ItemFormComponent implements OnInit {
     var mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = date.getFullYear();
     var valueToReturn = dd + '.' + mm + '.' + yyyy;
+    console.log(valueToReturn);
+    
     return valueToReturn;
   }
 

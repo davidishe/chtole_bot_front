@@ -1,0 +1,61 @@
+<div class="dialog-wrapper">
+  <h2 mat-dialog-title>Изменение данных</h2>
+  <div mat-dialog-content class="mat-typography">
+    <p>Обнови необходимые данные в форме, если это необходимо, и нажми кнопку "Сохранить"</p>
+
+
+    <form class="form-add" [formGroup]="form" *ngIf="owner">
+
+      <div class="input-group">
+        <app-input-text [placeholder]="''" formControlName="shareValue" [type]="'text'" [label]="'Размер доли, %'"
+          [id]="'shareValue'" value='{{owner.shareValue}}' style="padding-right: 30px;">
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="cityzenType" [type]="'text'" [label]="'Гражданство'"
+          [id]="'cityzenType'" value='{{owner.cityzenType}}'>
+        </app-input-text>
+      </div>
+
+      <app-input-text [placeholder]="''" formControlName="familyName" [type]="'text'" [label]="'Фамилия'"
+        [id]="'familyName'" value='{{owner.familyName}}'>
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="firstName" [type]="'text'" [label]="'Имя'" [id]="'firstName'"
+        value='{{owner.firstName}}'>
+      </app-input-text>
+
+      <app-input-text [placeholder]="''" formControlName="fatherName" [type]="'text'" [label]="'Отчество'"
+        [id]="'fatherName'" value='{{owner.fatherName}}'>
+      </app-input-text>
+
+      <div class="input-group">
+
+        <app-input-text [placeholder]="''" formControlName="innNumber" [type]="'text'" [label]="'ИНН'"
+          [id]="'innNumber'" value='{{owner.innNumber}}' style="padding-right: 30px;">
+        </app-input-text>
+
+        <app-input-text [placeholder]="''" formControlName="snilsNumber" [type]="'text'" [label]="'СНИЛС'"
+          [maxiLength]="'11'" [miniLength]="'11'" [isNumericOnly]="true" [id]="'snilsNumber'"
+          value='{{owner.snilsNumber}}'>
+        </app-input-text>
+      </div>
+
+      <app-input-text [placeholder]="''" formControlName="birthPlace" [type]="'text'" [label]="'Место рождения'"
+        [id]="'birthPlace'" value='{{owner.birthPlace}}'>
+      </app-input-text>
+
+
+    </form>
+  </div>
+  <br>
+
+  <mat-dialog-actions align="end">
+    <app-mat-btn-small mat-dialog-close text="Отмена" [disabled]="false" style="margin-right: 10px;">
+    </app-mat-btn-small>
+
+    <app-mat-btn-small [mat-dialog-close]="true" text="Сохранить" (click)="submitUpdate()" [disabled]="form.invalid">
+    </app-mat-btn-small>
+
+  </mat-dialog-actions>
+  <br>
+</div>

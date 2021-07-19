@@ -10,6 +10,7 @@ import { ItemFormEditComponent } from './components/kit/forms/item-form-edit/ite
 import { AdminGuard } from './components/core/guards/admin.guard';
 import { ClientsComponent } from './components/content/main/clients/clients.component';
 import { ItemFormComponent2 } from './components/kit/forms/item-form-2/item-form2.component';
+import { ItemFormComponent3 } from './components/kit/forms/item-form-3/item-form3.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,12 @@ const routes: Routes = [
 
   { path: 'clients', component: ClientsComponent, data: {breadcrumb: 'Клиенты'}},
   { path: 'clients/add/first/:type', component: ItemFormComponent, data: {breadcrumb: 'Добавить'}},
-  { path: 'clients/add/second/:type', component: ItemFormComponent2, data: {breadcrumb: 'Добавить2'}},
+  { path: 'clients/add/first/:type/:id', component: ItemFormComponent, data: {breadcrumb: 'Изменить'}},
+
+  { path: 'clients/add/second/:type/:id', component: ItemFormComponent2, data: {breadcrumb: 'Учредители'}},
+
+  { path: 'clients/add/third/:type/:id', component: ItemFormComponent3, data: {breadcrumb: 'Руководитель'}},
+
 
 
   { path: 'clients/:id', component: ItemDetailedCardComponent, data: {breadcrumb: 'Подробности'}},

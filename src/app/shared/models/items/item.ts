@@ -43,13 +43,11 @@ export interface IItem {
   regOrganName: string; 
   mainOkved: string; 
   additionalOkveds: string; 
-  
-  
   okpo: string;
   okato: string;
   kpp: string;
 
-
+  ukValue?: number;
 
 
 }

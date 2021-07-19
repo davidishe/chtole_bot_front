@@ -1,7 +1,7 @@
 export interface ILegalOwner {
   id?: number | null;
   regDate?: Date;
-  shareValue: string,
+  shareValue: number,
   shortName: string,
   innNumber: string,
   ogrnNumber: string,
@@ -13,11 +13,14 @@ export interface ILegalOwner {
 export interface IIndividOwner {
   id?: number | null;
   regDate?: Date;
-  shareValue: string,
-  shortName: string,
+  cityzenType: string;
+  shareValue: number,
   innNumber: string,
-  ogrnNumber: string,
-  mainOkved: string,
-  legalAddress: string
+  snilsNumber: string,
+  familyName: string;
+  firstName: string;
+  fatherName: string;
+  birthPlace: string;
+
 }
 

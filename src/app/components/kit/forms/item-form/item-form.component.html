@@ -119,6 +119,8 @@
           [hiddenDatePickerName]="'regDateHidden'" [form]="itemForm" [required]="true">
         </app-input-datepicker>
 
+
+
       </div>
 
 
@@ -174,8 +176,8 @@
           [label]="'Номер контракта'" [id]="'gosKontractNumber'" value='' style=" padding-right: 30px;">
         </app-input-text>
 
-        <app-input-datepicker title="Дата контракта" [controlName]="'gosKontractDate'"
-          [hiddenDatePickerName]="'gosKontractDateHidden'" [form]="itemForm" [required]="true">
+        <app-input-datepicker title="Дата контракта" [controlName]="'gosKontractDate'" [form]="itemForm"
+          [required]="true" [hiddenDatePickerName]="'gosKontractDateHidden'">
         </app-input-datepicker>
       </div>
 
@@ -205,13 +207,15 @@
 
       <div class="mat-btn-wrapper" style="min-width: 280px; margin-top: 40px;">
         <app-mat-btn-small [disabled]="false" [routerLink]="[ '/clients' ]" text="Отменить"></app-mat-btn-small>
-
-        <!-- <app-mat-btn-small (click)="addItem()" [disabled]="itemForm.invalid" text="Сохранить и продолжить">
+        <!-- 
+        <app-mat-btn-small (click)="addItem()" [disabled]="itemForm.invalid" text="Сохранить и продолжить">
         </app-mat-btn-small> -->
-
-        <app-mat-btn-small [disabled]="false" text="Сохранить и продолжить"
-          [routerLink]="[ '/clients/add/second', type ]">
+        <app-mat-btn-small (click)="addItem()" [disabled]="itemForm.invalid" text="Сохранить и продолжить">
         </app-mat-btn-small>
+
+        <!-- <app-mat-btn-small [disabled]="false" text="Сохранить и продолжить"
+          [routerLink]="[ '/clients/add/second', type, item?.id ]">
+        </app-mat-btn-small> -->
 
       </div>
     </form>

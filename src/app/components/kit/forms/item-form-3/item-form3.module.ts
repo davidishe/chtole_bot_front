@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ItemFormComponent2 } from './item-form2.component';
 import { MatBtnSmallModule } from '../../buttons/mat-btn-small/mat-btn-small.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,18 +10,13 @@ import { InputDatepickerModule } from '../../inputs/input-datepicker/input-datep
 import { DadataEgrulModule } from '../../dadata/dadata-egrul/dadata-egrul.module';
 import { DadataAddressModule } from '../../dadata/dadata-address/dadata-address.module';
 import { SubtitleModule } from '../../titles/subtitle/subtitle.module';
-import { ItemFormIndividualComponent } from './item-form-individual/item-form-individual.component';
-import { ItemFormLegalComponent } from './item-form-legal/item-form-legal.component';
-import { ModalComponent } from './modal/modal.component';
-import { ModalModule } from './modal/modal.module';
+import { ItemFormComponent3 } from './item-form3.component';
 
 
 
 @NgModule({
   declarations: [
-    ItemFormComponent2,
-    ItemFormIndividualComponent,
-    ItemFormLegalComponent,
+    ItemFormComponent3,
   ],
   imports: [
     CommonModule,
@@ -37,11 +31,10 @@ import { ModalModule } from './modal/modal.module';
     DadataEgrulModule,
     DadataAddressModule,
     SubtitleModule,
-    ModalModule
 
   ],
   exports: [
-    ItemFormComponent2
+    ItemFormComponent3
   ]
 })
-export class ItemForm2Module { }
+export class ItemForm3Module { }

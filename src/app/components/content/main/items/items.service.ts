@@ -45,8 +45,13 @@ export class ItemsService {
   }
 
 
-  createItem(item: IItem) {
-    return this.http.post(this.baseUrl + apiRoute + 'create/', item);
+  createItem(item: IItem, itemId?: number) {
+    if (itemId !== null) {
+      return this.http.put(this.baseUrl + apiRoute + 'update', item);
+    }
+    if (itemId === null) {
+      return this.http.post(this.baseUrl + apiRoute + 'create', item);
+    }
   }
 
   deleteItem(id: number) {

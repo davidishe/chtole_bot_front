@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Data, Router } from '@angular/router';
@@ -12,6 +12,12 @@ import { DadataData } from 'src/app/shared/models/dadata/dadata';
 
 type Item = IItem;
 import * as uuid from 'uuid';
+import { OwnerService } from './owner.service';
+import { IIndividOwner, ILegalOwner } from 'src/app/shared/models/items/owners';
+import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogContentComponent } from 'src/app/components/content/admin/profile/profile.component';
+import { ModalComponent } from './modal/modal.component';
 
 @Component({
   selector: 'app-item-form2',
@@ -23,14 +29,25 @@ export class ItemFormComponent2 implements OnInit {
 
   @Input() itemForm: FormGroup;
   @Input() title: string = 'Новый продукт';
+  editedOwner: IIndividOwner;
   item: IItem;
   innLength: number;
   itemTypeId?: number;
   type: string;
   itemId: number;
 
+  legalOwners: ILegalOwner[] = [];
+  individualOwners: IIndividOwner[] = [];
+
   @Input() gaugeTitleForm: FormGroup;
   @Input() gaugeTitles: FormArray;
+
+  @Input() individualForm: FormGroup;
+  @Input() individualFormArray: FormArray;
+
+  @Input() individualFormUpdate: FormGroup;
+  @Input() individualFormArrayUpdate: FormArray;
+
 
   constructor(
     private breadcrumbService: BreadcrumbService,
@@ -39,30 +56,37 @@ export class ItemFormComponent2 implements OnInit {
     private officeService: OfficeService,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
+    private ownerService: OwnerService,
+    public dialog: MatDialog,
+    private ref: ChangeDetectorRef,
     private router: Router,
   ) { }
+
 
   ngOnInit() {
     this.onFormInit();
 
+    this.itemId = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.type = this.activatedRoute.snapshot.paramMap.get('type');
+
     this.gaugeTitleForm = this.formBuilder.group({
-      // gaugeTitles: this.formBuilder.array([this.createForm()])
       gaugeTitles: this.formBuilder.array([])
     });
 
+    this.individualForm = this.formBuilder.group({
+      individualFormArray: this.formBuilder.array([])
+    });
+
+    this.individualFormUpdate = this.formBuilder.group({
+      individualFormArray: this.formBuilder.array([])
+    });
+
+    this.loadItemById();
+    this.loadLegalOwners();
+    this.loadlIndividualOwners();
+
   }
 
-  calculateInnLength(event): void {
-
-    this.type = this.activatedRoute.snapshot.paramMap.get('type');
-
-    if (this.type == 'ooo') {
-    }
-
-    if (this.type == 'ip') {
-    }
-
-  }
 
   onFormInit() {
     this.itemForm = new FormGroup({
@@ -72,54 +96,11 @@ export class ItemFormComponent2 implements OnInit {
   }
 
 
-  addItem() {
-    if (this.itemForm.invalid) {
-      console.log(this.itemForm.errors);
-      return;
-    } else {
-      console.log(this.itemForm.controls.bankOffice.value);
-      
-
-      // this.item = {
-      //   ogrnNumber: this.itemForm.controls.ogrnNumber.value,
-      //   innNumber: this.itemForm.controls.innNumber.value,
-      //   companyFullName: this.itemForm.controls.companyFullName.value,
-      //   companyShortName: this.itemForm.controls.companyShortName.value,
-      //   directorPosition: this.itemForm.controls.directorPosition.value,
-      //   directorName: this.itemForm.controls.directorName.value,
-      //   itemTypeId: this.itemTypeId,
-      //   accountNumberPsb: this.itemForm.controls.accountNumberPsb.value,
-      //   bankOfficeId: this.itemForm.controls.bankOffice.value,
-      //   gosKontractIdentificator: this.itemForm.controls.gosKontractIdentificator.value,
-      //   gosKontractNumber: this.itemForm.controls.gosKontractNumber.value,
-      //   gosKontractDate: this.itemForm.controls.gosKontractDateHidden.value,
-      //   gosKontractOwnerName: this.itemForm.controls.gosKontractOwnerName.value,
-      //   gosKontractOwnerInn: this.itemForm.controls.gosKontractOwnerInn.value,
-      //   gosKontractOwnerAccount: this.itemForm.controls.gosKontractOwnerAccount.value,
-      // };
-
-      this.createItem();
-
-    }
-  }
-
-  createItem() {
-    this.itemsService.createItem(this.item).subscribe((item: IItem) => {
-      if (item) {
-        this.openSnackBar('запись добавлена');
-        this.router.navigateByUrl('clients');
-      }
-    }, error => {
-      console.log(error);
-      this.openSnackBar('что-то пошло не так!');
-    });
-  }
-
-
   loadItemById() {
       this.itemsService.getItemById(this.itemId).subscribe((response: Item) => {
         if (response) {
           this.item = response;
+          this.patchValue();
           this.breadcrumbService.set('@productDetails', this.item.companyShortName);
         }
     }, err => {
@@ -128,15 +109,35 @@ export class ItemFormComponent2 implements OnInit {
   }
 
 
-
-
-  openSnackBar(message: string): void {
-    this.snackBar.open(message, '', {duration: 2500});
+  patchValue(): void {
+    this.itemForm.controls.ukValue.patchValue(this.item.ukValue);
   }
 
 
+  loadLegalOwners(): void {
+    this.ownerService.getLegalOwners(this.itemId).subscribe((res: ILegalOwner[]) => {
+      this.legalOwners = res;
+    })
+  }
 
-      
+
+  loadlIndividualOwners(): void {
+    this.ownerService.getIndividualOwners(this.itemId).subscribe((res: IIndividOwner[]) => {
+      this.individualOwners = res;
+    })
+  }
+
+
+  addOwnerLegal(entity: ILegalOwner): void {
+    this.legalOwners.push(entity);
+  }
+
+
+  addOwnerIndividual(entity: IIndividOwner): void {
+    this.individualOwners.push(entity);
+  }
+
+    
   createFormIndivid(){
     return this.formBuilder.group({
       shareValue: new FormControl(null, Validators.required),
@@ -152,6 +153,7 @@ export class ItemFormComponent2 implements OnInit {
     });
   }
 
+
   createFormLegal(){
     return this.formBuilder.group({
       shareValue: new FormControl(null, Validators.required),
@@ -164,13 +166,90 @@ export class ItemFormComponent2 implements OnInit {
   }
 
 
+  deleteOwnerLegal(ownerId: number): void {
+    this.ownerService.deleteLegalOwner(ownerId).subscribe((res: any) => {
+      if (res === 202) {
+        this.legalOwners = this.legalOwners.filter(z => z.id !== ownerId);
+      }
+    })
+  }
 
-  addForm():void{
+
+  deleteOwnerIndividual(ownerId: number): void {
+    this.ownerService.deleteIndividualOwner(ownerId).subscribe((res: any) => {
+      if (res === 202) {
+        this.individualOwners = this.individualOwners.filter(z => z.id !== ownerId);
+      }
+    })
+  }
+
+
+  addFormLegal():void{
     this.gaugeTitles = this.gaugeTitleForm.get('gaugeTitles') as FormArray;
     this.gaugeTitles.push(this.createFormLegal());
   }
 
 
+  addFormIndividual():void{
+    this.individualFormArray = this.individualForm.get('individualFormArray') as FormArray;
+    this.individualFormArray.push(this.createFormIndivid());
+  }
+  
+
+  openUpdateDialog(owner: IIndividOwner) {
+    const dialogRef = this.dialog.open(ModalComponent);
+
+    dialogRef.componentInstance.owner = owner;
+    console.log(owner);
+    
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, '', {duration: 2500});
+  }
+
+
+  onSubmit(): void {
+    const ukValue = this.itemForm.controls.ukValue.value;
+    this.ownerService.updateUkValue(ukValue, this.itemId).subscribe((res: any) => {
+      console.log(res);
+      if (res === 200) {
+        this.router.navigate(['clients/add/third/' + this.type + '/', this.itemId])
+      }
+    })
+  }
+
+  isUkValueValid(): boolean {
+    const ownersUkValues = [];
+    this.legalOwners.forEach(owner => {
+      ownersUkValues.push(owner.shareValue);
+    });
+
+    this.individualOwners.forEach(owner => {
+      ownersUkValues.push(owner.shareValue);
+    });
+
+    if (ownersUkValues.reduce((a, b) => a + b, 0) == 100) {
+      return false;
+    }
+
+    return true;
+  }
+
+
+  ngAfterViewInit() {
+    this.ref.detectChanges();
+  }
 
 
 }
+
+
+
+
+
