@@ -9,15 +9,18 @@ import { OfficeService } from 'src/app/services/catalogs/office.service';
 import { ItemsService } from '../../../content/main/items/items.service';
 import { DadataData } from 'src/app/shared/models/dadata/dadata';
 
-
-type Item = IItem;
 import * as uuid from 'uuid';
-import { OwnerService } from './owner.service';
 import { IIndividOwner, ILegalOwner } from 'src/app/shared/models/items/owners';
 import { Observable } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogContentComponent } from 'src/app/components/content/admin/profile/profile.component';
 import { ModalComponent } from './modal/modal.component';
+import { ModalIndividualComponent } from './modal-individual/modal-individual.component';
+import { OwnerIndividualService } from './owner-individual.service';
+import { OwnerLegalService } from './owner-legal.service';
+import { ModalLegalComponent } from './modal-legal/modal-legal.component';
+
+type Item = IItem;
 
 @Component({
   selector: 'app-item-form2',
@@ -56,7 +59,8 @@ export class ItemFormComponent2 implements OnInit {
     private officeService: OfficeService,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private ownerService: OwnerService,
+    private ownerLegalService: OwnerLegalService,
+    private ownerIndividualService: OwnerIndividualService,
     public dialog: MatDialog,
     private ref: ChangeDetectorRef,
     private router: Router,
@@ -115,14 +119,14 @@ export class ItemFormComponent2 implements OnInit {
 
 
   loadLegalOwners(): void {
-    this.ownerService.getLegalOwners(this.itemId).subscribe((res: ILegalOwner[]) => {
+    this.ownerLegalService.getLegalOwners(this.itemId).subscribe((res: ILegalOwner[]) => {
       this.legalOwners = res;
     })
   }
 
 
   loadlIndividualOwners(): void {
-    this.ownerService.getIndividualOwners(this.itemId).subscribe((res: IIndividOwner[]) => {
+    this.ownerIndividualService.getIndividualOwners(this.itemId).subscribe((res: IIndividOwner[]) => {
       this.individualOwners = res;
     })
   }
@@ -137,37 +141,10 @@ export class ItemFormComponent2 implements OnInit {
     this.individualOwners.push(entity);
   }
 
-    
-  createFormIndivid(){
-    return this.formBuilder.group({
-      shareValue: new FormControl(null, Validators.required),
-      cityzenType: new FormControl(null, Validators.required),
-      familyName: new FormControl(null, Validators.required),
-      firstName: new FormControl(null, Validators.required),
-      fatherName: new FormControl(null, Validators.required),
-      innNumber: new FormControl(null, Validators.required),
-      // birthDate: new FormControl(null, [Validators.nullValidator, Validators.required]),
-      // birthDateHidden: new FormControl(null, [Validators.nullValidator, Validators.required]),
-      birthPlace: new FormControl(null, Validators.required),
-      snilsNumber: new FormControl(null, Validators.required)
-    });
-  }
-
-
-  createFormLegal(){
-    return this.formBuilder.group({
-      shareValue: new FormControl(null, Validators.required),
-      shortName: new FormControl(null, Validators.required),
-      innNumber: new FormControl(null, Validators.required),
-      ogrnNumber: new FormControl(null, Validators.required),
-      mainOkved: new FormControl(null, Validators.required),
-      legalAddress: new FormControl(null, Validators.required),
-    });
-  }
 
 
   deleteOwnerLegal(ownerId: number): void {
-    this.ownerService.deleteLegalOwner(ownerId).subscribe((res: any) => {
+    this.ownerLegalService.deleteLegalOwner(ownerId).subscribe((res: any) => {
       if (res === 202) {
         this.legalOwners = this.legalOwners.filter(z => z.id !== ownerId);
       }
@@ -176,7 +153,7 @@ export class ItemFormComponent2 implements OnInit {
 
 
   deleteOwnerIndividual(ownerId: number): void {
-    this.ownerService.deleteIndividualOwner(ownerId).subscribe((res: any) => {
+    this.ownerIndividualService.deleteIndividualOwner(ownerId).subscribe((res: any) => {
       if (res === 202) {
         this.individualOwners = this.individualOwners.filter(z => z.id !== ownerId);
       }
@@ -184,28 +161,47 @@ export class ItemFormComponent2 implements OnInit {
   }
 
 
-  addFormLegal():void{
-    this.gaugeTitles = this.gaugeTitleForm.get('gaugeTitles') as FormArray;
-    this.gaugeTitles.push(this.createFormLegal());
-  }
-
-
-  addFormIndividual():void{
-    this.individualFormArray = this.individualForm.get('individualFormArray') as FormArray;
-    this.individualFormArray.push(this.createFormIndivid());
-  }
-  
-
-  openUpdateDialog(owner: IIndividOwner) {
+  openUpdateDialogIndivid(owner: IIndividOwner) {
     const dialogRef = this.dialog.open(ModalComponent);
 
     dialogRef.componentInstance.owner = owner;
-    console.log(owner);
-    
+
+    dialogRef.componentInstance.savedOwner.subscribe((savedOwner: IIndividOwner) => {
+      this.individualOwners = this.individualOwners.filter(x => x.id !== savedOwner.id);
+      this.individualOwners.push(savedOwner);
+      
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      // console.log(`Dialog result: ${result}`);
     });
+  
+  }
+
+  openAddDialogIndivid() {
+    const dialogRef = this.dialog.open(ModalIndividualComponent);
+    dialogRef.componentInstance.savedOwner.subscribe((savedOwner: IIndividOwner) => {
+      this.individualOwners.push(savedOwner);
+      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+    });
+  
+  }
+
+  openAddDialogLegal() {
+    const dialogRef = this.dialog.open(ModalLegalComponent);
+    dialogRef.componentInstance.savedOwner.subscribe((savedOwner: ILegalOwner) => {
+      this.legalOwners.push(savedOwner);
+      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result: ${result}`);
+    });
+  
   }
 
 
@@ -216,7 +212,7 @@ export class ItemFormComponent2 implements OnInit {
 
   onSubmit(): void {
     const ukValue = this.itemForm.controls.ukValue.value;
-    this.ownerService.updateUkValue(ukValue, this.itemId).subscribe((res: any) => {
+    this.ownerIndividualService.updateUkValue(ukValue, this.itemId).subscribe((res: any) => {
       console.log(res);
       if (res === 200) {
         this.router.navigate(['clients/add/third/' + this.type + '/', this.itemId])
@@ -224,7 +220,7 @@ export class ItemFormComponent2 implements OnInit {
     })
   }
 
-  isUkValueValid(): boolean {
+  isUkValueValid(): number {
     const ownersUkValues = [];
     this.legalOwners.forEach(owner => {
       ownersUkValues.push(owner.shareValue);
@@ -234,11 +230,8 @@ export class ItemFormComponent2 implements OnInit {
       ownersUkValues.push(owner.shareValue);
     });
 
-    if (ownersUkValues.reduce((a, b) => a + b, 0) == 100) {
-      return false;
-    }
-
-    return true;
+    return ownersUkValues.reduce((a, b) => a + b, 0);
+      
   }
 
 

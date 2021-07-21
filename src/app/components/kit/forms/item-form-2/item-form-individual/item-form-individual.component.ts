@@ -3,7 +3,7 @@ import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IIndividOwner, ILegalOwner } from 'src/app/shared/models/items/owners';
-import { OwnerService } from '../owner.service';
+import { OwnerIndividualService } from '../owner-individual.service';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class ItemFormIndividualComponent implements AfterViewInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private ownerService: OwnerService,
+    private ownerService: OwnerIndividualService,
     private snackBar: MatSnackBar,
   ) {
   }

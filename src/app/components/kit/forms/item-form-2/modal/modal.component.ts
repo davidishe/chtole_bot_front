@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { OfficeService } from 'src/app/services/catalogs/office.service';
 import { IIndividOwner, ILegalOwner } from 'src/app/shared/models/items/owners';
-import { OwnerService } from '../owner.service';
+import { OwnerIndividualService } from '../owner-individual.service';
 
 @Component({
   selector: 'app-modal',
@@ -14,13 +14,12 @@ import { OwnerService } from '../owner.service';
 export class ModalComponent implements OnInit {
   form: FormGroup;
   @Input() owner: IIndividOwner;
-  @Output() emitUpdatedOwner = new EventEmitter<IIndividOwner | ILegalOwner>();
-
+  @Output() savedOwner = new EventEmitter<IIndividOwner | ILegalOwner>();
   
   constructor(
     public dialog: MatDialog,
     private ref: ChangeDetectorRef,
-    private ownerService: OwnerService
+    private ownerService: OwnerIndividualService
   ) { }
 
   ngOnInit() {
@@ -38,13 +37,14 @@ export class ModalComponent implements OnInit {
       this.patchValuesFromControls();
       this.ownerService.updateIndividualOwner(this.owner).subscribe((res: any) => {
         this.owner = res;
+        this.savedOwner.emit(this.owner);
+
       })
     }
   }
 
+
   patchValuesFromControls(): void {
-    console.log(this.owner);
-    console.log(this.form.value);
     this.owner.cityzenType = this.form.controls.cityzenType.value;
     this.owner.shareValue = this.form.controls.shareValue.value;
     this.owner.innNumber = this.form.controls.innNumber.value;

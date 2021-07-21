@@ -6,7 +6,7 @@
 }
 
 .label {
-  top: 10px;
+  top: 14px;
   position: relative;
   margin-left: 13px;
   font-size: var(--small);
@@ -72,4 +72,5 @@ input::placeholder {
   top: 54%;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }

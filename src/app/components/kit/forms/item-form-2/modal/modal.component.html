@@ -8,7 +8,7 @@
 
       <div class="input-group">
         <app-input-text [placeholder]="''" formControlName="shareValue" [type]="'text'" [label]="'Размер доли, %'"
-          [id]="'shareValue'" value='{{owner.shareValue}}' style="padding-right: 30px;">
+          [id]="'shareValue'" value='{{owner.shareValue}}' style="padding-right: 30px;" [isNumericOnly]="true">
         </app-input-text>
 
         <app-input-text [placeholder]="''" formControlName="cityzenType" [type]="'text'" [label]="'Гражданство'"
@@ -31,7 +31,8 @@
       <div class="input-group">
 
         <app-input-text [placeholder]="''" formControlName="innNumber" [type]="'text'" [label]="'ИНН'"
-          [id]="'innNumber'" value='{{owner.innNumber}}' style="padding-right: 30px;">
+          [id]="'innNumber'" [maxiLength]="'12'" [miniLength]="'12'" [isNumericOnly]="true" value='{{owner.innNumber}}'
+          style="padding-right: 30px;">
         </app-input-text>
 
         <app-input-text [placeholder]="''" formControlName="snilsNumber" [type]="'text'" [label]="'СНИЛС'"

@@ -15,6 +15,10 @@ import { ItemFormIndividualComponent } from './item-form-individual/item-form-in
 import { ItemFormLegalComponent } from './item-form-legal/item-form-legal.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalModule } from './modal/modal.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalIndividualModule } from './modal-individual/modal-individual.module';
+import { ModalLegalComponent } from './modal-legal/modal-legal.component';
+import { ModalLegalModule } from './modal-legal/modal-legal.module';
 
 
 
@@ -37,7 +41,10 @@ import { ModalModule } from './modal/modal.module';
     DadataEgrulModule,
     DadataAddressModule,
     SubtitleModule,
-    ModalModule
+    ModalModule,
+    ModalIndividualModule,
+    ModalLegalModule
+
 
   ],
   exports: [

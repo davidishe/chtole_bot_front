@@ -36,6 +36,10 @@
   // margin-top: -0.2em !important;
 }
 
+.mat-dialog-content {
+  max-height: 80vh !important;
+}
+
 .mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 0.9em 0 1.1em 0 !important;
 }

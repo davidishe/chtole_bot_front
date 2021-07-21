@@ -1,5 +1,5 @@
 export interface ILegalOwner {
-  id?: number | null;
+  id?: number;
   regDate?: Date;
   shareValue: number,
   shortName: string,
@@ -11,8 +11,7 @@ export interface ILegalOwner {
 
 
 export interface IIndividOwner {
-  id?: number | null;
-  regDate?: Date;
+  id?: number;
   cityzenType: string;
   shareValue: number,
   innNumber: string,

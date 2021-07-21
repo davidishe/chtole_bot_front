@@ -1,0 +1,76 @@
+<div class="dialog-wrapper">
+  <h2 mat-dialog-title>Добавление данных</h2>
+  <div mat-dialog-content class="mat-typography">
+    <p>Обнови необходимые данные в форме, если это необходимо, и нажми кнопку "Сохранить"</p>
+
+
+    <form class="form-add" [formGroup]="form">
+
+      <div class="owner">
+        <div>
+
+
+          <app-input-text [placeholder]="''" formControlName="shareValue" [type]="'text'" [label]="'Размер доли, %'"
+            [id]="'shareValue'" value='' style="max-width: 240px; ">
+          </app-input-text>
+
+          <app-input-text [placeholder]="''" formControlName="shortName" [type]="'text'"
+            [label]="'Сокращенное наименование'" [id]="'shortName'" value='' style="padding-left: 30px !important;">
+          </app-input-text>
+
+
+          <div class="input-group" style="display: flex; width: 100%;">
+            <app-input-text [placeholder]="''" formControlName="innNumber" [type]="'text'" [label]="'ИНН'"
+              [id]="'innNumber'" value='' [maxiLength]="'10'" [miniLength]="'10'" [isNumericOnly]="true" style="">
+            </app-input-text>
+
+            <app-input-text [placeholder]="''" formControlName="ogrnNumber" [type]="'text'" [label]="'ОГРН'"
+              [id]="'ogrnNumber'" value='' style="padding-left: 30px !important;">
+            </app-input-text>
+
+            <app-input-text [placeholder]="''" formControlName="mainOkved" [type]="'text'" [label]="'Основной ОКВЭД'"
+              [id]="'mainOkved'" value='' style="padding-left: 30px !important;">
+            </app-input-text>
+          </div>
+
+
+
+
+
+          <app-input-text [placeholder]="''" formControlName="legalAddress" [type]="'text'"
+            [label]="'Юридический адрес'" [id]="'legalAddress'" value=''>
+          </app-input-text>
+
+
+          <br>
+
+
+
+          <!-- <app-input-datepicker title="Дата рождения" [controlName]="'birthDate'"
+        [hiddenDatePickerName]="'birthDateHidden'" [form]="gaugeTitleForm" [required]="true">
+      </app-input-datepicker> -->
+
+          <!-- 
+      <app-input-datepicker title="Дата регистрации" [controlName]="'regDate'"
+        [hiddenDatePickerName]="'regDateHidden'" [form]="itemForm" [required]="true">
+      </app-input-datepicker> -->
+
+
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+  <br>
+
+  <mat-dialog-actions align="end">
+    <app-mat-btn-small mat-dialog-close text="Отмена" [disabled]="false" style="margin-right: 10px;">
+    </app-mat-btn-small>
+
+    <app-mat-btn-small [mat-dialog-close]="true" text="Сохранить" (click)="submitUpdate()" [disabled]="form.invalid">
+    </app-mat-btn-small>
+
+  </mat-dialog-actions>
+  <br>
+</div>

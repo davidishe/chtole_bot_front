@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ILegalOwner } from 'src/app/shared/models/items/owners';
-import { OwnerService } from '../owner.service';
+import { OwnerLegalService } from '../owner-legal.service';
 
 @Component({
   selector: 'app-item-form-legal',
@@ -23,7 +23,7 @@ export class ItemFormLegalComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private snackBar: MatSnackBar,
-    private ownerService: OwnerService
+    private ownerService: OwnerLegalService
   ) { }
 
   ngOnInit() {
