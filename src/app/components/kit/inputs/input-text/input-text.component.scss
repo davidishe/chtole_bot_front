@@ -6,7 +6,7 @@
 }
 
 .label {
-  top: 14px;
+  top: 13px;
   position: relative;
   margin-left: 13px;
   font-size: var(--small);
@@ -14,6 +14,11 @@
   background-color: var(--background);
   width: fit-content;
   padding: 5px 5px;
+  min-height: 30px;
+  display: flex;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
 }
 
 .input {

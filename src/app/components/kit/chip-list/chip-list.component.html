@@ -1,10 +1,15 @@
-<mat-chip-list aria-label="selection" style="width: 100% !important; ">
-  <mat-chip (mouseover)="setHoveredRoleAndUser(user, role)" (mouseleave)="deleteHoveredRoleAndUser()"
-    *ngFor="let role of user.userRoles; index as rolesIndex" class="roles" [value]="role" color="accent">
-    {{role}}
-    <mat-icon matChipRemove *ngIf="getSelectedRole() === rolesIndex && getSelectedUser() === usersIndex && false;"
-      style="pointer-events: none;">
+<mat-chip-list aria-label="selection" style="width: 100% !important; " *ngIf="items">
+  <mat-chip *ngFor="let item of items; index as index" class="roles" [value]="item" color="accent"
+    (click)="selectIndex(index, item)">
+    {{item.firstName}}
+    {{item.familyName}}
+
+    <mat-icon matChipRemove *ngIf="(this.selectedItemId === item.id);" style="pointer-events: none;">
       cancel
     </mat-icon>
+
+
+
+
   </mat-chip>
 </mat-chip-list>

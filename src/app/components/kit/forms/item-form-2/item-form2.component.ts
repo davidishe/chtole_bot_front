@@ -1,19 +1,13 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { IItem } from 'src/app/shared/models/items/item';
-import { IBankOffice } from 'src/app/shared/models/user/bankoffice';
 import { OfficeService } from 'src/app/services/catalogs/office.service';
 import { ItemsService } from '../../../content/main/items/items.service';
-import { DadataData } from 'src/app/shared/models/dadata/dadata';
-
-import * as uuid from 'uuid';
 import { IIndividOwner, ILegalOwner } from 'src/app/shared/models/items/owners';
-import { Observable } from 'rxjs';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { DialogContentComponent } from 'src/app/components/content/admin/profile/profile.component';
+import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
 import { ModalIndividualComponent } from './modal-individual/modal-individual.component';
 import { OwnerIndividualService } from './owner-individual.service';
@@ -42,11 +36,11 @@ export class ItemFormComponent2 implements OnInit {
   legalOwners: ILegalOwner[] = [];
   individualOwners: IIndividOwner[] = [];
 
-  @Input() gaugeTitleForm: FormGroup;
-  @Input() gaugeTitles: FormArray;
+  // @Input() gaugeTitleForm: FormGroup;
+  // @Input() gaugeTitles: FormArray;
 
-  @Input() individualForm: FormGroup;
-  @Input() individualFormArray: FormArray;
+  // @Input() individualForm: FormGroup;
+  // @Input() individualFormArray: FormArray;
 
   @Input() individualFormUpdate: FormGroup;
   @Input() individualFormArrayUpdate: FormArray;
@@ -73,13 +67,13 @@ export class ItemFormComponent2 implements OnInit {
     this.itemId = +this.activatedRoute.snapshot.paramMap.get('id');
     this.type = this.activatedRoute.snapshot.paramMap.get('type');
 
-    this.gaugeTitleForm = this.formBuilder.group({
-      gaugeTitles: this.formBuilder.array([])
-    });
+    // this.gaugeTitleForm = this.formBuilder.group({
+    //   gaugeTitles: this.formBuilder.array([])
+    // });
 
-    this.individualForm = this.formBuilder.group({
-      individualFormArray: this.formBuilder.array([])
-    });
+    // this.individualForm = this.formBuilder.group({
+    //   individualFormArray: this.formBuilder.array([])
+    // });
 
     this.individualFormUpdate = this.formBuilder.group({
       individualFormArray: this.formBuilder.array([])
@@ -182,11 +176,6 @@ export class ItemFormComponent2 implements OnInit {
     const dialogRef = this.dialog.open(ModalIndividualComponent);
     dialogRef.componentInstance.savedOwner.subscribe((savedOwner: IIndividOwner) => {
       this.individualOwners.push(savedOwner);
-      
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
     });
   
   }
@@ -196,10 +185,6 @@ export class ItemFormComponent2 implements OnInit {
     dialogRef.componentInstance.savedOwner.subscribe((savedOwner: ILegalOwner) => {
       this.legalOwners.push(savedOwner);
       
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
     });
   
   }

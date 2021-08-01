@@ -1,4 +1,5 @@
 import { IUser } from "../user/user";
+import { IHeadManager } from "./owners";
 
 export interface IItem {
   id?: number | null;
@@ -30,25 +31,27 @@ export interface IItem {
   gosKontractOwnerInn?: string;
   pictureUrl?: string;
   appUser?: IUser;
-  companyLatinName: string; 
-  clientPhoneNumber: string; 
-  webSiteAddress: string; 
-  legalAddress: string; 
-  factAddress: string; 
-  postAddress: string; 
+  companyLatinName?: string; 
+  clientPhoneNumber?: string; 
+  webSiteAddress?: string; 
+  legalAddress?: string; 
+  factAddress?: string; 
+  postAddress?: string; 
 
   
-  regPlace: string; 
-  regDate: Date;
-  regOrganName: string; 
-  mainOkved: string; 
-  additionalOkveds: string; 
-  okpo: string;
-  okato: string;
-  kpp: string;
+  regPlace?: string; 
+  regDate?: Date;
+  regOrganName?: string; 
+  mainOkved?: string; 
+  additionalOkveds?: string; 
+  okpo?: string;
+  okato?: string;
+  kpp?: string;
 
   ukValue?: number;
 
+  headManagerId?: number;
+  headManager?: IHeadManager;
 
 }
 
