@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IAnimalType } from 'src/app/shared/models/type';
+import { IType } from 'src/app/shared/models/type';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 export class TypesService {
 
   baseUrl = environment.apiUrl;
-  types: IAnimalType[] = [];
+  types: IType[] = [];
 
 
 
@@ -20,7 +20,7 @@ export class TypesService {
     if (this.types.length > 0) {
       return of(this.types);
     }
-    return this.http.get<IAnimalType[]>(this.baseUrl + 'types/all').pipe(
+    return this.http.get<IType[]>(this.baseUrl + 'types/all').pipe(
       map(response => {
         this.types = response;
         return this.types;
@@ -28,7 +28,7 @@ export class TypesService {
     );
   }
 
-  Create(productType: IAnimalType) {
+  Create(productType: IType) {
     return this.http.post(this.baseUrl + 'animals/create-type', productType);
   }
 
@@ -36,7 +36,7 @@ export class TypesService {
     return this.http.get(this.baseUrl + 'get-item/?id=' + id);
   }
 
-  Update(productType: IAnimalType) {
+  Update(productType: IType) {
     return this.http.post(this.baseUrl + 'update-item', productType);
   }
 

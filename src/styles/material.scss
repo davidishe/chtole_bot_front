@@ -2,6 +2,10 @@
   width: 100% !important;
 }
 
+textarea {
+  resize: vertical !important;
+}
+
 .mat-btn-wrapper {
   margin-bottom: 20px;
   display: flex;

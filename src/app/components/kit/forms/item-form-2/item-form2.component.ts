@@ -99,7 +99,7 @@ export class ItemFormComponent2 implements OnInit {
         if (response) {
           this.item = response;
           this.patchValue();
-          this.breadcrumbService.set('@productDetails', this.item.companyShortName);
+          this.breadcrumbService.set('@productDetails', this.item.name);
         }
     }, err => {
       console.log(err);
@@ -108,7 +108,7 @@ export class ItemFormComponent2 implements OnInit {
 
 
   patchValue(): void {
-    this.itemForm.controls.ukValue.patchValue(this.item.ukValue);
+    // this.itemForm.controls.ukValue.patchValue(this.item.ukValue);
   }
 
 

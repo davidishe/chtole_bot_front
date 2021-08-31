@@ -26,7 +26,6 @@ import { MatButtonModule } from './components/kit/buttons/mat-button/mat-button.
 import { NavbarModule } from './components/layouts/nav-menu/navbar.module';
 import { ItemsModule } from './components/content/main/items/items.module';
 import { ItemDetailedCardModule } from './components/kit/item-detailed-card/item-detailed-card.module';
-import { ItemFormEditModule } from './components/kit/forms/item-form-edit/item-form-edit.module';
 import { HeroModule } from './components/layouts/hero/hero.module';
 import { AdminModule } from './components/content/admin/admin.module';
 import { TitleModule } from './components/kit/titles/title/title.module';
@@ -52,7 +51,7 @@ export const MY_FORMATS = {
 };
 
 const UserComponents = [
-  // DatePickerPipe
+  
 ]
 
 const UserModules = [
@@ -70,11 +69,10 @@ const UserModules = [
     ItemsModule,
     ItemDetailedCardModule,
     ClientsModule,
-    ItemFormEditModule,
     HeroModule,
     AdminModule,
     TitleModule,
-    MatTooltipModule,
+    MatTooltipModule
 ]
 
 @NgModule({

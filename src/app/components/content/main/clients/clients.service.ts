@@ -62,7 +62,7 @@ export class ClientsService {
     // if nocache scenaro used user params in query
     const params = this.calculateParams();
 
-    return this.http.get<AnimalsPagination>(this.baseUrl + 'clients/all', {observe: 'response', params})
+    return this.http.get<AnimalsPagination>(this.baseUrl + 'items/all', {observe: 'response', params})
       .pipe(
         map(response => {
           this.pets = [...this.pets, ...response.body.data];

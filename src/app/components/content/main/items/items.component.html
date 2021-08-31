@@ -27,7 +27,7 @@
 
       <app-pager-header [totalCount]="totalCount" [products]="this.products"></app-pager-header>
 
-      <div class="filters-wrapper">
+      <!-- <div class="filters-wrapper">
         <mat-chip-list aria-label="selection" style="width: 100% !important; ">
           <mat-chip *ngFor="let type of types" class="types" [class.active]="type.id === shopParams.typeIdSelected"
             [value]="type.id" (click)="onTypeSelected(type.id)" color="accent">
@@ -36,9 +36,9 @@
               cancel</mat-icon>
           </mat-chip>
         </mat-chip-list>
-      </div>
+      </div> -->
 
-      <div class="filters-wrapper">
+      <!-- <div class="filters-wrapper">
         <mat-chip-list aria-label="selection" style="width: 100% !important; ">
           <mat-chip *ngFor="let region of regions" class="regions"
             [class.active]="region.id === shopParams.regionIdSelected" [value]="region.id"
@@ -49,28 +49,12 @@
               cancel</mat-icon>
           </mat-chip>
         </mat-chip-list>
-      </div>
+      </div> -->
 
       <div class="filters-wrapper" style="justify-content: flex-end; margin-top: 2rem;">
         <app-mat-btn-small text="Добавить" [icon]="'add'" [routerLink]="[ 'add' ]"></app-mat-btn-small>
       </div>
 
-
-      <!-- <div class="filters-wrapper-footer">
-        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onSortSelected(group.value)">
-          <mat-button-toggle value="name" aria-label="Text align left">
-            <mat-icon>
-              sort_by_alpha
-            </mat-icon>
-          </mat-button-toggle>
-          <mat-button-toggle value="priceDesc" aria-label="Text align center">
-            <mat-icon>sort</mat-icon>
-          </mat-button-toggle>
-          <mat-button-toggle value="priceAsc" aria-label="Text align right">
-            <mat-icon class="down">sort</mat-icon>
-          </mat-button-toggle>
-        </mat-button-toggle-group>
-      </div> -->
 
     </div>
 
@@ -78,7 +62,7 @@
       <div class="grid">
         <div *ngFor="let item of items; let i=index">
           <div class="app-card">
-            <app-card [item]="item" link='/clients' style="margin-bottom: 20px;" [detailedMode]="false"></app-card>
+            <app-card [item]="item" link='/items' style="margin-bottom: 20px;" [detailedMode]="false"></app-card>
           </div>
         </div>
       </div>

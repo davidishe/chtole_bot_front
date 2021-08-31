@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  siteUrl: 'https://localhost:6001/',
-  apiUrl: 'https://localhost:6001/api/',
-  authUrl: 'https://localhost:6001/api/account/',
+  siteUrl: 'https://localhost:6010/',
+  apiUrl: 'https://localhost:6010/api/',
+  authUrl: 'https://localhost:6010/api/account/',
   redirectUrl: 'https://localhost:4200/account',
 };
 

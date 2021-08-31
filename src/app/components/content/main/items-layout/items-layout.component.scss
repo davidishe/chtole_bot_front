@@ -3,12 +3,12 @@
 }
 
 .table {
-  overflow: hidden;
-  box-shadow: var(--shadow);
+  // overflow: hidden;
+  // box-shadow: var(--shadow);
   // background-color: rgba(0, 0, 0, 0.123);
   // border: 1px lightgrey solid;
   // border-bottom: 0px;
-  border-bottom: 1px rgb(236, 236, 236) solid;
+  // border-bottom: 1px rgb(236, 236, 236) solid;
 }
 
 @media (max-width: 1620px) {
@@ -41,7 +41,7 @@
 }
 
 .no-items-wrapper {
-  background-color: aqua;
+  // background-color: aqua;
   width: 100%;
   display: flex;
   justify-content: center;

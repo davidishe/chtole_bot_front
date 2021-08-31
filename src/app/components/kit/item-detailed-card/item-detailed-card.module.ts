@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ItemDetailedCardComponent } from './item-detailed-card.component';
-import { CardModule } from '../card/card.module';
 import { MatBtnSmallModule } from '../buttons/mat-btn-small/mat-btn-small.module';
 import { RouterModule } from '@angular/router';
-import { ItemFormEditModule } from '../forms/item-form-edit/item-form-edit.module';
 import { TitleModule } from '../titles/title/title.module';
+import { ItemForm1Module } from '../forms/item-form-1/item-form-1.module';
 
 
 
@@ -15,11 +14,10 @@ import { TitleModule } from '../titles/title/title.module';
   ],
   imports: [
     CommonModule,
-    CardModule,
     MatBtnSmallModule,
     RouterModule,
-    ItemFormEditModule,
-    TitleModule
+    TitleModule,
+    ItemForm1Module
   ],
   exports: [
     ItemDetailedCardComponent

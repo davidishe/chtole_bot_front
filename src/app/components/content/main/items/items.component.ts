@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit, Input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IPagination } from 'src/app/shared/models/pagination';
-import { IAnimalType } from 'src/app/shared/models/type';
+import { IType } from 'src/app/shared/models/type';
 import { ShopParams } from 'src/app/shared/models/shopParams';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { DecimalPipe } from '@angular/common';
@@ -22,7 +22,7 @@ import { IRegion } from 'src/app/shared/models/region';
 export class ItemsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Input() items: IItem[];
-  types: IAnimalType[];
+  types: IType[];
   regions: IRegion[];
 
   pageEvent: PageEvent;

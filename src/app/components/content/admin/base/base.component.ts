@@ -8,7 +8,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { AnimalsPagination } from 'src/app/shared/models/pagination';
 import { DecimalPipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
-import { IAnimalType } from 'src/app/shared/models/type';
+import { IType } from 'src/app/shared/models/type';
 import { TypesService } from 'src/app/services/catalogs/types.service';
 import { RegionsService } from 'src/app/services/catalogs/regions.service';
 import { BreadcrumbService } from 'xng-breadcrumb';
@@ -33,7 +33,7 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
   formData = new FormData();
 
 
-  types: IAnimalType[];
+  types: IType[];
   regions: IRegion[];
 
   displayedColumns: string[] = [ 'productImage', 'productTitle', 'productPrice'];
@@ -132,13 +132,11 @@ export class BaseComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onImageUpload(files, product) {
     if (files.length === 0) { return; }
-    this.products.filter(z => z.id === product.id)[0].pictureUrl = '';
     const fileToUpload = files[0] as File;
     this.formData.append('file', fileToUpload, fileToUpload.name);
     this.progress = true;
 
     this.adminService.addPhoto(product, this.formData).subscribe((res: IItem) => {
-      this.products.filter(z => z.id === product.id)[0].pictureUrl = res.pictureUrl;
       this.progress = false;
       this.formData.delete('file');
       files = [];

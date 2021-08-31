@@ -1,6 +1,11 @@
 .mat-paginator-wrapper {
   display: flex;
   justify-content: center;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  vertical-align: middle;
+  align-items: center;
 
   mat-paginator {
     margin-right: 20px;

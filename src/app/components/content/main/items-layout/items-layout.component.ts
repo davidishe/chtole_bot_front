@@ -1,14 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Input, Injectable } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { IPagination } from 'src/app/shared/models/pagination';
-import { IAnimalType } from 'src/app/shared/models/type';
+import { Component, Input } from '@angular/core';
+import { IType } from 'src/app/shared/models/type';
 import { IRegion } from 'src/app/shared/models/region';
 import { ShopParams } from 'src/app/shared/models/shopParams';
-import { MatPaginator } from '@angular/material/paginator';
-import { DecimalPipe } from '@angular/common';
 import { ShopService } from 'src/app/services/catalogs/shop.service';
 import { SideNavService } from 'src/app/services/side-nav.service';
-import { IShelter } from 'src/app/shared/models/shelters/shelter';
 import { IItem } from 'src/app/shared/models/items/item';
 
 type Item = IItem;
@@ -22,7 +17,7 @@ type Item = IItem;
 export class ItemsLayoutComponent {
 
   @Input() items: Item[];
-  @Input() types: IAnimalType[];
+  @Input() types: IType[];
   @Input() regions: IRegion[];
   @Input() totalCount: number;
   @Input() shopParams = new ShopParams();

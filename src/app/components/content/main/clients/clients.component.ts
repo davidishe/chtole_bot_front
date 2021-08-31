@@ -8,7 +8,7 @@ import { IItem } from 'src/app/shared/models/items/item';
 import { IPagination } from 'src/app/shared/models/pagination';
 import { IRegion } from 'src/app/shared/models/region';
 import { ShopParams } from 'src/app/shared/models/shopParams';
-import { IAnimalType } from 'src/app/shared/models/type';
+import { IType } from 'src/app/shared/models/type';
 import { ClientsService } from './clients.service';
 
 @Component({
@@ -19,7 +19,7 @@ import { ClientsService } from './clients.service';
 export class ClientsComponent implements OnInit {
 
   sub: Subscription;
-  types: IAnimalType[];
+  types: IType[];
   regions: IRegion[];
   pets: IItem[];
   totalCount: number;

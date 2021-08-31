@@ -6,7 +6,6 @@ import { IShelter } from 'src/app/shared/models/shelters/shelter';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ItemsService } from '../../content/main/items/items.service';
 import { AccountService } from '../../layouts/account/account.service';
-import { PhotoService } from '../card/photo.service';
 
 type Item = IItem;
 
@@ -56,8 +55,8 @@ export class ItemDetailedCardComponent implements OnInit {
 
 
   patchValues() {
-    this.itemForm.controls.name.patchValue(this.item.directorName);
-    this.itemForm.controls.description.patchValue(this.item.companyShortName);
+    this.itemForm.controls.name.patchValue(this.item.name);
+    this.itemForm.controls.description.patchValue(this.item.name);
   }
 
 
@@ -77,7 +76,7 @@ export class ItemDetailedCardComponent implements OnInit {
       this.itemsService.getItemById(this.itemId).subscribe((response: Item) => {
         if (response) {
           this.item = response;
-          this.breadcrumbService.set('@productDetails', this.item.companyShortName);
+          this.breadcrumbService.set('@productDetails', this.item.name);
           this.patchValues();
         }
     }, err => {
@@ -86,9 +85,15 @@ export class ItemDetailedCardComponent implements OnInit {
   }
 
 
-  getEmitedOutputItem(item: Item) {
-    this.item = item;
-    this.isEdited = false;
+  getEmitedOutputItem(result: boolean | any) {
+    if (result === false) {
+      this.isEdited = false;
+    }
+
+    if (result.id > 0) {
+      this.item = result;
+      console.log(this.item);
+    }
   }
 
 
@@ -100,7 +105,7 @@ export class ItemDetailedCardComponent implements OnInit {
   delete(id: number): void {
       this.itemsService.deleteItem(id).subscribe((res: any) => {
         if (res) {
-          this.router.navigateByUrl('/clients');
+          this.router.navigateByUrl('/items');
         }
       })
 

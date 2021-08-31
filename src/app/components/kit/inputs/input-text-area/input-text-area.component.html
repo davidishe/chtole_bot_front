@@ -1,0 +1,42 @@
+<div class="form-input">
+
+  <label *ngIf="label" class="label" for="{{id}}"
+    [ngClass]="{'error-color': (controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched && controlDir.control.errors)}">{{label}}</label>
+  <textarea cols="30" rows="10" class="input" #input id="{{id}}" (input)="onChange($event.target.value)"
+    (blur)="onTouched()" [placeholder]="placeholder"
+    [ngClass]="(controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched) ? !controlDir.control.valid ? 'invalid' : 'valid' : null"
+    [ngClass]="{'edited': isEdited && !controlDir.control.errors}"
+    [ngClass]="{'error': (controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched && controlDir.control.errors)}"
+    (focus)="isEdited = true" (change)="isEdited = true" (blur)="isEdited = false" (keypress)="numberOnly($event)"
+    maxLength="{{maxiLength}}" minLength="{{miniLength}}" (mouseover)="this.outputEvent.emit($event)"
+    autocomplete="off">
+  </textarea>
+
+
+
+
+  <div class="invalid-feedback"
+    *ngIf="(controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched)">
+
+    <span class="validator" *ngIf="controlDir.control.errors?.required">
+      Поле не должно быть пустым
+    </span>
+
+    <span class="validator" *ngIf="controlDir.control.errors.maxlength">
+      Введено {{ controlDir.control.errors.maxlength.actualLength | json}} символов. Можно только {{
+      controlDir.control.errors.maxlength.requiredLength}}
+    </span>
+
+
+    <span class="validator" *ngIf="controlDir.control.errors.minlength">
+      Минимальное количество символов {{controlDir.control.errors.minlength.requiredLength}}. Введите еще
+      {{controlDir.control.errors.minlength.requiredLength -
+      controlDir.control.errors.minlength.actualLength}}
+    </span>
+
+
+    <span class="validator" *ngIf="controlDir.control.errors?.email">
+      Заполните поле корректно
+    </span>
+  </div>
+</div>

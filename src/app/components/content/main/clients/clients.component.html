@@ -30,7 +30,7 @@
 
       <app-pager-header [totalCount]="totalCount" [products]="this.products"></app-pager-header>
 
-      <div class="filters-wrapper">
+      <!-- <div class="filters-wrapper">
         <mat-chip-list aria-label="selection" style="width: 100% !important; ">
           <mat-chip *ngFor="let type of types" class="types" [class.active]="type.id === shopParams.typeIdSelected"
             [value]="type.id" (click)="onTypeSelected(type.id)" color="accent">
@@ -39,40 +39,25 @@
               cancel</mat-icon>
           </mat-chip>
         </mat-chip-list>
-      </div>
+      </div> -->
 
-      <div class="filters-wrapper">
-        <mat-chip-list aria-label="selection" style="width: 100% !important; ">
-          <mat-chip *ngFor="let region of regions" class="regions"
-            [class.active]="region.id === shopParams.regionIdSelected" [value]="region.id"
-            (click)="onRegionSelected(region.id)">
-            {{region.name}}
-            <mat-icon matChipRemove *ngIf="region.id === shopParams.regionIdSelected"
-              (click)="onRegionSelected(region.id)">
-              cancel</mat-icon>
-          </mat-chip>
-        </mat-chip-list>
-      </div>
 
       <div class="filters-wrapper" style="justify-content: flex-start; margin-top: 2rem;">
-        <app-mat-btn-small text="ИП" [icon]="'add'" [routerLink]="[ 'add/first', 'ip' ]"></app-mat-btn-small>
-        <app-mat-btn-small text="ООО" [icon]="'add'" [routerLink]="[ 'add/first', 'ooo' ]" style="margin-left: 20px;">
+        <app-mat-btn-small text="Добавить" [icon]="'add'" [routerLink]="[ 'add/first', 'ooo' ]">
         </app-mat-btn-small>
-
       </div>
 
     </div>
   </div>
-
-
 </div>
 
 
-<app-items-layout [(types)]="types" [(regions)]="regions" [(items)]="pets" [link]="'/clients'" [type]="'pet'">
+<app-items-layout [(types)]="types" [(regions)]="regions" [(items)]="pets" [link]="'/items'" [type]="'pet'">
 </app-items-layout>
 
 <div class="mat-paginator-wrapper" [ngClass]="{'hidden': pets === undefined}">
   <mat-paginator #paginator [length]="this.totalCount" [pageSize]="shopParams.pageSize"
-    [pageIndex]="shopParams.pageNumber" [pageSizeOptions]="pageSizeOptions">
+    [pageIndex]="shopParams.pageNumber">
+    <!-- [pageSizeOptions]="pageSizeOptions" -->
   </mat-paginator>
 </div>

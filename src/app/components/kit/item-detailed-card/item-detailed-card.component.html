@@ -1,39 +1,15 @@
-<div *ngIf="item && !isEdited" class="spec-container">
+<div *ngIf="true && item && !isEdited" class="spec-container">
   <div class="spec-inner">
-    <app-title text="{{item.companyShortName}}" subtext="{{item.type}}"></app-title>
+    <app-title text="{{item.name}}" subtext="{{item.type}}"></app-title>
 
     <div class="item-content-grid">
       <div class="item-content">
-        <b>ИНН</b>
-        <p> {{item.innNumber}} </p>
-        <b>ОГРН</b>
-        <p> {{item.ogrnNumber}} </p>
-        <b>Должность руководителя</b>
-        <p> {{item.directorPosition}} </p>
-        <b>ФИО руководителя</b>
-        <p> {{item.directorName}} </p>
-        <b>Контакты</b>
-        <p>9955094999</p>
-        <b>Номер отдельного банковского счета</b>
-        <p>{{item.accountNumberPsb}}</p>
-        <b>Обслуживающий офис</b>
-        <p>{{item.bankOffice}}</p>
-
-        <b>Идентификатор контракта</b>
-        <p>{{item.gosKontractIdentificator}}</p>
-
-        <b>Номер и дата контракта</b>
-        <p>{{item.gosKontractNumber}} от {{item.gosKontractDate | date}}</p>
-
-        <b>Наименование заказчика</b>
-        <p>{{item.gosKontractOwnerName}}</p>
-
-        <b>ИНН заказчика</b>
-        <p>{{item.gosKontractOwnerInn}}</p>
-
-        <b>Номер счета заказчика</b>
-        <p>{{item.gosKontractOwnerAccount}}</p>
+        <b>Идентификатор чата</b>
+        <p> {{item.chatId}} </p>
+        <b>Настройка времени отправки</b>
+        <p>{{item.cronExpression}}</p>
       </div>
+
       <div class="item-content">
         <div class="item-content-inner">
           <div>
@@ -45,42 +21,33 @@
             <p>{{item.appUser.userPosition}}</p>
             <b>Офис</b>
             <p>{{item.appUser.bankOffice}}</p>
-            <div class="docs">
-              <b>Документы для скачивания</b>
-              <a href="{{item.itemUrl}}">Заявление на обслуживание</a>
-            </div>
           </div>
-
-
-
 
 
         </div>
       </div>
-
-
     </div>
 
 
-
     <div class="btn-wrapper" style="margin-bottom: 1.5rem;">
-      <app-mat-btn-small style="margin-right: 10px;" [routerLink]="[ '/clients' ]" text="Назад">
+      <app-mat-btn-small style="margin-right: 10px;" [routerLink]="[ '/items' ]" text="Назад">
       </app-mat-btn-small>
-      <app-mat-btn-small style="margin-right: 10px;" text="Редактировать" (click)="editMode(true)">
+      <!-- <app-mat-btn-small style="margin-right: 10px;" text="Редактировать" (click)="editMode(true)">
+      </app-mat-btn-small> -->
+      <app-mat-btn-small style="margin-right: 10px;" text="Редактировать" [routerLink]="[ '/items/edit/', item.id ]">
       </app-mat-btn-small>
       <app-mat-btn-small style="margin-top: 20px;" text="Удалить" *ngIf="accountService.checkAdminRights()"
         (click)="delete(item.id)">
       </app-mat-btn-small>
-
     </div>
 
   </div>
 </div>
 
 
-<div *ngIf="item && isEdited" class="spec-container">
+<!-- <div class="spec-container" *ngIf="isEdited && item">
   <div class="spec-inner">
     <app-item-form-edit (changedItem)="getEmitedOutputItem($event)" [item]="item" [itemForm]="itemForm">
     </app-item-form-edit>
   </div>
-</div>
+</div> -->
