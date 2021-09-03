@@ -26,31 +26,6 @@
 
 
       <app-pager-header [totalCount]="totalCount" [products]="this.products"></app-pager-header>
-
-      <!-- <div class="filters-wrapper">
-        <mat-chip-list aria-label="selection" style="width: 100% !important; ">
-          <mat-chip *ngFor="let type of types" class="types" [class.active]="type.id === shopParams.typeIdSelected"
-            [value]="type.id" (click)="onTypeSelected(type.id)" color="accent">
-            {{type.name}}
-            <mat-icon matChipRemove *ngIf="type.id === shopParams.typeIdSelected" (click)="onTypeSelected(type.id)">
-              cancel</mat-icon>
-          </mat-chip>
-        </mat-chip-list>
-      </div> -->
-
-      <!-- <div class="filters-wrapper">
-        <mat-chip-list aria-label="selection" style="width: 100% !important; ">
-          <mat-chip *ngFor="let region of regions" class="regions"
-            [class.active]="region.id === shopParams.regionIdSelected" [value]="region.id"
-            (click)="onRegionSelected(region.id)">
-            {{region.name}}
-            <mat-icon matChipRemove *ngIf="region.id === shopParams.regionIdSelected"
-              (click)="onRegionSelected(region.id)">
-              cancel</mat-icon>
-          </mat-chip>
-        </mat-chip-list>
-      </div> -->
-
       <div class="filters-wrapper" style="justify-content: flex-end; margin-top: 2rem;">
         <app-mat-btn-small text="Добавить" [icon]="'add'" [routerLink]="[ 'add' ]"></app-mat-btn-small>
       </div>

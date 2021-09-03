@@ -110,12 +110,5 @@ export class ShopService {
     return this.http.get(this.baseUrl + 'animals/animal/?id=' + id);
   }
 
-  // getProductByGuId(guId: number) {
-  //   const product = this.items.find(p => p.guId === guId);
-  //   if (product) {
-  //     return of(product);
-  //   }
-  //   return this.http.get(this.baseUrl + 'products/getproductid/?guId=' + guId);
-  // }
 
 }

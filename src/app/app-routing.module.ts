@@ -19,7 +19,10 @@ const routes: Routes = [
   { path: 'notfound', component: NotFoundComponent, data: {breadcrumb: 'Страница не найдена'} },
 
   { path: 'items', component: ClientsComponent, data: {breadcrumb: 'Напоминания'}},
-  { path: 'items/add/second/:type/:id', component: ItemFormComponent2, data: {breadcrumb: 'Учредители'}},
+  // { path: 'items/add/second/:type/:id', component: ItemFormComponent2, data: {breadcrumb: 'Учредители'}},
+
+  { path: 'members', component: ItemFormComponent2, data: {breadcrumb: 'Команда'}},
+
 
   { path: 'items/:id', component: ItemDetailedCardComponent, data: {breadcrumb: 'Подробности'}},
   { path: 'items/edit/:id', component: ItemForm1Component, data: {breadcrumb: 'Подробности'}},

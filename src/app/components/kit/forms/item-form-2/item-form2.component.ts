@@ -1,18 +1,16 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BreadcrumbService } from 'xng-breadcrumb';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { IItem } from 'src/app/shared/models/items/item';
-import { OfficeService } from 'src/app/services/catalogs/office.service';
-import { ItemsService } from '../../../content/main/items/items.service';
-import { IIndividOwner, ILegalOwner } from 'src/app/shared/models/items/owners';
-import { MatDialog } from '@angular/material/dialog';
-import { ModalComponent } from './modal/modal.component';
-import { ModalIndividualComponent } from './modal-individual/modal-individual.component';
-import { OwnerIndividualService } from './owner-individual.service';
-import { OwnerLegalService } from './owner-legal.service';
-import { ModalLegalComponent } from './modal-legal/modal-legal.component';
+import { DecimalPipe } from '@angular/common';
+import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
+import { RegionsService } from 'src/app/services/catalogs/regions.service';
+import { TypesService } from 'src/app/services/catalogs/types.service';
+import { SideNavService } from 'src/app/services/side-nav.service';
+import { IPagination } from 'src/app/shared/models/pagination';
+import { IRegion } from 'src/app/shared/models/region';
+import { ShopParams } from 'src/app/shared/models/shopParams';
+import { IType } from 'src/app/shared/models/type';
+import { ClientsService } from 'src/app/components/content/main/clients/clients.service';
 
 type Item = IItem;
 
@@ -24,204 +22,167 @@ type Item = IItem;
 
 export class ItemFormComponent2 implements OnInit {
 
-  @Input() itemForm: FormGroup;
-  @Input() title: string = 'Новый продукт';
-  editedOwner: IIndividOwner;
-  item: IItem;
-  innLength: number;
-  itemTypeId?: number;
-  type: string;
-  itemId: number;
+  items: IItem[];
+  types: IType[];
+  regions: IRegion[];
 
-  legalOwners: ILegalOwner[] = [];
-  individualOwners: IIndividOwner[] = [];
+  pageEvent: PageEvent;
+  decimalPipe = new DecimalPipe(navigator.language);
 
-  // @Input() gaugeTitleForm: FormGroup;
-  // @Input() gaugeTitles: FormArray;
+  shopParams = new ShopParams();
+  totalCount: number;
+  sub: Subscription;
+  pageSizeOptions = [this.shopParams.pageSize, 10, 15];
 
-  // @Input() individualForm: FormGroup;
-  // @Input() individualFormArray: FormArray;
-
-  @Input() individualFormUpdate: FormGroup;
-  @Input() individualFormArrayUpdate: FormArray;
+  @ViewChild('search', {static: false}) searchTerm: ElementRef;
+  @ViewChild('paginator', {static: true}) paginator: MatPaginator;
 
 
   constructor(
-    private breadcrumbService: BreadcrumbService,
-    private itemsService: ItemsService,
-    private snackBar: MatSnackBar,
-    private officeService: OfficeService,
-    private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
-    private ownerLegalService: OwnerLegalService,
-    private ownerIndividualService: OwnerIndividualService,
-    public dialog: MatDialog,
-    private ref: ChangeDetectorRef,
-    private router: Router,
-  ) { }
+    private clientsService: ClientsService,
+    private typesService: TypesService,
+    private regionsService: RegionsService,
+    public sideNavService: SideNavService
 
+  ) {
+    this.shopParams = clientsService.getShopParams();
+  }
+
+
+
+  ngAfterViewInit(): void {
+    if (this.paginator) {
+      this.paginator.page.subscribe(() => {
+      const shopParams = this.clientsService.getShopParams();
+      shopParams.pageNumber = this.paginator.pageIndex;
+      shopParams.pageSize = this.paginator.pageSize;
+      this.clientsService.setShopParams(shopParams);
+      this.getAll(false);
+    });
+    }
+  }
 
   ngOnInit() {
-    this.onFormInit();
-
-    this.itemId = +this.activatedRoute.snapshot.paramMap.get('id');
-    this.type = this.activatedRoute.snapshot.paramMap.get('type');
-
-    // this.gaugeTitleForm = this.formBuilder.group({
-    //   gaugeTitles: this.formBuilder.array([])
-    // });
-
-    // this.individualForm = this.formBuilder.group({
-    //   individualFormArray: this.formBuilder.array([])
-    // });
-
-    this.individualFormUpdate = this.formBuilder.group({
-      individualFormArray: this.formBuilder.array([])
-    });
-
-    this.loadItemById();
-    this.loadLegalOwners();
-    this.loadlIndividualOwners();
-
-  }
-
-
-  onFormInit() {
-    this.itemForm = new FormGroup({
-      ukValue: new FormControl(null, Validators.required),
-    });
-
-  }
-
-
-  loadItemById() {
-      this.itemsService.getItemById(this.itemId).subscribe((response: Item) => {
-        if (response) {
-          this.item = response;
-          this.patchValue();
-          this.breadcrumbService.set('@productDetails', this.item.name);
-        }
-    }, err => {
-      console.log(err);
-    });
-  }
-
-
-  patchValue(): void {
-    // this.itemForm.controls.ukValue.patchValue(this.item.ukValue);
-  }
-
-
-  loadLegalOwners(): void {
-    this.ownerLegalService.getLegalOwners(this.itemId).subscribe((res: ILegalOwner[]) => {
-      this.legalOwners = res;
-    })
-  }
-
-
-  loadlIndividualOwners(): void {
-    this.ownerIndividualService.getIndividualOwners(this.itemId).subscribe((res: IIndividOwner[]) => {
-      this.individualOwners = res;
-    })
-  }
-
-
-  addOwnerLegal(entity: ILegalOwner): void {
-    this.legalOwners.push(entity);
-  }
-
-
-  addOwnerIndividual(entity: IIndividOwner): void {
-    this.individualOwners.push(entity);
-  }
-
-
-
-  deleteOwnerLegal(ownerId: number): void {
-    this.ownerLegalService.deleteLegalOwner(ownerId).subscribe((res: any) => {
-      if (res === 202) {
-        this.legalOwners = this.legalOwners.filter(z => z.id !== ownerId);
+    this.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+      if (page > 0) {
+        const start = (page) * pageSize;
+        const end = (page + 1) * pageSize;
+        return `${start} - ${end} из ${this.decimalPipe.transform(length)}`;
       }
-    })
-  }
 
-
-  deleteOwnerIndividual(ownerId: number): void {
-    this.ownerIndividualService.deleteIndividualOwner(ownerId).subscribe((res: any) => {
-      if (res === 202) {
-        this.individualOwners = this.individualOwners.filter(z => z.id !== ownerId);
+      if (page === 0) {
+        const start = 1;
+        const end = (page + 1) * pageSize;
+        return `${start} - ${end} из ${this.decimalPipe.transform(length)}`;
       }
-    })
+
+
+    };
+
+    this.getAll(false);
+    this.getAllRegions();
+    this.getAllTypes();
+    this.translateMatPaginator();
+
   }
 
+  getAll(useCache: boolean) {
+    this.sub = this.clientsService.getAll(useCache).subscribe((response: IPagination) => {
+      this.items = response.data;
+      this.totalCount = response.count;
+      this.paginator.pageSize = response.pageSize;
+      this.shopParams.pageSize = this.paginator.pageSize;
 
-  openUpdateDialogIndivid(owner: IIndividOwner) {
-    const dialogRef = this.dialog.open(ModalComponent);
-
-    dialogRef.componentInstance.owner = owner;
-
-    dialogRef.componentInstance.savedOwner.subscribe((savedOwner: IIndividOwner) => {
-      this.individualOwners = this.individualOwners.filter(x => x.id !== savedOwner.id);
-      this.individualOwners.push(savedOwner);
-      
+    }, error => {
+      console.log(error);
     });
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
+  translateMatPaginator() {
+      this.paginator._intl.itemsPerPageLabel = 'Записей на странице ';
+  }
+
+  handlePage(e: any) {
+
+    console.log(this.paginator.pageSize);
+    this.shopParams.pageNumber = 0;
+    this.shopParams.pageSize = this.paginator.pageSize;
+
+    this.clientsService.setShopParams(this.shopParams);
+    this.getAll(false);
+  }
+
+  onRegionSelected(regionId: number) {
+    const params = this.clientsService.getShopParams();
+    if (regionId !== params.regionIdSelected) {
+      params.regionIdSelected = regionId;
+    } else {
+      params.regionIdSelected = 0;
+    }
+    params.pageNumber = 0;
+    this.clientsService.setShopParams(params);
+    this.getAll(false);
+  }
+
+  onTypeSelected(typeId: number) {
+    const params = this.clientsService.getShopParams();
+    if (typeId !== params.typeIdSelected) {
+      params.typeIdSelected = typeId;
+    } else {
+      params.typeIdSelected = 0;
+    }
+    params.pageNumber = 0;
+    this.clientsService.setShopParams(params);
+    this.getAll(false);
+  }
+
+  onSortSelected(sort: string) {
+    const params = this.clientsService.getShopParams();
+    params.sortSelected = sort;
+    params.pageNumber = 0;
+    this.clientsService.setShopParams(params);
+    this.getAll(false);
+  }
+
+  onSearch() {
+    const params = this.clientsService.getShopParams();
+    params.search = this.searchTerm.nativeElement.value;
+    params.pageNumber = 0;
+    this.clientsService.setShopParams(params);
+    this.getAll(false);
+  }
+
+  onReset() {
+    this.searchTerm.nativeElement.value = undefined;
+    this.searchTerm.nativeElement.value = '';
+
+    const params = new ShopParams();
+    params.search = undefined;
+    this.clientsService.setShopParams(params);
+    console.log(this.searchTerm.nativeElement.value);
+    this.getAll(false);
+    this.shopParams = this.clientsService.getShopParams();
+
+  }
+
+  getAllTypes() {
+    this.sub = this.typesService.GetAllTypes().subscribe((response) => {
+      this.types = response;
+    }, error => {
+      console.log(error);
     });
-  
   }
 
-  openAddDialogIndivid() {
-    const dialogRef = this.dialog.open(ModalIndividualComponent);
-    dialogRef.componentInstance.savedOwner.subscribe((savedOwner: IIndividOwner) => {
-      this.individualOwners.push(savedOwner);
+  getAllRegions() {
+    this.sub = this.regionsService.GetAllRegions().subscribe((response) => {
+      this.regions = response;
+    }, error => {
+      console.log(error);
     });
-  
   }
 
-  openAddDialogLegal() {
-    const dialogRef = this.dialog.open(ModalLegalComponent);
-    dialogRef.componentInstance.savedOwner.subscribe((savedOwner: ILegalOwner) => {
-      this.legalOwners.push(savedOwner);
-      
-    });
-  
-  }
-
-
-  openSnackBar(message: string): void {
-    this.snackBar.open(message, '', {duration: 2500});
-  }
-
-
-  onSubmit(): void {
-    const ukValue = this.itemForm.controls.ukValue.value;
-    this.ownerIndividualService.updateUkValue(ukValue, this.itemId).subscribe((res: any) => {
-      console.log(res);
-      if (res === 200) {
-        this.router.navigate(['clients/add/third/' + this.type + '/', this.itemId])
-      }
-    })
-  }
-
-  isUkValueValid(): number {
-    const ownersUkValues = [];
-    this.legalOwners.forEach(owner => {
-      ownersUkValues.push(owner.shareValue);
-    });
-
-    this.individualOwners.forEach(owner => {
-      ownersUkValues.push(owner.shareValue);
-    });
-
-    return ownersUkValues.reduce((a, b) => a + b, 0);
-      
-  }
-
-
-  ngAfterViewInit() {
-    this.ref.detectChanges();
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
 

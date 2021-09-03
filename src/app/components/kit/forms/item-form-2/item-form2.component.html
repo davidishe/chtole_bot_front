@@ -1,111 +1,60 @@
-<div class="spec-container">
-  <app-title text="Шаг 2" subtext="Вводи данные и нажми кнопку 'Сохранить'"> </app-title>
-  <!-- {{item.companyShortName}}" -->
-  <div class="form-add-wrapper">
+<div class="spec-container" style="padding-top: 100px;">
+  <div class="container" *ngIf="items">
+    <div class="title-wrapper">
+      <app-page-header></app-page-header>
+      <p>
+        Значимость этих проблем настолько очевидна, что высокотехнологичная концепция общественной системы
+        способствует
+        повышению качества дальнейших направлений развития.
+      </p>
+    </div>
 
-
-    <form class="form-add" [formGroup]="itemForm" (keydown.enter)="onSubmit()">
-
-      <div class="input-group" style="display: flex;">
-        <!-- TODO: поправить чтобы были копейки можно писать было -->
-        <app-input-text [placeholder]="''" formControlName="ukValue" [type]="'text'" [label]="'Уставный капитал'"
-          [id]="'ukValue'" value='' [maxiLength]="innLength" [miniLength]="innLength" [isNumericOnly]="true">
-        </app-input-text>
-
+    <div class="shop-header">
+      <div class="products-control-wrapper">
+        <div class="search">
+          <mat-form-field class="example-full-width" floatLabel="never">
+            <input matInput type="text" #search placeholder="Поиск по сайту" (keydown.enter)="onSearch()">
+            <mat-icon *ngIf="!shopParams.search" class="mat-icon" matSuffix (click)="onSearch()">
+              search
+            </mat-icon>
+            <mat-icon *ngIf="shopParams.search" class="mat-icon" matSuffix (click)="onReset()">
+              close
+            </mat-icon>
+          </mat-form-field>
+        </div>
       </div>
 
-    </form>
-  </div>
+
+      <app-pager-header [totalCount]="totalCount" [products]="this.products"></app-pager-header>
+      <div class="filters-wrapper" style="justify-content: flex-end; margin-top: 2rem;">
+        <app-mat-btn-small text="Добавить" [icon]="'add'" [routerLink]="[ 'add' ]"></app-mat-btn-small>
+      </div>
 
 
+    </div>
 
-  <br>
-
-  <app-subtitle text="Учредители"></app-subtitle>
-  <div *ngIf="legalOwners.length > 0">
-    <div class="owner-header">Учредители-юридические лица</div>
-    <div class="owners">
-      <div class="owner" *ngFor="let owner of legalOwners; let i=index">
-        <span>
-          {{owner.shortName}}
-        </span>
-        <div class="share">
-          {{owner.shareValue}}%
-          <i class="material-icons" (click)="333">
-            edit_note
-          </i>
-          <i class="material-icons" (click)="deleteOwnerLegal(owner.id)">
-            delete
-          </i>
+    <div class="grid-wrapper">
+      <div class="grid">
+        <div *ngFor="let item of items; let i=index">
+          <div class="app-card">
+            <app-card [item]="item" link='/items' style="margin-bottom: 20px;" [detailedMode]="false"></app-card>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <div class="mat-paginator-wrapper">
+    <mat-paginator #paginator [length]="this.totalCount" [pageSize]="shopParams.pageSize"
+      [pageIndex]="shopParams.pageNumber" [pageSizeOptions]="pageSizeOptions">
+    </mat-paginator>
+  </div>
 
-  <div *ngIf="individualOwners.length > 0">
-    <div class="owner-header">Учредители-физические лица</div>
-    <div class="owners">
-      <div class="owner" *ngFor="let owner of individualOwners; let i=index">
-        <span>
-          {{owner.familyName}} {{owner.firstName}} {{owner.fatherName}}
-        </span>
-        <div class="share">
-          {{owner.shareValue}}%
-          <i class="material-icons" (click)="openUpdateDialogIndivid(owner)">
-            edit_note
-          </i>
-          <i class="material-icons" (click)="deleteOwnerIndividual(owner.id)">
-            delete
-          </i>
-        </div>
-      </div>
+
+  <div class="container" style="background-color: #FFFFFF;">
+    <div *ngIf="!items" class="spinner-wrapper">
+      <mat-spinner>
+
+      </mat-spinner>
     </div>
   </div>
-
-  <div *ngIf="(legalOwners.length === 0) && (individualOwners.length === 0)">
-    <span>добавьте хотя бы одного учредителя в список</span>
-  </div>
-
-
-  <br>
-
-  <app-mat-btn-small (click)="openAddDialogIndivid()" text="Добавить учредителя - физическое лицо"
-    style="margin-right: 30px;" [disabled]="!(isUkValueValid() < 100)">
-  </app-mat-btn-small>
-
-
-
-  <app-mat-btn-small (click)="openAddDialogLegal()" text="Добавить учредителя - юридическое лицо"
-    [disabled]="!(isUkValueValid() < 100)">
-  </app-mat-btn-small>
-
-
-
-  <!-- <app-item-form-legal [gaugeTitleForm]="gaugeTitleForm" [gaugeTitles]="gaugeTitles" [itemId]="itemId"
-    (outputEntity)="addOwnerLegal($event)">
-  </app-item-form-legal>
-
-
-  <app-item-form-individual [individualForm]="individualForm" [individualFormArray]="individualFormArray"
-    [itemId]="itemId" (outputEntity)="addOwnerIndividual($event)">
-  </app-item-form-individual> -->
-
-
-
-  <div class="form-add-wrapper">
-    <div class="mat-btn-wrapper" style="min-width: 280px; margin-top: 40px;">
-      <app-mat-btn-small [disabled]="false" [routerLink]="[ '/clients/add/first', type, itemId]" text="Назад">
-      </app-mat-btn-small>
-
-      <!-- <app-mat-btn-small (click)="addItem()" [disabled]="itemForm.invalid || gaugeTitleForm.invalid"
-      text="Сохранить и продолжить">
-      </app-mat-btn-small> -->
-
-      <app-mat-btn-small (click)="onSubmit()"
-        [disabled]="(isUkValueValid() !== 100) || (!itemForm.get('ukValue').valid)" text="Сохранить и продолжить">
-      </app-mat-btn-small>
-    </div>
-  </div>
-
-
 </div>

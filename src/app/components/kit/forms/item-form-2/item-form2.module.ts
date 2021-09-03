@@ -11,9 +11,9 @@ import { InputDatepickerModule } from '../../inputs/input-datepicker/input-datep
 import { DadataEgrulModule } from '../../dadata/dadata-egrul/dadata-egrul.module';
 import { DadataAddressModule } from '../../dadata/dadata-address/dadata-address.module';
 import { SubtitleModule } from '../../titles/subtitle/subtitle.module';
-import { ModalModule } from './modal/modal.module';
 import { ModalIndividualModule } from './modal-individual/modal-individual.module';
-import { ModalLegalModule } from './modal-legal/modal-legal.module';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -34,10 +34,8 @@ import { ModalLegalModule } from './modal-legal/modal-legal.module';
     DadataEgrulModule,
     DadataAddressModule,
     SubtitleModule,
-    ModalModule,
     ModalIndividualModule,
-    ModalLegalModule
-
+    MatPaginatorModule,
 
   ],
   exports: [
