@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HeroComponent } from './components/layouts/hero/hero.component';
+import { HeroComponent } from './components/kit/layouts/hero/hero.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ServererrorComponent } from './components/error/servererror/servererror.component';
 import { NotFoundComponent } from './components/error/not-found/not-found.component';
@@ -9,6 +9,7 @@ import { AdminGuard } from './components/core/guards/admin.guard';
 import { ClientsComponent } from './components/content/main/clients/clients.component';
 import { ItemFormComponent2 } from './components/kit/forms/item-form-2/item-form2.component';
 import { ItemForm1Component } from './components/kit/forms/item-form-1/item-form-1.component';
+import { MemberDetailedComponent } from './components/kit/forms/item-form-2/member-detailed/member-detailed.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,8 @@ const routes: Routes = [
   // { path: 'items/add/second/:type/:id', component: ItemFormComponent2, data: {breadcrumb: 'Учредители'}},
 
   { path: 'members', component: ItemFormComponent2, data: {breadcrumb: 'Команда'}},
+  { path: 'members/:id', component: MemberDetailedComponent, data: {breadcrumb: 'Команда'}},
+
 
 
   { path: 'items/:id', component: ItemDetailedCardComponent, data: {breadcrumb: 'Подробности'}},
@@ -30,7 +33,7 @@ const routes: Routes = [
   { path: 'admin', loadChildren: () => import('./components/content/admin/admin.module').then(mod => mod.AdminModule),
   data: {breadcrumb: 'Администратор'}, canActivate: [AdminGuard]},
 
-  { path: 'account', loadChildren: () => import('./components/layouts/account/account.module').then(mod => mod.AccountModule),
+  { path: 'account', loadChildren: () => import('./components/kit/layouts/account/account.module').then(mod => mod.AccountModule),
   data: {breadcrumb: {skip: true}}, },
 
 ];

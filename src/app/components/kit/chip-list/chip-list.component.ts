@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, Type } from '@angular/core';
-import { IIndividOwner } from 'src/app/shared/models/items/owners';
+import { IMember } from 'src/app/shared/models/items/member';
 
 
-type Item = IIndividOwner;
+type Item = IMember;
 
 @Component({
   selector: 'app-chip-list',

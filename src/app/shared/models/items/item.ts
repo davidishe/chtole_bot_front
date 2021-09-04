@@ -1,5 +1,5 @@
 import { IUser } from "../user/user";
-import { IHeadManager } from "./owners";
+import { IHeadManager } from "./member";
 
 export interface IItem {
   id?: number | null;

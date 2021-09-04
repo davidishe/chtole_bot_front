@@ -14,6 +14,7 @@ import { SubtitleModule } from '../../titles/subtitle/subtitle.module';
 import { ModalIndividualModule } from './modal-individual/modal-individual.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableRowModule } from '../../mat-table-row/mat-table-row.module';
 
 
 
@@ -36,6 +37,7 @@ import { MatCardModule } from '@angular/material/card';
     SubtitleModule,
     ModalIndividualModule,
     MatPaginatorModule,
+    MatTableRowModule
 
   ],
   exports: [

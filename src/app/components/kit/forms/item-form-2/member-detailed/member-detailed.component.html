@@ -1,0 +1,45 @@
+<div *ngIf="true && item && !isEdited" class="spec-container">
+  <div class="spec-inner">
+    <app-title text="{{item.name}}" subtext="Настройки сотрудника"></app-title>
+
+    <div class="item-content-grid">
+      <div class="item-content">
+        <b>Имя</b>
+        <p> {{item.name}} </p>
+        <b>Доступность</b>
+        <p>{{item.isEnabled}}</p>
+      </div>
+
+      <div class="item-content">
+        <div class="item-content-inner">
+          <div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="btn-wrapper" style="margin-bottom: 1.5rem;">
+      <app-mat-btn-small style="margin-right: 10px;" [routerLink]="[ '/items' ]" text="Назад">
+      </app-mat-btn-small>
+      <!-- <app-mat-btn-small style="margin-right: 10px;" text="Редактировать" (click)="editMode(true)">
+      </app-mat-btn-small> -->
+      <app-mat-btn-small style="margin-right: 10px;" text="Редактировать">
+      </app-mat-btn-small>
+      <app-mat-btn-small style="margin-top: 20px;" text="Удалить" *ngIf="accountService.checkAdminRights()"
+        (click)="delete(item.id)">
+      </app-mat-btn-small>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- <div class="spec-container" *ngIf="isEdited && item">
+  <div class="spec-inner">
+    <app-item-form-edit (changedItem)="getEmitedOutputItem($event)" [item]="item" [itemForm]="itemForm">
+    </app-item-form-edit>
+  </div>
+</div> -->

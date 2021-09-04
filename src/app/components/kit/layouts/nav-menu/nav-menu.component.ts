@@ -3,7 +3,7 @@ import {  Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SideNavService } from 'src/app/services/side-nav.service';
 import { IUser } from 'src/app/shared/models/user/user';
-import { AccountService } from '../../layouts/account/account.service';
+import { AccountService } from '../account/account.service';
 import { NavStateService } from './services/nav-state.service';
 import { ThemeService } from './services/theme.service';
 import { WindowService } from './services/window.service';

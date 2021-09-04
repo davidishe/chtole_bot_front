@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'src/app/components/layouts/account/account.service';
+import { AccountService } from 'src/app/components/kit/layouts/account/account.service';
 
 @Component({
   selector: 'app-login-btn-facebook',

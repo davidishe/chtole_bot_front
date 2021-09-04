@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AccountService } from 'src/app/components/layouts/account/account.service';
+import { AccountService } from 'src/app/components/kit/layouts/account/account.service';
 import { IUser } from 'src/app/shared/models/user/user';
 import { NavStateService } from '../services/nav-state.service';
 import { WindowService } from '../services/window.service';

@@ -6,7 +6,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IAddress } from 'src/app/shared/models/user/address';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AccountService } from 'src/app/components/layouts/account/account.service';
+import { AccountService } from 'src/app/components/kit/layouts/account/account.service';
 import { IPhoto } from 'src/app/shared/models/user/photo';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { OfficeService } from 'src/app/services/catalogs/office.service';

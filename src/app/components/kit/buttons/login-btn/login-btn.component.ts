@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AccountService } from 'src/app/components/layouts/account/account.service';
+import { AccountService } from 'src/app/components/kit/layouts/account/account.service';
 import { IUser } from 'src/app/shared/models/user/user';
 
 @Component({

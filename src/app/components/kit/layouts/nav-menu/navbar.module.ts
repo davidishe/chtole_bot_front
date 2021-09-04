@@ -7,7 +7,7 @@ import { NavStateService } from './services/nav-state.service';
 import { WindowService } from './services/window.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ThemeService } from './services/theme.service';
-import { MatBtnSmallModule } from '../../kit/buttons/mat-btn-small/mat-btn-small.module';
+import { MatBtnSmallModule } from '../../buttons/mat-btn-small/mat-btn-small.module';
 
 
 
@@ -29,10 +29,6 @@ import { MatBtnSmallModule } from '../../kit/buttons/mat-btn-small/mat-btn-small
     {
       provide: NavStateService,
       useClass: NavStateService
-    },
-    {
-      provide: WindowService,
-      useClass: WindowService
     },
     {
       provide: ThemeService,

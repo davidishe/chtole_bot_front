@@ -2,8 +2,9 @@ import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { NavStateService } from './nav-state.service';
 
-
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class WindowService {
 
   renderer: boolean;

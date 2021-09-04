@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { IIndividOwner, ILegalOwner } from 'src/app/shared/models/items/owners';
-import { OwnerIndividualService } from '../owner-individual.service';
+import { IMember } from 'src/app/shared/models/items/member';
+import { MemberService } from '../member.service';
 
 @Component({
   selector: 'app-modal-individual',
@@ -12,13 +12,13 @@ import { OwnerIndividualService } from '../owner-individual.service';
 export class ModalIndividualComponent implements OnInit {
 
   form: FormGroup;
-  owner: IIndividOwner;
-  @Output() savedOwner = new EventEmitter<IIndividOwner>();
+  owner: IMember;
+  @Output() savedOwner = new EventEmitter<IMember>();
   
   constructor(
     public dialog: MatDialog,
     private ref: ChangeDetectorRef,
-    private ownerService: OwnerIndividualService
+    private memberService: MemberService
   ) { }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class ModalIndividualComponent implements OnInit {
 
       this.owner = this.form.value;
 
-      this.ownerService.addIndividualOwner(this.owner, 2).subscribe((res: any) => {
+      this.memberService.add(this.owner, 2).subscribe((res: any) => {
         this.owner = res;
         this.savedOwner.emit(this.owner);
 
@@ -46,16 +46,7 @@ export class ModalIndividualComponent implements OnInit {
 
   createFormIndivid(){
     this.form = new FormGroup({
-      shareValue: new FormControl(null, Validators.required),
-      cityzenType: new FormControl(null, Validators.required),
-      familyName: new FormControl(null, Validators.required),
-      firstName: new FormControl(null, Validators.required),
-      fatherName: new FormControl(null, Validators.required),
-      innNumber: new FormControl(null, Validators.required),
-      // birthDate: new FormControl(null, [Validators.nullValidator, Validators.required]),
-      // birthDateHidden: new FormControl(null, [Validators.nullValidator, Validators.required]),
-      birthPlace: new FormControl(null, Validators.required),
-      snilsNumber: new FormControl(null, Validators.required)
+      name: new FormControl(null, Validators.required)
     });
   }
 

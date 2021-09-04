@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeroComponent } from './hero.component';
 import { BannerComponent } from '../banner/banner.component';
 import { BannerBigModule } from '../banner-big/banner-big.module';
-import { MatButtonModule } from '../../kit/buttons/mat-button/mat-button.module';
+import { MatButtonModule } from '../../buttons/mat-button/mat-button.module';
 import { RouterModule } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 

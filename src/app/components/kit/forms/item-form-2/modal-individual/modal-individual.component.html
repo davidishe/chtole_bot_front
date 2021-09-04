@@ -6,42 +6,9 @@
 
     <form class="form-add" [formGroup]="form">
 
-      <div class="input-group">
-        <app-input-text [placeholder]="''" formControlName="shareValue" [type]="'text'" [label]="'Размер доли, %'"
-          [id]="'shareValue'" style="padding-right: 30px;" [isNumericOnly]="true">
-        </app-input-text>
-
-        <app-input-text [placeholder]="''" formControlName="cityzenType" [type]="'text'" [label]="'Гражданство'"
-          [id]="'cityzenType'">
-        </app-input-text>
-      </div>
-
-      <app-input-text [placeholder]="''" formControlName="familyName" [type]="'text'" [label]="'Фамилия'"
-        [id]="'familyName'">
+      <app-input-text [placeholder]="''" formControlName="name" [type]="'text'" [label]="'Имя'" [id]="'name'">
       </app-input-text>
 
-      <app-input-text [placeholder]="''" formControlName="firstName" [type]="'text'" [label]="'Имя'" [id]="'firstName'">
-      </app-input-text>
-
-      <app-input-text [placeholder]="''" formControlName="fatherName" [type]="'text'" [label]="'Отчество'"
-        [id]="'fatherName'">
-      </app-input-text>
-
-      <div class="input-group">
-
-        <app-input-text [placeholder]="''" formControlName="innNumber" [type]="'text'" [label]="'ИНН'"
-          [id]="'innNumber'" [maxiLength]="'12'" [miniLength]="'12'" [isNumericOnly]="true"
-          style="padding-right: 30px;">
-        </app-input-text>
-
-        <app-input-text [placeholder]="''" formControlName="snilsNumber" [type]="'text'" [label]="'СНИЛС'"
-          [maxiLength]="'11'" [miniLength]="'11'" [isNumericOnly]="true" [id]="'snilsNumber'">
-        </app-input-text>
-      </div>
-
-      <app-input-text [placeholder]="''" formControlName="birthPlace" [type]="'text'" [label]="'Место рождения'"
-        [id]="'birthPlace'">
-      </app-input-text>
 
 
     </form>

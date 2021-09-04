@@ -23,10 +23,10 @@ import { ErrorInterceptor } from './components/core/interceptors/error.intercept
 import { BusyService } from './services/infrastructure/busy.service';
 import { LoadingInterceptor } from './components/core/interceptors/loading.interceptor';
 import { MatButtonModule } from './components/kit/buttons/mat-button/mat-button.module';
-import { NavbarModule } from './components/layouts/nav-menu/navbar.module';
+import { NavbarModule } from './components/kit/layouts/nav-menu/navbar.module';
 import { ItemsModule } from './components/content/main/items/items.module';
 import { ItemDetailedCardModule } from './components/kit/item-detailed-card/item-detailed-card.module';
-import { HeroModule } from './components/layouts/hero/hero.module';
+import { HeroModule } from './components/kit/layouts/hero/hero.module';
 import { AdminModule } from './components/content/admin/admin.module';
 import { TitleModule } from './components/kit/titles/title/title.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -34,6 +34,7 @@ import { ClientsModule } from './components/content/main/clients/clients.module'
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentUtcDateAdapter } from './components/kit/inputs/input-datepicker/moment-utc-date-adapter';
 import { MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
+import { MemberDetailedModule } from './components/kit/forms/item-form-2/member-detailed/member-detailed.module';
 
 
 registerLocaleData(localeRu, 'ru');
@@ -72,7 +73,8 @@ const UserModules = [
     HeroModule,
     AdminModule,
     TitleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MemberDetailedModule
 ]
 
 @NgModule({
