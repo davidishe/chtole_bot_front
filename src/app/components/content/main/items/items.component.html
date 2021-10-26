@@ -13,7 +13,12 @@
       <div class="products-control-wrapper">
         <div class="search">
           <mat-form-field class="example-full-width" floatLabel="never">
-            <input matInput type="text" #search placeholder="Поиск по сайту" (keydown.enter)="onSearch()">
+            <!-- <input matInput type="text" #search placeholder="Поиск по сайту" (keydown.enter)="onSearch()"> -->
+
+            <app-input-text [placeholder]="'Поиск по сайту'" (keydown.enter)="onSearch()" formControlName="search" [label]="'Пароль'" [id]="'search'"
+              [value]="''">
+            </app-input-text>
+
             <mat-icon *ngIf="!shopParams.search" class="mat-icon" matSuffix (click)="onSearch()">
               search
             </mat-icon>

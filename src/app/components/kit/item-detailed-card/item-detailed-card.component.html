@@ -32,8 +32,6 @@
     <div class="btn-wrapper" style="margin-bottom: 1.5rem;">
       <app-mat-btn-small style="margin-right: 10px;" [routerLink]="[ '/items' ]" text="Назад">
       </app-mat-btn-small>
-      <!-- <app-mat-btn-small style="margin-right: 10px;" text="Редактировать" (click)="editMode(true)">
-      </app-mat-btn-small> -->
       <app-mat-btn-small style="margin-right: 10px;" text="Редактировать" [routerLink]="[ '/items/edit/', item.id ]">
       </app-mat-btn-small>
       <app-mat-btn-small style="margin-top: 20px;" text="Удалить" *ngIf="accountService.checkAdminRights()"

@@ -34,7 +34,7 @@ import { ClientsModule } from './components/content/main/clients/clients.module'
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentUtcDateAdapter } from './components/kit/inputs/input-datepicker/moment-utc-date-adapter';
 import { MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
-import { MemberDetailedModule } from './components/kit/forms/item-form-2/member-detailed/member-detailed.module';
+import { MemberDetailedModule } from './components/kit/forms/members/member-detailed/member-detailed.module';
 
 
 registerLocaleData(localeRu, 'ru');

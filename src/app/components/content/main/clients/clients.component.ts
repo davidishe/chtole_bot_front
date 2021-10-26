@@ -1,5 +1,6 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { RegionsService } from 'src/app/services/catalogs/regions.service';
@@ -25,11 +26,13 @@ export class ClientsComponent implements OnInit {
   totalCount: number;
   shopParams = new ShopParams();
   decimalPipe = new DecimalPipe(navigator.language);
+  form: FormGroup;
+
 
 
   pageSizeOptions = [this.shopParams.pageSize, 10, 15];
   @ViewChild('paginator', {static: true}) paginator: MatPaginator;
-  @ViewChild('search', {static: false}) searchTerm: ElementRef;
+  @ViewChild('search', {static: true}) searchTerm: ElementRef;
 
 
   constructor(
@@ -57,10 +60,17 @@ export class ClientsComponent implements OnInit {
 
     };
 
+    this.createForm();
     this.translateMatPaginator();
-
     this.getAllTypes();
     this.getAllRegions();
+  }
+
+
+  createForm() {
+    this.form = new FormGroup({
+      search: new FormControl(null, [Validators.required])
+    });
   }
 
 

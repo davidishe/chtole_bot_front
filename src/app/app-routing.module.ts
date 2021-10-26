@@ -7,9 +7,9 @@ import { NotFoundComponent } from './components/error/not-found/not-found.compon
 import { ItemDetailedCardComponent } from './components/kit/item-detailed-card/item-detailed-card.component';
 import { AdminGuard } from './components/core/guards/admin.guard';
 import { ClientsComponent } from './components/content/main/clients/clients.component';
-import { ItemFormComponent2 } from './components/kit/forms/item-form-2/item-form2.component';
+import { ItemFormComponent2 } from './components/kit/forms/members/item-form2.component';
 import { ItemForm1Component } from './components/kit/forms/item-form-1/item-form-1.component';
-import { MemberDetailedComponent } from './components/kit/forms/item-form-2/member-detailed/member-detailed.component';
+import { MemberDetailedComponent } from './components/kit/forms/members/member-detailed/member-detailed.component';
 
 
 const routes: Routes = [
@@ -20,11 +20,10 @@ const routes: Routes = [
   { path: 'notfound', component: NotFoundComponent, data: {breadcrumb: 'Страница не найдена'} },
 
   { path: 'items', component: ClientsComponent, data: {breadcrumb: 'Напоминания'}},
-  { path: 'items/add', component: ItemFormComponent2, data: {breadcrumb: 'Добавить'}},
+  { path: 'items/add', component: ItemForm1Component, data: {breadcrumb: 'Добавить'}},
 
   { path: 'members', component: ItemFormComponent2, data: {breadcrumb: 'Команда'}},
   { path: 'members/:id', component: MemberDetailedComponent, data: {breadcrumb: 'Команда'}},
-
 
 
   { path: 'items/:id', component: ItemDetailedCardComponent, data: {breadcrumb: 'Подробности'}},

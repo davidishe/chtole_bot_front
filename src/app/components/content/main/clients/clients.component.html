@@ -1,6 +1,6 @@
 <div class="spec-container">
 
-  <app-title text="Клиенты" subtext="Здесь ты можешь выбрать клиента и скачать готовые формы документов"></app-title>
+  <app-title text="События" subtext="Здесь ты управлять событиями для бота"></app-title>
 
   <div class="container" *ngIf="pets">
     <div class="title-wrapper">
@@ -15,15 +15,18 @@
     <div class="shop-header">
       <div class="products-control-wrapper">
         <div class="search">
-          <mat-form-field class="example-full-width" floatLabel="never">
-            <input matInput type="text" #search placeholder="Поиск по сайту" (keydown.enter)="onSearch()">
-            <mat-icon *ngIf="!shopParams.search" class="mat-icon" matSuffix (click)="onSearch()">
-              search
-            </mat-icon>
-            <mat-icon *ngIf="shopParams.search" class="mat-icon" matSuffix (click)="onReset()">
-              close
-            </mat-icon>
-          </mat-form-field>
+          <form [formGroup]="form"
+            style="display: flex; justify-content: center; vertical-align: middle; align-items: center; width: 100%;">
+            <app-input-text [placeholder]="'Поиск по сайту'" (keydown.enter)="onSearch()" formControlName="search"
+              [label]="''" [id]="'search'" [value]="''" style="width: 100%; padding-right: 10px;">
+            </app-input-text>
+
+            <app-mat-btn-small text="Поискать" *ngIf="!shopParams.search" (click)="onSearch()"></app-mat-btn-small>
+            <app-mat-btn-small text="Поискать" *ngIf="shopParams.search" (click)="onReset()"></app-mat-btn-small>
+
+          </form>
+
+          <!-- </mat-form-field> -->
         </div>
       </div>
 
@@ -43,7 +46,7 @@
 
 
       <div class="filters-wrapper" style="justify-content: flex-start; margin-top: 2rem;">
-        <app-mat-btn-small text="Добавить" [icon]="'add'" [routerLink]="[ 'add/first', 'ooo' ]">
+        <app-mat-btn-small text="Добавить" [icon]="'add'" [routerLink]="[ '/items/add' ]">
         </app-mat-btn-small>
       </div>
 

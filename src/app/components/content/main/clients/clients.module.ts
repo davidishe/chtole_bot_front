@@ -7,6 +7,8 @@ import { MatBtnSmallModule } from 'src/app/components/kit/buttons/mat-btn-small/
 import { RouterModule } from '@angular/router';
 import { TitleModule } from 'src/app/components/kit/titles/title/title.module';
 import { ClientsComponent } from './clients.component';
+import { InputTextModule } from 'src/app/components/kit/inputs/input-text/input-text.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +22,10 @@ import { ClientsComponent } from './clients.component';
     MaterialModule,
     MatBtnSmallModule,
     RouterModule,
-    TitleModule
+    TitleModule,
+    InputTextModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     ClientsComponent

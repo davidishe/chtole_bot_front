@@ -19,7 +19,7 @@ export class RegionsService {
     if (this.regions.length > 0) {
       return of(this.regions);
     }
-    return this.http.get<any>(this.baseUrl + 'regions/regions').pipe(
+    return this.http.get<any>(this.baseUrl + 'regions/all').pipe(
       map(response => {
         this.regions = response;
         return response;
