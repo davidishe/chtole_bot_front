@@ -9,12 +9,12 @@ import { IMember } from 'src/app/shared/models/items/member';
 type Item = IMember;
 
 @Component({
-  selector: 'app-item-form2',
-  templateUrl: './item-form2.component.html',
-  styleUrls: ['./item-form2.component.scss']
+  selector: 'member',
+  templateUrl: './member.component.html',
+  styleUrls: ['./member.component.scss']
 })
 
-export class ItemFormComponent2 implements OnInit {
+export class MemberComponent implements OnInit {
 
   items: Item[];
   types: IType[];

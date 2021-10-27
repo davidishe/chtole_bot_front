@@ -11,14 +11,14 @@ import { IBankOffice } from 'src/app/shared/models/user/bankoffice';
 type Item = IItem;
 
 @Component({
-  selector: 'app-item-form-edit',
-  templateUrl: './item-form-1.component.html',
-  styleUrls: ['./item-form-1.component.scss']
+  selector: 'item-add',
+  templateUrl: './item-add.component.html',
+  styleUrls: ['./item-add.component.scss']
 })
 
 
 
-export class ItemForm1Component implements OnInit {
+export class ItemAddComponent implements OnInit {
 
   @Input() itemForm?: FormGroup;
   @Input() item: Item;
@@ -27,7 +27,7 @@ export class ItemForm1Component implements OnInit {
   offices: IBankOffice[] = [];
   items: Item[] = [];  
   itemId: number;
-  title: string = 'Обновление данных';
+  title: string = 'Добавление данных';
   subtitle: string = "Вводи данные и нажми кнопку 'Сохранить'";
 
   constructor(
@@ -79,7 +79,7 @@ export class ItemForm1Component implements OnInit {
 
   mapItemFields() {
     this.item = {
-      id: this.item.id,
+      // id: this.item.id,
       name: this.itemForm.controls.name.value,
       messageText: this.itemForm.controls.messageText.value,
       cronExpression: this.itemForm.controls.cronExpression.value,

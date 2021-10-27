@@ -5,16 +5,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MaterialModule } from 'src/app/shared/material.module';
 import { MatBtnSmallModule } from 'src/app/components/kit/buttons/mat-btn-small/mat-btn-small.module';
 import { RouterModule } from '@angular/router';
-import { ItemDetailedCardModule } from 'src/app/components/kit/item-detailed-card/item-detailed-card.module';
 import { MatTableRowModule } from 'src/app/components/kit/mat-table-row/mat-table-row.module';
-import { ItemForm1Module } from 'src/app/components/kit/forms/item-form-1/item-form-1.module';
+import { ItemAddModule } from 'src/app/components/kit/forms/item-add/item-add.module';
 
 const UserModules = [
   CommonModule,
   MatPaginatorModule,
   MaterialModule,
   RouterModule,
-  ItemForm1Module,
+  ItemAddModule,
   MatBtnSmallModule
 ];
 

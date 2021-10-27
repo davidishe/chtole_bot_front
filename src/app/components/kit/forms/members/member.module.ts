@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ItemFormComponent2 } from './item-form2.component';
+import { ItemFormComponent2, MemberComponent } from './member.component';
 import { MatBtnSmallModule } from '../../buttons/mat-btn-small/mat-btn-small.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,7 +11,7 @@ import { InputDatepickerModule } from '../../inputs/input-datepicker/input-datep
 import { DadataEgrulModule } from '../../dadata/dadata-egrul/dadata-egrul.module';
 import { DadataAddressModule } from '../../dadata/dadata-address/dadata-address.module';
 import { SubtitleModule } from '../../titles/subtitle/subtitle.module';
-import { ModalIndividualModule } from './modal-individual/modal-individual.module';
+import { ModalIndividualModule } from './member-add/modal-individual.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableRowModule } from '../../mat-table-row/mat-table-row.module';
@@ -20,7 +20,7 @@ import { MatTableRowModule } from '../../mat-table-row/mat-table-row.module';
 
 @NgModule({
   declarations: [
-    ItemFormComponent2,
+    MemberComponent,
   ],
   imports: [
     CommonModule,
@@ -41,7 +41,7 @@ import { MatTableRowModule } from '../../mat-table-row/mat-table-row.module';
 
   ],
   exports: [
-    ItemFormComponent2
+    MemberComponent
   ]
 })
-export class ItemForm2Module { }
+export class MemberModule { }

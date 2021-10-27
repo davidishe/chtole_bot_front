@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ItemForm1Component } from './item-form-1.component';
+import { ItemAddComponent } from './item-add.component';
 import { MatBtnSmallModule } from '../../buttons/mat-btn-small/mat-btn-small.module';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +14,7 @@ import { InputTextAreaModule } from '../../inputs/input-text-area/input-text-are
 
 @NgModule({
   declarations: [
-    ItemForm1Component
+    ItemAddComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +29,7 @@ import { InputTextAreaModule } from '../../inputs/input-text-area/input-text-are
   ],
 
   exports: [
-    ItemForm1Component
+    ItemAddComponent
   ]
 })
-export class ItemForm1Module { }
+export class ItemAddModule { }
