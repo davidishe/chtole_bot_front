@@ -5,11 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { MatBtnSmallModule } from '../../../buttons/mat-btn-small/mat-btn-small.module';
-import { IconModule } from '../../../icon/icon.module';
-import { DropdownModule } from '../../../inputs/dropdown/dropdown.module';
-import { InputTextModule } from '../../../inputs/input-text/input-text.module';
-import { TitleModule } from '../../../titles/title/title.module';
+import { MatBtnSmallModule } from '../../../../kit/buttons/mat-btn-small/mat-btn-small.module';
+import { IconModule } from '../../../../kit/icon/icon.module';
+import { DropdownModule } from '../../../../kit/inputs/dropdown/dropdown.module';
+import { InputTextModule } from '../../../../kit/inputs/input-text/input-text.module';
+import { TitleModule } from '../../../../kit/titles/title/title.module';
 
 
 

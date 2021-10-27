@@ -1,0 +1,38 @@
+<div class="spec-container">
+  <app-title text="{{title}}" subtext="{{subtitle}}"> </app-title>
+
+  <div class="form-add-wrapper">
+
+    <form class="form-add" [formGroup]="itemForm" (keydown.enter)="submitUpdate()">
+
+
+      <!-- назвние задачи -->
+      <app-input-text [placeholder]="''" formControlName="name" [type]="'text'" [label]="'Название события'"
+        [id]="'name'" value='{{item?.name}}'>
+      </app-input-text>
+
+      <!-- время отправки -->
+      <app-input-text-area [placeholder]="''" formControlName="messageText" [type]="'text'" [label]="'Сообщение'"
+        [id]="'messageText'" value='{{item?.messageText}}'>
+      </app-input-text-area>
+
+      <!-- идентификатор чата -->
+      <app-input-text [placeholder]="''" formControlName="chatId" [type]="'text'" [label]="'Идентификатор чата'"
+        [id]="'chatId'" value='{{item?.chatId}}'>
+      </app-input-text>
+
+      <!-- время отправки -->
+      <app-input-text [placeholder]="''" formControlName="cronExpression" [type]="'text'" [label]="'Время отправки'"
+        [id]="'cronExpression'" value='{{item?.cronExpression}}'>
+      </app-input-text>
+
+
+      <div class="mat-btn-wrapper" style="min-width: 280px; margin-top: 40px;">
+        <app-mat-btn-small [disabled]="false" [routerLink]="[ '/items']" text="Отменить">
+        </app-mat-btn-small>
+        <app-mat-btn-small (click)="submitUpdate()" [disabled]="itemForm.invalid" text="Сохранить">
+        </app-mat-btn-small>
+      </div>
+    </form>
+  </div>
+</div>

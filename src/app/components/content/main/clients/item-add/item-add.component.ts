@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'xng-breadcrumb';
-import { ItemsService } from '../../../content/main/items/items.service';
+import { ItemsService } from '../../items/items.service';
 import { IItem } from 'src/app/shared/models/items/item';
 import { OfficeService } from 'src/app/services/catalogs/office.service';
 import { IBankOffice } from 'src/app/shared/models/user/bankoffice';

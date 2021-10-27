@@ -6,7 +6,7 @@ import { MaterialModule } from 'src/app/shared/material.module';
 import { MatBtnSmallModule } from 'src/app/components/kit/buttons/mat-btn-small/mat-btn-small.module';
 import { RouterModule } from '@angular/router';
 import { MatTableRowModule } from 'src/app/components/kit/mat-table-row/mat-table-row.module';
-import { ItemAddModule } from 'src/app/components/kit/forms/item-add/item-add.module';
+import { ItemAddModule } from 'src/app/components/content/main/clients/item-add/item-add.module';
 
 const UserModules = [
   CommonModule,

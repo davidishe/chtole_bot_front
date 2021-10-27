@@ -7,9 +7,10 @@ import { NotFoundComponent } from './components/error/not-found/not-found.compon
 import { ItemDetailedCardComponent } from './components/kit/item-detailed-card/item-detailed-card.component';
 import { AdminGuard } from './components/core/guards/admin.guard';
 import { ClientsComponent } from './components/content/main/clients/clients.component';
-import { MemberComponent } from './components/kit/forms/members/member.component';
-import { ItemAddComponent } from './components/kit/forms/item-add/item-add.component';
-import { MemberDetailedComponent } from './components/kit/forms/members/member-detailed/member-detailed.component';
+import { MemberComponent } from './components/content/main/members/member.component';
+import { ItemAddComponent } from './components/content/main/clients/item-add/item-add.component';
+import { MemberDetailedComponent } from './components/content/main/members/member-detailed/member-detailed.component';
+import { ItemUpdateComponent } from './components/content/main/clients/item-update/item-update.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'items', component: ClientsComponent, data: {breadcrumb: 'Напоминания'}},
   { path: 'items/add', component: ItemAddComponent, data: {breadcrumb: 'Добавить'}},
   { path: 'items/:id', component: ItemDetailedCardComponent, data: {breadcrumb: 'Подробности'}},
+  { path: 'items/edit/:id', component: ItemUpdateComponent, data: {breadcrumb: 'Подробности'}},
 
   { path: 'members', component: MemberComponent, data: {breadcrumb: 'Команда'}},
   { path: 'members/:id', component: MemberDetailedComponent, data: {breadcrumb: 'Команда'}},

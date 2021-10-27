@@ -129,6 +129,7 @@
 .mat-paginator-wrapper {
   display: flex;
   justify-content: center;
+  position: relative;
 
   mat-paginator {
     margin-right: 20px;
