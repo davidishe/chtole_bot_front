@@ -11,6 +11,7 @@ import { MemberComponent } from './components/content/main/members/member.compon
 import { ItemAddComponent } from './components/content/main/clients/item-add/item-add.component';
 import { MemberDetailedComponent } from './components/content/main/members/member-detailed/member-detailed.component';
 import { ItemUpdateComponent } from './components/content/main/clients/item-update/item-update.component';
+import { SettingsComponent } from './components/content/main/settings/settings.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,11 @@ const routes: Routes = [
 
   { path: 'members', component: MemberComponent, data: {breadcrumb: 'Команда'}},
   { path: 'members/:id', component: MemberDetailedComponent, data: {breadcrumb: 'Команда'}},
+
+  { path: 'settings/:chatid', component: SettingsComponent, data: {breadcrumb: 'Настройки'}},
+  { path: 'settings', component: SettingsComponent, data: {breadcrumb: 'Настройки'}},
+
+
 
 
   { path: 'admin', loadChildren: () => import('./components/content/admin/admin.module').then(mod => mod.AdminModule),

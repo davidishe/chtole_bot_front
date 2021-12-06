@@ -1,0 +1,39 @@
+<div class="page-layout">
+  <div class="spec-container">
+    <app-title text="Настройки учетки" subtext="Здесь ты можешь управлять глобальными настройками бота"></app-title>
+
+    <p>
+      Введи сюда chat Id - ты можешь его получить следующим образом
+    </p>
+    <p>
+      Не забудь сделать бота админом
+    </p>
+
+
+    <div class="form-add-wrapper">
+
+      <form class="form-add" [formGroup]="form" (keydown.enter)="submit()">
+
+
+        <!-- назвние задачи -->
+        <app-input-text [placeholder]="''" formControlName="name" [type]="'text'" [label]="'Название чата'"
+          [id]="'name'" value='{{item?.name}}'>
+        </app-input-text>
+
+
+        <!-- идентификатор чата -->
+        <app-input-text [placeholder]="''" formControlName="chatId" [type]="'text'" [label]="'Идентификатор чата'"
+          [id]="'chatId'" value='{{item?.chatId}}'>
+        </app-input-text>
+
+
+        <div class="mat-btn-wrapper" style="min-width: 280px; margin-top: 40px;">
+          <app-mat-btn-small [disabled]="false" [routerLink]="[ '/items']" text="Отменить">
+          </app-mat-btn-small>
+          <app-mat-btn-small (click)="submit()" [disabled]="form.invalid" text="Сохранить">
+          </app-mat-btn-small>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

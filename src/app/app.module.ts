@@ -36,6 +36,7 @@ import { MomentUtcDateAdapter } from './components/kit/inputs/input-datepicker/m
 import { MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 import { MemberDetailedModule } from './components/content/main/members/member-detailed/member-detailed.module';
 import { ItemUpdateModule } from './components/content/main/clients/item-update/item-update.module';
+import { SettingsModule } from './components/content/main/settings/settings.module';
 
 
 registerLocaleData(localeRu, 'ru');
@@ -76,7 +77,8 @@ const UserModules = [
     TitleModule,
     MatTooltipModule,
     MemberDetailedModule,
-    ItemUpdateModule
+    ItemUpdateModule,
+    SettingsModule
 ]
 
 @NgModule({

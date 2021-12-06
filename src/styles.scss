@@ -4,6 +4,7 @@
 @import "./styles/buttons.scss";
 @import "./styles/breadcrumb.scss";
 @import "./styles/material.scss";
+@import "./styles/global.scss";
 
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
@@ -79,13 +80,6 @@ html {
     font-weight: 700;
   }
 
-  .container {
-    margin: 0rem 0rem;
-    padding-top: 0rem;
-    padding-left: 0rem;
-    padding-right: 0rem;
-  }
-
   .cdk-overlay-pane {
     snack-bar-container {
       background-color: #202020;
@@ -99,46 +93,5 @@ html {
         }
       }
     }
-  }
-}
-
-/* хром, сафари */
-*::-webkit-scrollbar {
-  width: 0;
-}
-
-body {
-  margin: 0;
-}
-
-.spec-container {
-  padding-left: 50px;
-  padding-right: 50px;
-  background-color: transparent !important;
-  background-color: var(--background);
-}
-
-.spec-inner {
-  margin-top: 150px;
-}
-
-@media (max-width: 1000px) and (min-width: 700px) {
-  .spec-container {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
-@media (max-width: 770px) {
-  .spec-container {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-
-@media (max-width: 320px) {
-  .spec-container {
-    padding-left: 10px;
-    padding-right: 10px;
   }
 }
