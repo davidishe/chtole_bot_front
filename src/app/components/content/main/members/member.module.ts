@@ -13,8 +13,9 @@ import { DadataAddressModule } from '../../../kit/dadata/dadata-address/dadata-a
 import { SubtitleModule } from '../../../kit/titles/subtitle/subtitle.module';
 import { ModalIndividualModule } from './member-add/modal-individual.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatCardModule } from '@angular/material/card';
 import { MatTableRowModule } from '../../../kit/mat-table-row/mat-table-row.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { GenericCardModule } from 'src/app/components/kit/cards/generic-card/generic-card.module';
 
 
 
@@ -32,12 +33,13 @@ import { MatTableRowModule } from '../../../kit/mat-table-row/mat-table-row.modu
     TitleModule,
     DropdownModule,
     InputDatepickerModule,
-    DadataEgrulModule,
     DadataAddressModule,
     SubtitleModule,
     ModalIndividualModule,
     MatPaginatorModule,
-    MatTableRowModule
+    MatTableRowModule,
+    MatProgressSpinnerModule,
+    GenericCardModule
 
   ],
   exports: [

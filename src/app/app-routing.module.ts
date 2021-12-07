@@ -4,7 +4,7 @@ import { HeroComponent } from './components/kit/layouts/hero/hero.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ServererrorComponent } from './components/error/servererror/servererror.component';
 import { NotFoundComponent } from './components/error/not-found/not-found.component';
-import { ItemDetailedCardComponent } from './components/kit/item-detailed-card/item-detailed-card.component';
+import { ItemDetailedCardComponent } from './components/kit/cards/item-detailed-card/item-detailed-card.component';
 import { AdminGuard } from './components/core/guards/admin.guard';
 import { ClientsComponent } from './components/content/main/clients/clients.component';
 import { MemberComponent } from './components/content/main/members/member.component';

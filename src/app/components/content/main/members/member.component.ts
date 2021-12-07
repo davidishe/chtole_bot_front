@@ -42,10 +42,10 @@ export class MemberComponent implements OnInit {
 
   getAll() {
     this.sub = this.memberService.getAll().subscribe((response: IMember[]) => {
-      this.items = response;
-      console.log(this.items);
-      
-
+      if (response) {
+        this.items = response;
+        console.log(this.items);
+      }
     }, error => {
       console.log(error);
     });

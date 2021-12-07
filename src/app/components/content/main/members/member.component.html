@@ -1,7 +1,6 @@
 <div class="spec-container" style="padding-top: 100px;">
-  <div class="container" *ngIf="items">
+  <div class="container">
     <div class="title-wrapper">
-      <app-page-header></app-page-header>
       <p>
         Значимость этих проблем настолько очевидна, что высокотехнологичная концепция общественной системы
         способствует
@@ -9,34 +8,28 @@
       </p>
     </div>
 
-    <div class="shop-header">
-
-      <app-pager-header [totalCount]="totalCount" [products]="this.products"></app-pager-header>
-      <div class="filters-wrapper" style="justify-content: flex-end; margin-top: 2rem;">
-        <app-mat-btn-small text="Добавить" [icon]="'add'" [routerLink]="[ 'add' ]"></app-mat-btn-small>
-      </div>
-
-
-    </div>
-
-    <div class="grid-wrapper">
-      <div class="grid">
-        <div *ngFor="let item of items; let i=index">
-          <div class="app-card">
-            <app-mat-table-row [routerLink]="[ '/members', item.id ]" [item]="item" style="margin-bottom: 20px;"
-              [detailedMode]="false">
-            </app-mat-table-row>
-          </div>
-        </div>
-      </div>
+    <div class="filters-wrapper" style="justify-content: flex-end; margin-top: 2rem;">
+      <app-mat-btn-small text="Добавить" [icon]="'add'" [routerLink]="[ 'add' ]"></app-mat-btn-small>
     </div>
   </div>
 
-  <div class="container" style="background-color: #FFFFFF;">
-    <div *ngIf="!items" class="spinner-wrapper">
-      <mat-spinner>
-
-      </mat-spinner>
+  <div class="grid-wrapper">
+    <div class="grid" *ngIf="items">
+      <div *ngFor="let item of items; let i=index">
+        <!-- <div class="app-card"> -->
+        <!-- {{item | json}} -->
+        <app-generic-card [title]="item.name">
+        </app-generic-card>
+        <!-- </div> -->
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="container" style="background-color: #FFFFFF;">
+  <div *ngIf="!items" class="spinner-wrapper">
+    <mat-spinner>
+
+    </mat-spinner>
   </div>
 </div>

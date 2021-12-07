@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IItem } from 'src/app/shared/models/items/item';
 import { IShelter } from 'src/app/shared/models/shelters/shelter';
 import { BreadcrumbService } from 'xng-breadcrumb';
-import { ItemsService } from '../../content/main/items/items.service';
-import { AccountService } from '../layouts/account/account.service';
+import { ItemsService } from '../../../content/main/items/items.service';
+import { AccountService } from '../../layouts/account/account.service';
 
 type Item = IItem;
 

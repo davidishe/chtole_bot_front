@@ -25,7 +25,7 @@ import { LoadingInterceptor } from './components/core/interceptors/loading.inter
 import { MatButtonModule } from './components/kit/buttons/mat-button/mat-button.module';
 import { NavbarModule } from './components/kit/layouts/nav-menu/navbar.module';
 import { ItemsModule } from './components/content/main/items/items.module';
-import { ItemDetailedCardModule } from './components/kit/item-detailed-card/item-detailed-card.module';
+import { ItemDetailedCardModule } from './components/kit/cards/item-detailed-card/item-detailed-card.module';
 import { HeroModule } from './components/kit/layouts/hero/hero.module';
 import { AdminModule } from './components/content/admin/admin.module';
 import { TitleModule } from './components/kit/titles/title/title.module';
@@ -37,6 +37,7 @@ import { MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 import { MemberDetailedModule } from './components/content/main/members/member-detailed/member-detailed.module';
 import { ItemUpdateModule } from './components/content/main/clients/item-update/item-update.module';
 import { SettingsModule } from './components/content/main/settings/settings.module';
+import { MemberModule } from './components/content/main/members/member.module';
 
 
 registerLocaleData(localeRu, 'ru');
@@ -78,7 +79,8 @@ const UserModules = [
     MatTooltipModule,
     MemberDetailedModule,
     ItemUpdateModule,
-    SettingsModule
+    SettingsModule,
+    MemberModule
 ]
 
 @NgModule({

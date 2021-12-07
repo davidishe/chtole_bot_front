@@ -1,0 +1,27 @@
+.mat-btn-wrapper {
+  width: max-content !important;
+}
+
+form {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+app-input-text {
+  margin-right: 20px;
+}
+
+app-mat-btn-small {
+  margin-right: 20px;
+}
+
+@media (max-width: 790px) {
+  form {
+    display: block;
+  }
+
+  .mat-btn-wrapper {
+    width: 100%;
+  }
+}

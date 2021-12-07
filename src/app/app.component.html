@@ -1,6 +1,6 @@
 <mat-sidenav-container class="mat-sidenav-container" [@.disabled]="true">
   <mat-sidenav #sidenav mode="side" [(opened)]="sideNavService.opened">
-    <div class="nav-toggle nav-toggle-left">
+    <div class="nav-toggle nav-toggle-left" style="padding-left: 10px;">
       <svg *ngIf="sideNavService.isOpened()" (click)="sideNavService.toggle()" xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24" fill="var(--font)" width="36px" height="36px">
         <path d="M0 0h24v24H0V0z" fill="none" />
